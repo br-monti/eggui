@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChickenLineagesEditComponent } from './chicken-lineages-edit/chicken-lineages-edit.component';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 
 
@@ -21,7 +22,9 @@ import { ChickenLineagesEditComponent } from './chicken-lineages-edit/chicken-li
     InputTextModule,
     ButtonModule,
     TableModule,
-    TooltipModule
+    TooltipModule,
+    SelectButtonModule,
+
   ],
   exports:  [ChickenLineagesListComponent,
   ChickenLineagesEditComponent]

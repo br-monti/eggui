@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChickenLineagesEditComponent implements OnInit {
 
+  chickenColors = [
+    { label: 'Branco', value: 'BRANCO' },
+    { label: 'Vermelho', value: 'VERMELHO' },
+  ];
+
   constructor() { }
 
   ngOnInit() {

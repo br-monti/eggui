@@ -1,1 +1,32 @@
-<p>chicken-lineages-edit works!</p>
+<div class="container">
+  <form autocomplete="off">
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Nova Linhagem de Aves</h1>
+      </div>
+
+      <div class="ui-g-12">
+        <p-selectButton name="chickenColor" [options]="chickenColors"></p-selectButton>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Linhagem</label>
+        <input pInputText type="text" required minlength="5">
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Fornecedor</label>
+        <input pInputText type="text" required minlength="5">
+      </div>
+
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" ></button>
+        <button pButton type="button" label="Novo"></button>
+        <a>Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { GrangeModule } from './grange/grange.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,7 +27,8 @@ import { AppComponent } from './app.component';
     TableModule,
     TooltipModule,
     GrangeModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
