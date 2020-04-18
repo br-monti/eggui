@@ -1,19 +1,20 @@
 <div class="container">
   <div class="ui-g">
+      <form autocomplete="off" (ngSubit)="findByFilter()">
 
-    <div class="ui-g-12">
-      <h1>Linhagem de Aves</h1>
-    </div>
+      <div class="ui-g-12">
+        <h1>Linhagem de Aves</h1>
+      </div>
 
-    <div class="ui-g-12 ui-fluid">
-      <label>Linhagem</label>
-      <input pInputText type="text">
-    </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Linhagem</label>
+        <input pInputText type="text" name="lineage" [(ngModel)]="lineage">
+      </div>
 
-    <div class="ui-g-12">
-      <button pButton type="submit" label="Pesquisar"></button>
-    </div>
-
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+  </form>
   </div>
 
   <div class="ui-g">
@@ -43,7 +44,7 @@
     </div>
 
     <div class="ui-g-12">
-      <a pButton label="Nova Linhagem"></a>
+      <a pButton label="Nova Linhagem" routerLink="/ChickenLineages/new"></a>
     </div>
 
   </div>

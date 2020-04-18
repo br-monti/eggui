@@ -8,16 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChickenLineagesListComponent implements OnInit {
 
+  lineage: string;
+
   chickenLineages = [];
 
     constructor(private chickenLineagesService: ChickenLineagesService) { }
 
   ngOnInit() {
-    this.list();
+    this.findByFilter();
   }
 
-    list() {
-      this.chickenLineagesService.list()
+  findByFilter() {
+      this.chickenLineagesService.findByFilter({lineage: this.lineage})
       .then(chickenLineages => this.chickenLineages = chickenLineages);
     }
 

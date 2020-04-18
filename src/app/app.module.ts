@@ -14,6 +14,7 @@ import { TooltipModule } from 'primeng/tooltip';
 
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AppComponent } from './app.component';
     TooltipModule,
     GrangeModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,11 @@
-import { HttpClient  } from '@angular/common/http';
+import { HttpClient, HttpParams  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
+
+export  interface ChickenLineageFilter {
+  lineage: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +16,15 @@ export class ChickenLineagesService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Promise<any> {
+  findByFilter(filter: ChickenLineageFilter): Promise<any> {
+    let params = new HttpParams();
 
-    return this.http.get(`${this.chickenLineagesUrl}`)
+    if (typeof filter.lineage !== 'undefined' && filter.lineage.length > 0) {
+      params =  params.set('lineage', filter.lineage);
+    }
+
+    return this.http.get(`${this.chickenLineagesUrl}`, {params})
     .toPromise()
-    .then(response => response);
+    .then(response => response[`${'content'}`]);
   }
  }

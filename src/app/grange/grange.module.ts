@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { ChickenLineagesListComponent } from './chicken-lineages-list/chicken-lineages-list.component';
 
 import { NgModule } from '@angular/core';
@@ -10,12 +11,14 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChickenLineagesEditComponent } from './chicken-lineages-edit/chicken-lineages-edit.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [ChickenLineagesListComponent, ChickenLineagesEditComponent],
   imports: [
+    FormsModule,
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -24,6 +27,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     TableModule,
     TooltipModule,
     SelectButtonModule,
+    RouterModule
 
   ],
   exports:  [ChickenLineagesListComponent,
