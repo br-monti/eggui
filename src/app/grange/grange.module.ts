@@ -1,4 +1,5 @@
-import { MessageComponent } from './message/message.component';
+import { SharedModule } from './../shared/shared.module';
+import { MessageComponent } from '../shared/message/message.component';
 
 
 import { RouterModule } from '@angular/router';
@@ -19,7 +20,7 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [ChickenLineagesListComponent, ChickenLineagesEditComponent, MessageComponent ],
+  declarations: [ChickenLineagesListComponent, ChickenLineagesEditComponent],
   imports: [
     FormsModule,
     CommonModule,
@@ -31,9 +32,10 @@ import { FormsModule } from '@angular/forms';
     TooltipModule,
     SelectButtonModule,
     RouterModule,
+    SharedModule
 
   ],
   exports:  [ChickenLineagesListComponent,
-  ChickenLineagesEditComponent, MessageComponent]
+  ChickenLineagesEditComponent]
 })
 export class GrangeModule { }

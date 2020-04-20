@@ -1,5 +1,5 @@
 <div class="container">
-  <form autocomplete="off">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)=create(f)>
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -7,12 +7,13 @@
       </div>
 
       <div class="ui-g-12">
-        <p-selectButton name="chickenColor" [options]="chickenColors"></p-selectButton>
+        <p-selectButton name="chickenColor" [options]="chickenColors"
+        [(ngModel)]=chickenLineage.chicken_color></p-selectButton>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Linhagem</label>
-        <input pInputText type="text" name="lineage"
+        <input pInputText type="text" name="lineage" [(ngModel)]=chickenLineage.lineage
         ngModel  #lineage="ngModel" required minlength="5">
         <app-message [control]="lineage" error="required"
           text="Informe a Linhagem"></app-message>
@@ -23,7 +24,7 @@
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Fornecedor</label>
-        <input pInputText type="text" name="provider"
+        <input pInputText type="text" name="provider" [(ngModel)]=chickenLineage.provider
         ngModel #provider="ngModel" required minlength="5">
         <app-message [control]="provider" error="required"
         text="Informe o Fornecedor"></app-message>
@@ -33,7 +34,7 @@
 
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar" ></button>
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
         <button pButton type="button" label="Novo"></button>
         <a routerLink="/ChickenLineages">Voltar para a pesquisa</a>
       </div>

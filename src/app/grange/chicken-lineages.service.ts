@@ -1,4 +1,5 @@
-import { HttpClient, HttpParams  } from '@angular/common/http';
+import { ChickenLineage } from './../core/model';
+import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
@@ -50,5 +51,14 @@ export class ChickenLineagesService {
     .toPromise()
     .then(() => null);
 
+  }
+
+  create(chickenLineage: ChickenLineage): Promise<ChickenLineage> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.post<ChickenLineage>(
+      this.chickenLineagesUrl, chickenLineage, {headers})
+      .toPromise();
   }
  }
