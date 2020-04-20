@@ -1,3 +1,6 @@
+import { MessageComponent } from './message/message.component';
+
+
 import { RouterModule } from '@angular/router';
 import { ChickenLineagesListComponent } from './chicken-lineages-list/chicken-lineages-list.component';
 
@@ -16,7 +19,7 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [ChickenLineagesListComponent, ChickenLineagesEditComponent],
+  declarations: [ChickenLineagesListComponent, ChickenLineagesEditComponent, MessageComponent ],
   imports: [
     FormsModule,
     CommonModule,
@@ -27,10 +30,10 @@ import { FormsModule } from '@angular/forms';
     TableModule,
     TooltipModule,
     SelectButtonModule,
-    RouterModule
+    RouterModule,
 
   ],
   exports:  [ChickenLineagesListComponent,
-  ChickenLineagesEditComponent]
+  ChickenLineagesEditComponent, MessageComponent]
 })
 export class GrangeModule { }

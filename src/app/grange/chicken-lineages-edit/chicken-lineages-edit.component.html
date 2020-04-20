@@ -12,12 +12,23 @@
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Linhagem</label>
-        <input pInputText type="text" required minlength="5">
+        <input pInputText type="text" name="lineage"
+        ngModel  #lineage="ngModel" required minlength="5">
+        <app-message [control]="lineage" error="required"
+          text="Informe a Linhagem"></app-message>
+        <app-message [control]="lineage" error="minlength"
+          text="Mínimo de {{ lineage.errors?.minlength?.requiredLength }} caracteres"></app-message>
+
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Fornecedor</label>
-        <input pInputText type="text" required minlength="5">
+        <input pInputText type="text" name="provider"
+        ngModel #provider="ngModel" required minlength="5">
+        <app-message [control]="provider" error="required"
+        text="Informe o Fornecedor"></app-message>
+      <app-message [control]="provider" error="minlength"
+        text="Mínimo de {{ lineage.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
 
 

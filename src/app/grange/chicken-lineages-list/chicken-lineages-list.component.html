@@ -1,6 +1,6 @@
 <div class="container">
   <div class="ui-g">
-      <form autocomplete="off" (ngSubit)="findByFilter()">
+      <form autocomplete="off" (ngSubmit)="findByFilter()">
 
       <div class="ui-g-12">
         <h1>Linhagem de Aves</h1>
@@ -8,7 +8,7 @@
 
       <div class="ui-g-12 ui-fluid">
         <label>Linhagem</label>
-        <input pInputText type="text" name="lineage" [(ngModel)]="lineage">
+        <input pInputText type="text" name="lineage" [(ngModel)]="filter.lineage">
       </div>
 
       <div class="ui-g-12">
@@ -19,7 +19,9 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-table [value]="chickenLineages" [paginator]="true" [rows]="4" [responsive]="true">
+      <p-table [value]="chickenLineages" [paginator]="true" [rows]="filter.itensByPage"
+      [lazy]="true" [totalRecords]="totalRegisters" (onLazyLoad)="onChangePage($event)"
+      [responsive]="true" #table>
         <ng-template pTemplate="header">
             <tr>
                 <th>Linhagem</th>
@@ -34,12 +36,18 @@
                 <td >{{chickenLineage.lineage}}</td>
                 <td>{{chickenLineage.chickenColor}}</td>
                 <td>{{chickenLineage.provider}}</td>
-                <td class="col-acoes">
-                  <a pButton class="espaco-icones" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-                  <button pButton class="espaco-icones" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+                <td class="col-acoes" >
+                  <a pButton class="espaco-icones" icon="pi pi-pencil"
+                  pTooltip="Editar" tooltipPosition="top"></a>
+                  <button pButton class="espaco-icones" icon="pi pi-trash"
+                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(chickenLineage)"></button>
                </td>
             </tr>
         </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+          Nenhuma linhagem encontrada
+      </ng-template>
     </p-table>
     </div>
 
