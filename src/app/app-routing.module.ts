@@ -6,7 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: 'ChickenLineages', component: ChickenLineagesListComponent },
-  { path: 'ChickenLineages/new', component: ChickenLineagesEditComponent }
+  { path: 'ChickenLineages/new', component: ChickenLineagesEditComponent },
+  { path: 'ChickenLineages/:id', component: ChickenLineagesEditComponent }
 ];
 
 @NgModule({

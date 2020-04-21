@@ -3,12 +3,12 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Nova Linhagem de Aves</h1>
+        <h1> {{ editing ? 'Edição de' : 'Novo'}} Linhagem de Aves</h1>
       </div>
 
       <div class="ui-g-12">
         <p-selectButton name="chickenColor" [options]="chickenColors"
-        [(ngModel)]=chickenLineage.chicken_color></p-selectButton>
+        [(ngModel)]=chickenLineage.chickenColor></p-selectButton>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">

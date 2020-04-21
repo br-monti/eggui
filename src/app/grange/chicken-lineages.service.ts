@@ -61,4 +61,31 @@ export class ChickenLineagesService {
       this.chickenLineagesUrl, chickenLineage, {headers})
       .toPromise();
   }
+
+  update(chickenLineage: ChickenLineage): Promise<ChickenLineage> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.put<ChickenLineage>(
+      `${this.chickenLineagesUrl}/${chickenLineage.id}`, {headers})
+      .toPromise()
+      .then(response => {
+        const chickenLineageSaved = response[`${'content'}`] as ChickenLineage;
+        return chickenLineageSaved;
+      });
+    }
+
+      findById(id: number): Promise<ChickenLineage> {
+        return this.http.get(`${this.chickenLineagesUrl}/${id}`)
+          .toPromise()
+          .then(response => {
+            const chickenLineage = response[`${'content'}`] as ChickenLineage;
+            return chickenLineage;
+          });
+      }
+
+
+
+
+
  }

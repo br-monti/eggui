@@ -38,7 +38,8 @@
                 <td>{{chickenLineage.provider}}</td>
                 <td class="col-acoes" >
                   <a pButton class="espaco-icones" icon="pi pi-pencil"
-                  pTooltip="Editar" tooltipPosition="top"></a>
+                  pTooltip="Editar" tooltipPosition="top"
+                  [routerLink]="['/ChickenLineages', chickenLineage.id]"></a>
                   <button pButton class="espaco-icones" icon="pi pi-trash"
                   pTooltip="Excluir" tooltipPosition="top" (click)="delete(chickenLineage)"></button>
                </td>
