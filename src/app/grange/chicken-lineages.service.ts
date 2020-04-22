@@ -62,7 +62,7 @@ export class ChickenLineagesService {
       .toPromise();
   }
 
-  update(chickenLineage: ChickenLineage): Promise<ChickenLineage> {
+ /* update(chickenLineage: ChickenLineage): Promise<ChickenLineage> {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
 
@@ -70,18 +70,51 @@ export class ChickenLineagesService {
       `${this.chickenLineagesUrl}/${chickenLineage.id}`, {headers})
       .toPromise()
       .then(response => {
-        const chickenLineageSaved = response[`${'content'}`] as ChickenLineage;
+        const chickenLineageSaved = response as ChickenLineage;
+        console.log(chickenLineageSaved);
         return chickenLineageSaved;
       });
     }
 
+    update(chickenLineage: ChickenLineage): Promise<ChickenLineage> {
+      let headers = new HttpHeaders();
+      headers = headers.append('Content-Type', 'application/json');
+
+      return this.http.put(`${this.chickenLineagesUrl}/${chickenLineage.id}`, {headers})
+        .toPromise()
+        .then(response => {
+          const chickenlineageUpdated = response as ChickenLineage;
+
+          return chickenlineageUpdated;
+        });
+    }*/
+
+    update(chickenLineage: ChickenLineage): Promise<ChickenLineage> {
+      let headers = new HttpHeaders();
+      headers = headers.append('Content-Type', 'application/json');
+
+      return this.http.put<ChickenLineage>(
+        `${this.chickenLineagesUrl}/${chickenLineage.id}`, chickenLineage, { headers })
+        .toPromise()
+        .then(response => {
+          const chickenLineageUpdated = response as ChickenLineage;
+          return chickenLineageUpdated;
+        });
+    }
+
       findById(id: number): Promise<ChickenLineage> {
-        return this.http.get(`${this.chickenLineagesUrl}/${id}`)
+        let headers = new HttpHeaders();
+        headers = headers.append('Content-Type', 'application/json');
+
+        return this.http.get(`${this.chickenLineagesUrl}/${id}` , {headers})
           .toPromise()
           .then(response => {
-            const chickenLineage = response[`${'content'}`] as ChickenLineage;
+            const chickenLineage = response as ChickenLineage;
             return chickenLineage;
-          });
+          } );
+
+
+
       }
 
 

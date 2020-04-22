@@ -4,7 +4,7 @@ import { ChickenLineage } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { ChickenLineagesService } from '../chicken-lineages.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-chicken-lineages-edit',
@@ -14,8 +14,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ChickenLineagesEditComponent implements OnInit {
 
   chickenColors = [
-    { label: 'Branco', value: 'BRANCO' },
-    { label: 'Vermelho', value: 'VERMELHO' },
+    { label: 'Branca', value: 'Branca' },
+    { label: 'Vermelha', value: 'Vermelha' },
   ];
 
   chickenLineage = new ChickenLineage();
@@ -24,7 +24,8 @@ export class ChickenLineagesEditComponent implements OnInit {
     private chickenLineageService: ChickenLineagesService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -47,16 +48,42 @@ export class ChickenLineagesEditComponent implements OnInit {
     .catch(error => this.errorHandler.handle(error));
   }
 
+  save(form: FormControl) {
+    if (this.editing) {
+      this.update(form);
+    } else {
+      this.create (form);
+    }
+  }
+
   create(form: FormControl)  {
-    console.log(this.chickenLineage);
     this.chickenLineageService.create(this.chickenLineage)
 
     .then(() => {
       this.toasty.success('Linhagem adicionanda com sucesso');
-      form.reset();
-      this.chickenLineage = new ChickenLineage();
+
+      this.router.navigate(['/ChickenLineages']);
     })
     .catch(error => this.errorHandler.handle(error));
+  }
+
+  update(form: FormControl) {
+    this.chickenLineageService.update(this.chickenLineage)
+    .then(chickenLineage  => {
+      this.chickenLineage = chickenLineage;
+      this.toasty.success('Linhagem alterada com sucesso"');
+    })
+    .catch(error => this.errorHandler.handle(error));
+  }
+
+  new(form: FormControl) {
+    form.reset();
+
+    setTimeout(function() {
+      this.chickenLineage = new ChickenLineage();
+    }.bind(this), 1);
+
+    this.router.navigate(['/ChickenLineages/new']);
   }
 
 }

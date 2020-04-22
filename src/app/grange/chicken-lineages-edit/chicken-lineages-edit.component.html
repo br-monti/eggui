@@ -1,14 +1,14 @@
 <div class="container">
-  <form #f="ngForm" autocomplete="off" (ngSubmit)=create(f)>
+  <form #f="ngForm" autocomplete="off" (ngSubmit)=save(f)>
 
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1> {{ editing ? 'Edição de' : 'Novo'}} Linhagem de Aves</h1>
+        <h1> {{ editing ? 'Edição de' : 'Nova'}} Linhagem de Aves</h1>
       </div>
 
       <div class="ui-g-12">
         <p-selectButton name="chickenColor" [options]="chickenColors"
-        [(ngModel)]=chickenLineage.chickenColor></p-selectButton>
+        [(ngModel)]="chickenLineage.chickenColor"></p-selectButton>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
@@ -35,7 +35,8 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
-        <button pButton type="button" label="Novo"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info"
+        (click)="new(f)"></button>
         <a routerLink="/ChickenLineages">Voltar para a pesquisa</a>
       </div>
     </div>
