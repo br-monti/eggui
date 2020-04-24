@@ -3,12 +3,12 @@
       <form autocomplete="off" (ngSubmit)="findByFilter()">
 
       <div class="ui-g-12">
-        <h1>Linhagem de Aves</h1>
+        <h1>Galpão</h1>
       </div>
 
       <div class="ui-g-12 ui-fluid">
-        <label>Linhagem</label>
-        <input pInputText type="text" name="lineage" [(ngModel)]="filter.lineage">
+        <label>Galpão</label>
+        <input pInputText type="text" name="shed" [(ngModel)]="filter.name">
       </div>
 
       <div class="ui-g-12">
@@ -19,41 +19,45 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-table [value]="chickenLineages" [paginator]="true" [rows]="filter.itensByPage"
+      <p-table [value]="sheds" [paginator]="true" [rows]="filter.itensByPage"
       [lazy]="true" [totalRecords]="totalRegisters" (onLazyLoad)="onChangePage($event)"
       [responsive]="true" #table>
         <ng-template pTemplate="header">
             <tr>
-                <th>Linhagem</th>
-                <th>Cor</th>
-                <th>Fornecedor</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Capacidade</th>
+                <th>Modelo</th>
+                <th>Fabricante</th>
                 <th>Ações</th>
 
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-chickenLineage>
+        <ng-template pTemplate="body" let-shed>
             <tr>
-                <td class="col-data" >{{chickenLineage.lineage}}</td>
-                <td class="col-data">{{chickenLineage.chickenColor}}</td>
-                <td class="col-data">{{chickenLineage.provider}}</td>
+                <td class="col-data" >{{shed.name}}</td>
+                <td class="col-data">{{shed.type}}</td>
+                <td class="col-data">{{shed.capacity}}</td>
+                <td class="col-data" >{{shed.model}}</td>
+                <td class="col-data">{{shed.manufacturer.manufacturer}}</td>
                 <td class="col-acoes" >
                   <a pButton class="espaco-icones" icon="pi pi-pencil"
                   pTooltip="Editar" tooltipPosition="top"
-                  [routerLink]="['/ChickenLineages', chickenLineage.id]"></a>
+                  [routerLink]="['/Sheds', shed.id]"></a>
                   <button pButton class="espaco-icones" icon="pi pi-trash"
-                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(chickenLineage)"></button>
+                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(shed)"></button>
                </td>
             </tr>
         </ng-template>
 
       <ng-template pTemplate="emptymessage">
-          Nenhuma linhagem encontrada
+          Nenhum galpão encontrada
       </ng-template>
     </p-table>
     </div>
 
     <div class="ui-g-12">
-      <a pButton label="Nova Linhagem" routerLink="/ChickenLineages/new"></a>
+      <a pButton label="Novo Galpão" routerLink="/Sheds/new"></a>
     </div>
 
   </div>

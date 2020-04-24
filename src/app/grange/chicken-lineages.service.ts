@@ -112,13 +112,6 @@ export class ChickenLineagesService {
             const chickenLineage = response as ChickenLineage;
             return chickenLineage;
           } );
-
-
-
       }
-
-
-
-
 
  }

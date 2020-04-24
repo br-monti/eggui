@@ -72,6 +72,7 @@ export class ChickenLineagesEditComponent implements OnInit {
     .then(chickenLineage  => {
       this.chickenLineage = chickenLineage;
       this.toasty.success('Linhagem alterada com sucesso"');
+      this.router.navigate(['/ChickenLineages']);
     })
     .catch(error => this.errorHandler.handle(error));
   }
@@ -83,7 +84,7 @@ export class ChickenLineagesEditComponent implements OnInit {
       this.chickenLineage = new ChickenLineage();
     }.bind(this), 1);
 
-    this.router.navigate(['/ChickenLineages/new']);
+    this.router.navigate(['/ChickenLineages']);
   }
 
 }

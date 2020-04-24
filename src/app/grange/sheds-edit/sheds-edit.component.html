@@ -1,0 +1,62 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)=save(f)>
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1> {{ editing ? 'Edição de' : 'Novo'}} Galpão</h1>
+      </div>
+
+      <div class="ui-g-12">
+        <p-selectButton name="type" [options]="types"
+        [(ngModel)]="shed.thype"></p-selectButton>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="name" [(ngModel)]=shed.name
+        ngModel  #name="ngModel" required minlength="5">
+        <app-message [control]="name" error="required"
+          text="Informe o Nome"></app-message>
+        <app-message [control]="name" error="minlength"
+          text="Mínimo de {{ name.errors?.minlength?.requiredLength }} caracteres"></app-message>
+
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Capacidade</label>
+        <input pInputText type="text" name="capacity" [(ngModel)]=shed.capacity
+        ngModel #capacity="ngModel" required minlength="5">
+        <app-message [control]="capacity" error="required"
+        text="Informe a Capacidade"></app-message>
+      <app-message [control]="capacity" error="minlength"
+        text="Mínimo de {{ capacity.errors?.minlength?.requiredLength }} caracteres"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Modelo</label>
+        <input pInputText type="text" name="model" [(ngModel)]=shed.model
+        ngModel #model="ngModel" required minlength="5">
+        <app-message [control]="model" error="required"
+        text="Informe o Modelo"></app-message>
+      <app-message [control]="model" error="minlength"
+        text="Mínimo de {{ model.errors?.minlength?.requiredLength }} caracteres"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Fabricante</label>
+        <p-dropdown name="shedManufacturers" [options]="shedManufacturers" placeholder="Selecione"
+          [autoWidth]="false" [filter]="true"
+          [(ngModel)]="shed.manufacturer.id"
+          required></p-dropdown>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info"
+        (click)="new(f)"></button>
+        <a routerLink="/Sheds">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,5 +1,5 @@
+import { DropdownModule } from 'primeng/dropdown';
 import { SharedModule } from './../shared/shared.module';
-import { MessageComponent } from '../shared/message/message.component';
 
 
 import { RouterModule } from '@angular/router';
@@ -16,11 +16,17 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ChickenLineagesEditComponent } from './chicken-lineages-edit/chicken-lineages-edit.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FormsModule } from '@angular/forms';
+import { ShedsListComponent } from './sheds-list/sheds-list.component';
+import { ShedsEditComponent } from './sheds-edit/sheds-edit.component';
 
 
 
 @NgModule({
-  declarations: [ChickenLineagesListComponent, ChickenLineagesEditComponent],
+  declarations: [ChickenLineagesListComponent,
+    ChickenLineagesEditComponent,
+    ShedsListComponent,
+    ShedsEditComponent
+  ],
   imports: [
     FormsModule,
     CommonModule,
@@ -32,10 +38,10 @@ import { FormsModule } from '@angular/forms';
     TooltipModule,
     SelectButtonModule,
     RouterModule,
-    SharedModule
+    DropdownModule,
+    SharedModule,
 
   ],
-  exports:  [ChickenLineagesListComponent,
-  ChickenLineagesEditComponent]
+  exports:  []
 })
 export class GrangeModule { }
