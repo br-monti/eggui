@@ -1,4 +1,4 @@
-import { DropdownModule } from 'primeng/dropdown';
+
 import { SharedModule } from './../shared/shared.module';
 
 
@@ -15,6 +15,7 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChickenLineagesEditComponent } from './chicken-lineages-edit/chicken-lineages-edit.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import {DropdownModule} from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ShedsListComponent } from './sheds-list/sheds-list.component';
 import { ShedsEditComponent } from './sheds-edit/sheds-edit.component';
@@ -37,9 +38,9 @@ import { ShedsEditComponent } from './sheds-edit/sheds-edit.component';
     TableModule,
     TooltipModule,
     SelectButtonModule,
-    RouterModule,
-    DropdownModule,
+    RouterModule,    
     SharedModule,
+    DropdownModule
 
   ],
   exports:  []

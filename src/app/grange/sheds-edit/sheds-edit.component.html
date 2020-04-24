@@ -42,11 +42,11 @@
         text="Mínimo de {{ model.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
 
-      <div class="ui-g-12 ui-md-6 ui-fluid">
+    <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Fabricante</label>
         <p-dropdown name="shedManufacturers" [options]="shedManufacturers" placeholder="Selecione"
-          [autoWidth]="false" [filter]="true"
-          [(ngModel)]="shed.manufacturer.id"
+          [filter]="true"
+          [(ngModel)]="shed.shedManufacturer.id"
           required></p-dropdown>
       </div>
 

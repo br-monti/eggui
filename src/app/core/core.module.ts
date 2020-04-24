@@ -8,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundPageComponent } from './not-found-page.component';
+import { ShedService } from '../grange/shed.service';
+import { ShedManufacturerService } from '../grange/shed-manufacturers/shed-manufacturers.service';
 
 
 
@@ -25,6 +27,8 @@ import { NotFoundPageComponent } from './not-found-page.component';
   providers: [
     ErrorHandlerService,
     ConfirmationService,
-    ChickenLineagesService ]
+    ChickenLineagesService,
+    ShedService,
+    ShedManufacturerService ]
 })
 export class CoreModule { }
