@@ -8,17 +8,17 @@
 
       <div class="ui-g-12">
         <p-selectButton name="type" [options]="types"
-        [(ngModel)]="shed.thype"></p-selectButton>
+        [(ngModel)]="shed.type"></p-selectButton>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Nome</label>
         <input pInputText type="text" name="name" [(ngModel)]=shed.name
-        ngModel  #name="ngModel" required minlength="5">
+        ngModel  #name="ngModel" required>
         <app-message [control]="name" error="required"
           text="Informe o Nome"></app-message>
-        <app-message [control]="name" error="minlength"
-          text="Mínimo de {{ name.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        <!--<app-message [control]="name" error="minlength"
+          text="Mínimo de {{ name.errors?.minlength?.requiredLength }} caracteres"></app-message>-->
 
       </div>
 
@@ -32,11 +32,11 @@
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Modelo</label>
         <input pInputText type="text" name="model" [(ngModel)]=shed.model
-        ngModel #model="ngModel" required minlength="5">
+        ngModel #model="ngModel" required>
         <app-message [control]="model" error="required"
         text="Informe o Modelo"></app-message>
-      <app-message [control]="model" error="minlength"
-        text="Mínimo de {{ model.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        <!--<app-message [control]="model" error="minlength"
+        text="Mínimo de {{ model.errors?.minlength?.requiredLength }} caracteres"></app-message>-->
       </div>
 
     <div class="ui-g-12 ui-md-6 ui-fluid">
