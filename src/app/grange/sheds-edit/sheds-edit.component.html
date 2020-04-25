@@ -24,12 +24,9 @@
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Capacidade</label>
-        <input pInputText type="text" name="capacity" [(ngModel)]=shed.capacity
-        ngModel #capacity="ngModel" required minlength="5">
-        <app-message [control]="capacity" error="required"
-        text="Informe a Capacidade"></app-message>
-      <app-message [control]="capacity" error="minlength"
-        text="Mínimo de {{ capacity.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        <input pInputText type="text" name="capacity"
+          [(ngModel)]="shed.capacity"
+          required>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
@@ -44,7 +41,7 @@
 
     <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Fabricante</label>
-        <p-dropdown name="shedManufacturers" [options]="shedManufacturers" placeholder="Selecione"
+        <p-dropdown name="shedManufacturer" [options]="shedManufacturers" placeholder="Selecione"
           [filter]="true"
           [(ngModel)]="shed.shedManufacturer.id"
           required></p-dropdown>

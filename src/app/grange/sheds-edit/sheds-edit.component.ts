@@ -36,6 +36,8 @@ export class ShedsEditComponent implements OnInit {
     if (shedId) {
       this.loadShed(shedId);
     }
+
+    this.loadShedManufacturers();
   }
 
   get editing() {
@@ -79,7 +81,7 @@ export class ShedsEditComponent implements OnInit {
     .catch(error => this.errorHandler.handle(error));
   }
 
-  loadShedManufacturer() {
+  loadShedManufacturers() {
     return this.shedManufacturerService.listAll()
       .then(shedManufacturers => {
         this.shedManufacturers = shedManufacturers

@@ -34,7 +34,7 @@ export class ShedsListComponent implements OnInit {
     this.shedsService.findByFilter(this.filter)
     .then(result => {
       this.totalRegisters = result.total;
-      this.shedsService = result.shedsService;
+      this.sheds = result.sheds;
     })
     .catch(error => this.errorHandler.handle(error));
 }
