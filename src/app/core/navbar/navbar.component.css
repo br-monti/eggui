@@ -8,24 +8,24 @@
 }
 
 .navbar-menu {
-  position: fixed;
+  position: relative;
   top: 0;
   bottom: 0;
-  right: 0;
+  left: 0;
   width: 210px;
   margin: 0;
   padding: 0;
   z-index: 9998;
 
-  background-color: #3a3633;
+  background-color: #ffffff;
 
   list-style: none;
 }
 
 .navbar-usuario {
-  padding: 15px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #525151;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #95a5e9;
 
   text-transform: uppercase;
   font-weight: bold;
@@ -33,10 +33,11 @@
 }
 
 .navbar-menuitem {
-  padding: 15px;
+  padding: 10px;
 }
 
 .navbar-menuitem a {
+  display: block;
   color: #c0bbb7;
   text-decoration: none;
 }
@@ -46,5 +47,6 @@
 }
 
 .navbar-menuitem.active {
-  background-color: #494541;
+  background-color: #e0e3fc;
 }
+

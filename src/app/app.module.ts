@@ -12,6 +12,8 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import {
+  MatButtonModule, MatNativeDateModule, MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,10 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     AppRoutingModule,
 
+
   ],
   providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

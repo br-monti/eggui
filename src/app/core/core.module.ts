@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './../app-routing.module';
 import { ChickenLineagesService } from './../grange/chicken-lineages.service';
 import { ConfirmationService } from 'primeng/api';
 import { ToastyModule } from 'ng2-toasty';
@@ -10,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundPageComponent } from './not-found-page.component';
 import { ShedService } from '../grange/shed.service';
 import { ShedManufacturerService } from '../grange/shed-manufacturers/shed-manufacturers.service';
+import { MatButtonModule, MatToolbarModule, MatNativeDateModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 
 
 
@@ -19,11 +21,24 @@ import { ShedManufacturerService } from '../grange/shed-manufacturers/shed-manuf
     CommonModule,
     RouterModule,
     ToastyModule.forRoot(),
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    AppRoutingModule
   ],
   exports: [NavbarComponent,
     ToastyModule,
-    ConfirmDialogModule],
+    ConfirmDialogModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule],
   providers: [
     ErrorHandlerService,
     ConfirmationService,

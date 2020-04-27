@@ -2,13 +2,13 @@ export class ChickenLineage {
   id: number;
   lineage: string;
   provider: string;
-  chickenColor: 'Branca';
+  chickenColor: string;
 }
 
 export class Shed {
   id: number;
   name: string;
-  type: 'Convencional';
+  type: string;
   capacity: number;
   model: string;
   shedManufacturer = new ShedManufacturer();

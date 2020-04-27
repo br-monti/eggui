@@ -13,12 +13,14 @@ import { ShedManufacturerService } from '../shed-manufacturers/shed-manufacturer
   styleUrls: ['./sheds-edit.component.css']
 })
 export class ShedsEditComponent implements OnInit {
+
+  shed = new Shed();
+
   types = [
     { label: 'Convencional', value: 'Convencional' },
     { label: 'Automatizado', value: 'Automatizado' },
   ];
 
-  shed = new Shed();
   shedManufacturers = [];
 
   constructor(
@@ -30,6 +32,7 @@ export class ShedsEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.shed.type = 'Convencional';
 
     const shedId = this.route.snapshot.params[`${'id'}`];
 
@@ -97,7 +100,7 @@ export class ShedsEditComponent implements OnInit {
       this.shed = new Shed();
     }.bind(this), 1);
 
-    this.router.navigate(['/Sheds']);
+    this.router.navigate(['/Sheds/new']);
   }
 
 }

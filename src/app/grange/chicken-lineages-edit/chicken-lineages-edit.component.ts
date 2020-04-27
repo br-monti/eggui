@@ -28,7 +28,7 @@ export class ChickenLineagesEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-
+    this.chickenLineage.chickenColor = 'Branca';
     const chickenLineageId = this.route.snapshot.params[`${'id'}`];
 
     if (chickenLineageId) {
@@ -84,7 +84,7 @@ export class ChickenLineagesEditComponent implements OnInit {
       this.chickenLineage = new ChickenLineage();
     }.bind(this), 1);
 
-    this.router.navigate(['/ChickenLineages']);
+    this.router.navigate(['/ChickenLineages/new']);
   }
 
 }
