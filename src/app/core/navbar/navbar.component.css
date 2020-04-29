@@ -8,24 +8,24 @@
 }
 
 .navbar-menu {
-  position: relative;
+  position: fixed;
   top: 0;
   bottom: 0;
-  left: 0;
+  right: 0;
   width: 210px;
   margin: 0;
   padding: 0;
   z-index: 9998;
 
-  background-color: #ffffff;
+  background-color: #3a3633;
 
   list-style: none;
 }
 
 .navbar-usuario {
-  padding: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #95a5e9;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #525151;
 
   text-transform: uppercase;
   font-weight: bold;
@@ -33,11 +33,10 @@
 }
 
 .navbar-menuitem {
-  padding: 10px;
+  padding: 15px;
 }
 
 .navbar-menuitem a {
-  display: block;
   color: #c0bbb7;
   text-decoration: none;
 }
@@ -46,7 +45,6 @@
   color: #fff;
 }
 
-.navbar-menuitem.active {
-  background-color: #e0e3fc;
+.navbar-menuitem.ativo {
+  background-color: #494541;
 }
-

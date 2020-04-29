@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="ui-g">
+      <form autocomplete="off" (ngSubmit)="findByFilter()">
+
+      <div class="ui-g-12">
+        <h1>Lotes</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Lote</label>
+        <input pInputText type="text" name="id" [(ngModel)]="filter.id">
+      </div>
+
+      <div class="ui-g-12">
+        <label style="display: block">Nascimento</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+          name="birthDateInitial" [(ngModel)]="filter.birthDateInitial"></p-calendar>
+
+        <label>até</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+          name="birthDateFinal" [(ngModel)]="filter.birthDateFinal"></p-calendar>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+  </form>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-table [value]="chickenLots" [paginator]="true" [rows]="filter.itensByPage"
+      [lazy]="true" [totalRecords]="totalRegisters" (onLazyLoad)="onChangePage($event)"
+      [responsive]="true" #table>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Lote</th>
+                <th>Nascimento</th>
+                <th>Alojamento</th>
+                <th>Quantidade Alojada</th>
+                <th>Quantidade Atual</th>
+                <th>Debicagem</th>
+                <th>Ações</th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-chickenLot>
+            <tr>
+                <td class="col-data" >{{chickenLot.id}}</td>
+                <td class="col-data">{{chickenLot.birthDate | date:'dd/MM/yyyy'}}</td>
+                <td class="col-data">{{chickenLot.accommodationDate | date:'dd/MM/yyyy'}}</td>
+                <td class="col-data" >{{chickenLot.initialQuantity}}</td>
+                <td class="col-data">{{chickenLot.currentQuantity}}</td>
+                <td class="col-data">{{chickenLot.debicking}}</td>
+                <td class="col-acoes" >
+                  <a pButton class="espaco-icones" icon="pi pi-pencil"
+                  pTooltip="Editar" tooltipPosition="top"
+                  [routerLink]="['/ChickenLots', chickenLot.id]"></a>
+                  <button pButton class="espaco-icones" icon="pi pi-trash"
+                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(chickenLot)"></button>
+               </td>
+            </tr>
+        </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+          Nenhum lote encontrado
+      </ng-template>
+    </p-table>
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton label="Novo Lote" routerLink="/ChickenLots/new"></a>
+    </div>
+
+  </div>
+
+</div>

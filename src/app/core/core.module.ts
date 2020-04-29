@@ -1,3 +1,4 @@
+import { ChickenLotsService } from './../grange/chicken-lots.service';
 import { AppRoutingModule } from './../app-routing.module';
 import { ChickenLineagesService } from './../grange/chicken-lineages.service';
 import { ConfirmationService, MenuItem } from 'primeng/api';
@@ -46,6 +47,7 @@ import {SlideMenuModule} from 'primeng/slidemenu';
     ConfirmationService,
     ChickenLineagesService,
     ShedService,
-    ShedManufacturerService ]
+    ShedManufacturerService,
+    ChickenLotsService ]
 })
 export class CoreModule { }

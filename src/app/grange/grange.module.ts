@@ -15,10 +15,13 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChickenLineagesEditComponent } from './chicken-lineages-edit/chicken-lineages-edit.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
 import { ShedsListComponent } from './sheds-list/sheds-list.component';
 import { ShedsEditComponent } from './sheds-edit/sheds-edit.component';
+import { ChickenLotsListComponent } from './chicken-lots-list/chicken-lots-list.component';
+import { ChickenLotsEditComponent } from './chicken-lots-edit/chicken-lots-edit.component';
 
 
 
@@ -26,7 +29,9 @@ import { ShedsEditComponent } from './sheds-edit/sheds-edit.component';
   declarations: [ChickenLineagesListComponent,
     ChickenLineagesEditComponent,
     ShedsListComponent,
-    ShedsEditComponent
+    ShedsEditComponent,
+    ChickenLotsListComponent,
+    ChickenLotsEditComponent
   ],
   imports: [
     FormsModule,
@@ -38,9 +43,10 @@ import { ShedsEditComponent } from './sheds-edit/sheds-edit.component';
     TableModule,
     TooltipModule,
     SelectButtonModule,
-    RouterModule,    
+    RouterModule,
     SharedModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule
 
   ],
   exports:  []

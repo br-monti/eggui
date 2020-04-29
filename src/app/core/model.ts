@@ -18,3 +18,15 @@ export class ShedManufacturer {
   id: number;
   manufacturer: string;
 }
+
+export class ChickenLot {
+  id: number;
+  birthDate: Date;
+  accommodationDate: Date;
+  initialQuantity: number;
+  currentQuantity: number;
+  debicking: string;
+  chickenLineage = new ChickenLineage();
+  shed =  new Shed();
+
+}

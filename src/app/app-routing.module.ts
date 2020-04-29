@@ -1,3 +1,5 @@
+import { ChickenLotsListComponent } from './grange/chicken-lots-list/chicken-lots-list.component';
+import { ChickenLotsEditComponent } from './grange/chicken-lots-edit/chicken-lots-edit.component';
 import { ShedsEditComponent } from './grange/sheds-edit/sheds-edit.component';
 import { ShedsListComponent } from './grange/sheds-list/sheds-list.component';
 import { NotFoundPageComponent } from './core/not-found-page.component';
@@ -12,6 +14,9 @@ const routes: Routes = [
   { path: 'ChickenLineages', component: ChickenLineagesListComponent },
   { path: 'ChickenLineages/new', component: ChickenLineagesEditComponent },
   { path: 'ChickenLineages/:id', component: ChickenLineagesEditComponent },
+  { path: 'ChickenLots', component: ChickenLotsListComponent },
+  { path: 'ChickenLots/new', component: ChickenLotsEditComponent },
+  { path: 'ChickenLots/:id', component: ChickenLotsEditComponent },
   { path: 'Sheds', component: ShedsListComponent },
   { path: 'Sheds/new', component: ShedsEditComponent },
   { path: 'Sheds/:id', component: ShedsEditComponent },

@@ -3,31 +3,36 @@
   <div class="container">
     <div class="ui-g">
       <div class="ui-g-12">
-        <a href="javascript:;" class="navbar-toggle" (click)="drawer.toggle()"><i class="pi pi-bars"></i></a>
+        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="pi pi-bars"></i></a>
       </div>
     </div>
   </div>
-</nav>
-  <!-- <ul class="navbar-menu" [hidden]="!exibindoMenu">
+
+  <ul class="navbar-menu" [hidden]="!exibindoMenu">
     <li class="navbar-usuario">Bruno Monti</li>
     <li class="navbar-menuitem" routerLinkActive="active" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/ChickenLineages">Linhagens</a></li>
     <li class="navbar-menuitem" routerLinkActive="active" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/Sheds">Galpões</a></li>
-    <li class="navbar-menuitem"><a href="javascript:;">Lotes</a></li>
+    <li class="navbar-menuitem" routerLinkActive="active" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/ChickenLots">Lotes</a></li>
     <li class="navbar-menuitem"><a href="javascript:;">Crescimento</a></li>
     <li class="navbar-menuitem"><a href="javascript:;">Produção</a></li>
-  </ul> -->
+  </ul>
 
-  <mat-sidenav-container>
+</nav>
+
+
+
+  <!-- <mat-sidenav-container>
     <mat-sidenav #drawer mode="push" disableClose="false">
       <mat-nav-list class="navbar-menu">
         <a mat-list-item routerLink='/ChickenLineages' class="navbar-menuitem" routerLinkActive="active">Linhagens</a>
         <a mat-list-item routerLink='/Sheds' class="navbar-menuitem" routerLinkActive="active">Galpões</a>
+        <a mat-list-item routerLink='/ChickenLots' class="navbar-menuitem" routerLinkActive="active">Lotes</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="container">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
-  </mat-sidenav-container>
+  </mat-sidenav-container> -->
 
 
 
@@ -46,7 +51,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="container">
-    <router-outlet></router-outlet>
+
   </mat-sidenav-content>
 </mat-sidenav-container> -->
 
