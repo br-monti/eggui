@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ConfirmationService } from 'primeng/api';
@@ -55,6 +56,13 @@ delete(chickenLot: any) {
       });
     }
   });
+}
+
+new(form: FormControl) {
+  form.reset();
+  this.findByFilter();
+
+
 }
 
 

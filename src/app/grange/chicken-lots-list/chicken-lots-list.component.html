@@ -1,6 +1,6 @@
 <div class="container">
   <div class="ui-g">
-      <form autocomplete="off" (ngSubmit)="findByFilter()">
+      <form #f="ngForm" autocomplete="off" (ngSubmit)="findByFilter()">
 
       <div class="ui-g-12">
         <h1>Lotes</h1>
@@ -23,6 +23,8 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Pesquisar"></button>
+        <button pButton type="button" label="Limpar" class="ui-button-info"
+        (click)="new(f)"></button>
       </div>
   </form>
   </div>

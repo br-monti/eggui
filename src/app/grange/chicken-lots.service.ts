@@ -3,6 +3,8 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 
+import 'rxjs/add/operator/toPromise';
+
 export class ChickenLotsFilter {
   id: number;
   birthDateInitial: Date;
@@ -33,23 +35,21 @@ export class ChickenLotsService {
     }
 
     if (filter.birthDateInitial) {
-
-      params.set('birthDateInitial',
+      params = params.set('birthDateInitial',
         moment(filter.birthDateInitial).format('YYYY-MM-DD'));
 
     }
 
     if (filter.birthDateFinal) {
-      console.log(filter.birthDateFinal);
-      params.set('birthDateFinal',
+      params = params.set('birthDateFinal',
         moment(filter.birthDateFinal).format('YYYY-MM-DD'));
     }
 
     return this.http.get(`${this.chickenLotsUrl}`, {params})
+
     .toPromise()
     .then(response => {
       const chickenLots = response[`${'content'}`];
-      console.log(chickenLots);
       const result = {
         chickenLots,
         total: response[`${'totalElements'}`]
