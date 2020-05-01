@@ -114,4 +114,10 @@ export class ChickenLineagesService {
           } );
       }
 
+      listAll(): Promise<any> {
+        return this.http.get(this.chickenLineagesUrl)
+          .toPromise()
+          .then(response => response[`${'content'}`]);
+      }
+
  }

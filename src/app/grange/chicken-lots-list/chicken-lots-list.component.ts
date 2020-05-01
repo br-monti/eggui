@@ -34,7 +34,6 @@ export class ChickenLotsListComponent implements OnInit {
   }
 
   findByFilter(page = 0) {
-
     this.filter.page = page;
     this.chickenLotsService.findByFilter(this.filter)
     .then(result => {
@@ -68,7 +67,7 @@ loadSheds() {
       this.sheds = sheds
         .map(c => {
           return ({ label: c.name, value: c.id });
-        });
+        }); 
     })
     .catch(error => this.errorHandler.handle(error));
 }

@@ -1,1 +1,85 @@
-<p>chicken-lots-edit works!</p>
+<div class="container">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)=save(f)>
+  
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <h1> {{ editing ? 'Edição de' : 'Novo'}} Lote</h1>
+        </div>
+  
+        <!-- <div class="ui-g-12 ui-md-9 ui-fluid">
+          <label>Nome</label>
+          <input pInputText type="text" name="name" [(ngModel)]=chickenLot.birthDate
+          ngModel  #name="ngModel" required>
+          <app-message [control]="name" error="required"
+            text="Informe o Nome"></app-message>
+          <!--<app-message [control]="name" error="minlength"
+            text="Mínimo de {{ name.errors?.minlength?.requiredLength }} caracteres"></app-message>
+  
+        </div> -->
+
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+            <label>Nascimento</label>
+            <p-calendar name="birthDate" dateFormat="dd/mm/yyyy"
+              [inline]="false" [readonlyInput]="false" [showIcon]="false"
+              [(ngModel)]="chickenLot.birthDate"
+              #nascimento="ngModel" required></p-calendar>
+    
+            <app-message [control]="nascimento" error="required"
+              text="Informe uma data de nascimento"></app-message>
+          </div>
+    
+          <div class="ui-g-12 ui-md-3 ui-fluid">
+            <label>Alojamento</label>
+            <p-calendar dateFormat="dd/mm/yyyy" name="accommodationDate"
+              [(ngModel)]="chickenLot.accommodationDate"></p-calendar>
+          </div>
+  
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Quantidade Inicial</label>
+          <input pInputText type="text" name="initialQuantity"
+            [(ngModel)]="chickenLot.initialQuantity"
+            required>
+        </div>
+
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+            <label>Quantidade Atual</label>
+            <input pInputText type="text" name="initialQuantity"
+              [(ngModel)]="chickenLot.initialQuantity"
+              required>
+        </div>
+
+        <div class="ui-g-12 ui-md-9 ui-fluid">
+            <label>Debicagem</label>
+            <input pInputText type="text" name="debicking"
+              [(ngModel)]="chickenLot.debicking"
+              required>
+        </div>
+  
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+          <label>Linhagem</label>
+          <p-dropdown name="chickenLineage" [options]="chickenLineages" placeholder="Selecione"
+            [filter]="true"
+            [(ngModel)]="chickenLot.chickenLineage.id"
+            required></p-dropdown>
+        </div>
+
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+            <label>Galpão</label>
+            <p-dropdown name="shed" [options]="sheds" placeholder="Selecione"
+              [filter]="true"
+              [(ngModel)]="chickenLot.sheds"
+              required></p-dropdown>
+          </div>
+  
+        <div class="ui-g-12">
+          <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+          <button pButton type="button" label="Novo" class="ui-button-info"
+          (click)="new(f)"></button>
+          <a routerLink="/ChickenLots">Voltar para a pesquisa</a>
+        </div>
+      </div>
+  
+    </form>
+  </div>
+  

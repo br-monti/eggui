@@ -1,4 +1,4 @@
-import { ChickenLot } from './../core/model';
+import { ChickenLot, Shed } from './../core/model';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
@@ -9,6 +9,7 @@ export class ChickenLotsFilter {
   id: number;
   birthDateInitial: Date;
   birthDateFinal: Date;
+  shed: number;
   page = 0;
   itensByPage = 5;
 }
@@ -45,6 +46,11 @@ export class ChickenLotsService {
         moment(filter.birthDateFinal).format('YYYY-MM-DD'));
     }
 
+    if (filter.shed) {
+      params =  params.set('shed', filter.shed.toString());
+    }
+
+    console.log(`${this.chickenLotsUrl}`, {params});
     return this.http.get(`${this.chickenLotsUrl}`, {params})
 
     .toPromise()
