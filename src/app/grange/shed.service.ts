@@ -85,4 +85,10 @@ export class ShedService {
           } );
       }
 
+      listAll(): Promise<any> {
+        return this.http.get(this.shedsUrl)
+          .toPromise()
+          .then(response => response);
+      }
+
  }

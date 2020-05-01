@@ -6,9 +6,17 @@
         <h1>Lotes</h1>
       </div>
 
-      <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Lote</label>
         <input pInputText type="text" name="id" [(ngModel)]="filter.id">
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Galpão</label>
+        <p-dropdown name="sheds" [options]="sheds" placeholder="Selecione"
+          [filter]="true"
+          [(ngModel)]="chickenLots.shed"
+          required></p-dropdown>
       </div>
 
       <div class="ui-g-12">
@@ -22,8 +30,8 @@
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Pesquisar"></button>
-        <button pButton type="button" label="Limpar" class="ui-button-info"
+        <button pButton type="submit" label="Pesquisar" class="espaco-icones"></button>
+        <button pButton type="button" label="Limpar" class="espaco-icones"
         (click)="new(f)"></button>
       </div>
   </form>
@@ -37,6 +45,8 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>Lote</th>
+                <th>Galpão</th>
+                <th>Linhagem</th>
                 <th>Nascimento</th>
                 <th>Alojamento</th>
                 <th>Quantidade Alojada</th>
@@ -49,6 +59,8 @@
         <ng-template pTemplate="body" let-chickenLot>
             <tr>
                 <td class="col-data" >{{chickenLot.id}}</td>
+                <td class="col-data" >{{chickenLot.shed.name}}</td>
+                <td class="col-data" >{{chickenLot.chickenLineage.lineage}}</td>
                 <td class="col-data">{{chickenLot.birthDate | date:'dd/MM/yyyy'}}</td>
                 <td class="col-data">{{chickenLot.accommodationDate | date:'dd/MM/yyyy'}}</td>
                 <td class="col-data" >{{chickenLot.initialQuantity}}</td>

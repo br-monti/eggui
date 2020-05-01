@@ -1,3 +1,4 @@
+import { ShedService } from './../shed.service';
 import { FormControl } from '@angular/forms';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -18,15 +19,18 @@ export class ChickenLotsListComponent implements OnInit {
   totalRegisters = 0;
   @ViewChild('table', {static: true}) grid: Table;
   chickenLots = [];
+  sheds = [];
 
   constructor(
     private chickenLotsService: ChickenLotsService,
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private shedService: ShedService
   ) { }
 
   ngOnInit() {
+    this.loadSheds();
   }
 
   findByFilter(page = 0) {
@@ -56,6 +60,17 @@ delete(chickenLot: any) {
       });
     }
   });
+}
+
+loadSheds() {
+  return this.shedService.listAll()
+    .then(sheds => {
+      this.sheds = sheds
+        .map(c => {
+          return ({ label: c.name, value: c.id });
+        });
+    })
+    .catch(error => this.errorHandler.handle(error));
 }
 
 new(form: FormControl) {

@@ -5,10 +5,15 @@ body {
   color: #404C51;
 }
 
+h1 {
+  margin: 1px;
+}
+
 a {
   color: #337ab7;
   text-decoration: none;
 }
+
 
 a:hover, a:focus {
   text-decoration: underline;
