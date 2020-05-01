@@ -50,7 +50,6 @@ export class ChickenLotsService {
       params =  params.set('shed', filter.shed.toString());
     }
 
-    console.log(`${this.chickenLotsUrl}`, {params});
     return this.http.get(`${this.chickenLotsUrl}`, {params})
 
     .toPromise()
@@ -90,6 +89,7 @@ export class ChickenLotsService {
         .toPromise()
         .then(response => {
           const chickenLotUpdated = response as ChickenLot;
+          this.convertStringsToDate([chickenLotUpdated]);
           return chickenLotUpdated;
         });
     }
@@ -102,8 +102,25 @@ export class ChickenLotsService {
           .toPromise()
           .then(response => {
             const chickenLot = response as ChickenLot;
+            this.convertStringsToDate([chickenLot]);
             return chickenLot;
           } );
+      }
+
+      private convertStringsToDate(chickenLots: ChickenLot[]) {
+        for (const chickenLot of chickenLots) {
+
+         if (chickenLot.birthDate) {
+          chickenLot.birthDate = moment(chickenLot.birthDate,
+            'YYYY-MM-DD').toDate();
+         }
+
+         if (chickenLot.accommodationDate) {
+            chickenLot.accommodationDate = moment(chickenLot.accommodationDate,
+              'YYYY-MM-DD').toDate();
+          }
+        }
+
       }
 
 }

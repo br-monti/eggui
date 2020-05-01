@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { ChickenLineagesService } from './../chicken-lineages.service';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -58,6 +59,13 @@ export class ChickenLineagesListComponent implements OnInit {
         });
       }
     });
+  }
+
+  new(form: FormControl) {
+    form.reset();
+    this.findByFilter();
+
+
   }
 
 

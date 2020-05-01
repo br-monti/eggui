@@ -20,6 +20,12 @@ export class ChickenLotsEditComponent implements OnInit {
 
   sheds = [];
   chickenLineages = [];
+  debickings = [
+    { label: 'Convencional', value: 'Convencional' },
+    { label: 'Laser', value: 'Laser' },
+    { label: 'V', value: 'V' }
+  ];
+
 
   constructor(
     private chickenLotService: ChickenLotsService,
@@ -31,12 +37,15 @@ export class ChickenLotsEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    //this.chickenLot.chickenColor = 'Branca';
+    // this.chickenLot.chickenColor = 'Branca';
     const chickenLotId = this.route.snapshot.params[`${'id'}`];
 
     if (chickenLotId) {
       this.loadChickenLot(chickenLotId);
     }
+
+    this.loadChickenLineages();
+    this.loadSheds();
   }
 
   get editing() {
@@ -47,6 +56,7 @@ export class ChickenLotsEditComponent implements OnInit {
     this.chickenLotService.findById(id)
     .then (chickenLot => {
       this.chickenLot = chickenLot;
+
     })
     .catch(error => this.errorHandler.handle(error));
   }
@@ -55,7 +65,7 @@ export class ChickenLotsEditComponent implements OnInit {
     if (this.editing) {
       this.update(form);
     } else {
-      this.create (form);
+      this.create(form);
     }
   }
 
@@ -74,7 +84,7 @@ export class ChickenLotsEditComponent implements OnInit {
     this.chickenLotService.update(this.chickenLot)
     .then(chickenLot  => {
       this.chickenLot = chickenLot;
-      this.toasty.success('Linhagem alterada com sucesso"');
+      this.toasty.success('Lote alterado com sucesso"');
       this.router.navigate(['/ChickenLots']);
     })
     .catch(error => this.errorHandler.handle(error));

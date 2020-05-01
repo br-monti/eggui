@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
 import { ShedService } from '../shed.service';
@@ -55,6 +56,13 @@ delete(shed: any) {
       });
     }
   });
+}
+
+new(form: FormControl) {
+  form.reset();
+  this.findByFilter();
+
+
 }
 
 
