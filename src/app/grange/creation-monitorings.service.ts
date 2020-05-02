@@ -30,15 +30,9 @@ export class CreationMonitoringsService {
     params = params.set('page', filter.page.toString());
     params = params.set('size', filter.itensByPage.toString());
 
-
-    if (filter.id) {
-      params =  params.set('id', filter.id.toString());
-    }
-
     if (filter.dateWeekInitial) {
       params = params.set('dateWeekInitial',
         moment(filter.dateWeekInitial).format('YYYY-MM-DD'));
-
     }
 
     if (filter.dateWeekFinal) {
@@ -47,7 +41,7 @@ export class CreationMonitoringsService {
     }
 
     if (filter.chickenLot) {
-      params =  params.set('shed', filter.chickenLot.toString());
+      params =  params.set('chickenLot', filter.chickenLot.toString());
     }
 
     return this.http.get(`${this.creationMonitoringsUrl}`, {params})
