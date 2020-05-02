@@ -107,6 +107,12 @@ export class ChickenLotsService {
           } );
       }
 
+      listAll(): Promise<any> {
+        return this.http.get(this.chickenLotsUrl)
+          .toPromise()
+          .then(response => response[`${'content'}`]);
+      }
+
       private convertStringsToDate(chickenLots: ChickenLot[]) {
         for (const chickenLot of chickenLots) {
 

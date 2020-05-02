@@ -30,3 +30,17 @@ export class ChickenLot {
   shed =  new Shed();
 
 }
+
+export class CreationMonitoring {
+  id: number;
+  ageWeek: number;
+  ageDay: number;
+  dateWeek: Date;
+  bodyWeight: number;
+  food: number;
+  water: number;
+  discard: number;
+  mortality: number;
+  chickenLot = new ChickenLot();
+
+}

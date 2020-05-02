@@ -22,6 +22,8 @@ import { ShedsListComponent } from './sheds-list/sheds-list.component';
 import { ShedsEditComponent } from './sheds-edit/sheds-edit.component';
 import { ChickenLotsListComponent } from './chicken-lots-list/chicken-lots-list.component';
 import { ChickenLotsEditComponent } from './chicken-lots-edit/chicken-lots-edit.component';
+import { CreationMonitoringsListComponent } from './creation-monitorings-list/creation-monitorings-list.component';
+import { CreationMonitoringsEditComponent } from './creation-monitorings-edit/creation-monitorings-edit.component';
 
 
 
@@ -31,7 +33,9 @@ import { ChickenLotsEditComponent } from './chicken-lots-edit/chicken-lots-edit.
     ShedsListComponent,
     ShedsEditComponent,
     ChickenLotsListComponent,
-    ChickenLotsEditComponent
+    ChickenLotsEditComponent,
+    CreationMonitoringsListComponent,
+    CreationMonitoringsEditComponent
   ],
   imports: [
     FormsModule,

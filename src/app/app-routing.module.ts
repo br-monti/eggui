@@ -1,3 +1,5 @@
+import { CreationMonitoringsEditComponent } from './grange/creation-monitorings-edit/creation-monitorings-edit.component';
+import { CreationMonitoringsListComponent } from './grange/creation-monitorings-list/creation-monitorings-list.component';
 import { ChickenLotsListComponent } from './grange/chicken-lots-list/chicken-lots-list.component';
 import { ChickenLotsEditComponent } from './grange/chicken-lots-edit/chicken-lots-edit.component';
 import { ShedsEditComponent } from './grange/sheds-edit/sheds-edit.component';
@@ -20,6 +22,9 @@ const routes: Routes = [
   { path: 'Sheds', component: ShedsListComponent },
   { path: 'Sheds/new', component: ShedsEditComponent },
   { path: 'Sheds/:id', component: ShedsEditComponent },
+  { path: 'CreationMonitorings', component: CreationMonitoringsListComponent },
+  { path: 'CreationMonitorings/new', component: CreationMonitoringsEditComponent },
+  { path: 'CreationMonitorings/:id', component: CreationMonitoringsEditComponent },
   { path: 'PageNotFound', component: NotFoundPageComponent },
   { path: '**', redirectTo: 'PageNotFound'}
 ];
