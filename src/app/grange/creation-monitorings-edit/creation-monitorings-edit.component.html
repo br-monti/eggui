@@ -7,62 +7,73 @@
       </div>
 
         <div class="ui-g-12 ui-md-3 ui-fluid">
-          <label>Data Semanal</label>
+          <label>Data</label>
           <p-calendar dateFormat="dd/mm/yy" name="dateWeek"
             [(ngModel)]="creationMonitoring.dateWeek"></p-calendar>
         </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label>Quantidade Inicial</label>
-        <input pInputText type="text" name="initialQuantity"
-          [(ngModel)]="chickenLot.initialQuantity"
+        <label>Semanas</label>
+        <input pInputText type="number" name="ageWeek"
+          [(ngModel)]="creationMonitoring.ageWeek"
           required>
       </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
-          <label>Quantidade Atual</label>
-          <input pInputText type="text" name="currentQuantity"
-            [(ngModel)]="chickenLot.currentQuantity"
+          <label>Dias</label>
+          <input pInputText type="number" name="ageDay"
+            [(ngModel)]="creationMonitoring.ageDay"
             required>
       </div>
 
-      <!-- <div class="ui-g-12 ui-md-9 ui-fluid">
-          <label>Debicagem</label>
-          <input pInputText type="text" name="debicking"
-            [(ngModel)]="chickenLot.debicking"
-            required>
-      </div> -->
-
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Debicagem</label>
-        <p-dropdown name="debicking" [options]="debickings" placeholder="Selecione"
-          [filter]="true"
-          [(ngModel)]="chickenLot.debicking"
-          required></p-dropdown>
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Peso Corporal (g)</label>
+        <input pInputText type="number" name="bodyWeight"
+          [(ngModel)]="creationMonitoring.bodyWeight"
+          required>
       </div>
 
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Ração (g)</label>
+        <input pInputText type="number" name="food"
+          [(ngModel)]="creationMonitoring.food"
+          required>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Água (l)</label>
+        <input pInputText type="number" name="bodyWeight"
+          [(ngModel)]="creationMonitoring.water"
+          required>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Descarte</label>
+        <input pInputText type="number" name="discard"
+          [(ngModel)]="creationMonitoring.discard"
+          required>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Mortalidade</label>
+        <input pInputText type="number" name="mortality"
+          [(ngModel)]="creationMonitoring.mortality"
+          required>
+      </div>
 
     <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Linhagem</label>
-        <p-dropdown name="chickenLineage" [options]="chickenLineages" placeholder="Selecione"
+        <label>Lote</label>
+        <p-dropdown name="chickenLot" [options]="chickenLots" placeholder="Selecione"
           [filter]="true"
-          [(ngModel)]="chickenLot.chickenLineage.id"
+          [(ngModel)]="creationMonitoring.chickenLot.id"
           required></p-dropdown>
       </div>
-
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-          <label>Galpão</label>
-          <p-dropdown name="shed" [options]="sheds" placeholder="Selecione"
-            [filter]="true"
-            [(ngModel)]="chickenLot.shed.id"
-            required></p-dropdown>
-        </div>
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
         <button pButton type="button" label="Novo" class="ui-button-info"
         (click)="new(f)"></button>
-        <a routerLink="/ChickenLots">Voltar para a pesquisa</a>
+        <a routerLink="/CreationMonitorings">Voltar para a pesquisa</a>
       </div>
     </div>
 

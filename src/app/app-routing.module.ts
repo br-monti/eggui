@@ -9,6 +9,8 @@ import { ChickenLineagesEditComponent } from './grange/chicken-lineages-edit/chi
 import { ChickenLineagesListComponent } from './grange/chicken-lineages-list/chicken-lineages-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ProductionMonitoringsEditComponent } from './grange/production-monitorings-edit/production-monitorings-edit.component';
+import { ProductionMonitoringsListComponent } from './grange/production-monitorings-list/production-monitorings-list.component';
 
 
 const routes: Routes = [
@@ -25,6 +27,9 @@ const routes: Routes = [
   { path: 'CreationMonitorings', component: CreationMonitoringsListComponent },
   { path: 'CreationMonitorings/new', component: CreationMonitoringsEditComponent },
   { path: 'CreationMonitorings/:id', component: CreationMonitoringsEditComponent },
+  { path: 'ProductionMonitorings', component: ProductionMonitoringsListComponent },
+  { path: 'ProductionMonitorings/new', component: ProductionMonitoringsEditComponent },
+  { path: 'ProductionMonitorings/:id', component: ProductionMonitoringsEditComponent },
   { path: 'PageNotFound', component: NotFoundPageComponent },
   { path: '**', redirectTo: 'PageNotFound'}
 ];

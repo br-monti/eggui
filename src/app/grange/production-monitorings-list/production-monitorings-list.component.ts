@@ -1,28 +1,27 @@
-import { FormControl } from '@angular/forms';
-import { ShedService } from '../service/shed.service';
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
-import { ToastyService } from 'ng2-toasty';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table/table';
-import { CreationMonitoringsFilter, CreationMonitoringsService } from '../service/creation-monitorings.service';
+import { ToastyService } from 'ng2-toasty';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ChickenLotsService } from '../service/chicken-lots.service';
+import { FormControl } from '@angular/forms';
+import { ProductionMonitoringsFilter, ProductionMonitoringsService } from '../service/production-monitorings.service';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 
 @Component({
-  selector: 'app-creation-monitorings-list',
-  templateUrl: './creation-monitorings-list.component.html',
-  styleUrls: ['./creation-monitorings-list.component.css']
+  selector: 'app-production-monitorings-list',
+  templateUrl: './production-monitorings-list.component.html',
+  styleUrls: ['./production-monitorings-list.component.css']
 })
-export class CreationMonitoringsListComponent implements OnInit {
+export class ProductionMonitoringsListComponent implements OnInit {
 
-  filter = new CreationMonitoringsFilter();
+  filter = new ProductionMonitoringsFilter();
   totalRegisters = 0;
   @ViewChild('table', {static: true}) grid: Table;
-  creationMonitorings = [];
+  productionMonitorings = [];
   chickenLots = [];
 
   constructor(
-    private creationMonitoringsService: CreationMonitoringsService,
+    private productionMonitoringsService: ProductionMonitoringsService,
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
     private errorHandler: ErrorHandlerService,
@@ -35,10 +34,10 @@ export class CreationMonitoringsListComponent implements OnInit {
 
   findByFilter(page = 0) {
     this.filter.page = page;
-    this.creationMonitoringsService.findByFilter(this.filter)
+    this.productionMonitoringsService.findByFilter(this.filter)
     .then(result => {
       this.totalRegisters = result.total;
-      this.creationMonitorings = result.creationMonitorings;
+      this.productionMonitorings = result.productionMonitorings;
     })
     .catch(error => this.errorHandler.handle(error));
 }
@@ -48,11 +47,11 @@ onChangePage(event: LazyLoadEvent) {
   this.findByFilter(page);
 }
 
-delete(creationMonitoring: any) {
+delete(productionMonitoring: any) {
   this.confirmationService.confirm({
     message: 'Tem certeza que deseja excluir?',
     accept: () => {
-      this.creationMonitoringsService.delete(creationMonitoring.id)
+      this.productionMonitoringsService.delete(productionMonitoring.id)
       .then(() => {
         this.grid.reset();
         this.toasty.success('Registro excluído com sucesso');
@@ -75,7 +74,6 @@ loadChickenLots() {
 new(form: FormControl) {
   form.reset();
   this.findByFilter();
-
-
 }
+
 }

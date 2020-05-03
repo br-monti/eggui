@@ -2,9 +2,9 @@ import { ToastyService } from 'ng2-toasty';
 import { FormControl } from '@angular/forms';
 import { ChickenLineage } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { ChickenLineagesService } from '../chicken-lineages.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ChickenLineagesService } from '../service/chicken-lineages.service';
 
 @Component({
   selector: 'app-chicken-lineages-edit',

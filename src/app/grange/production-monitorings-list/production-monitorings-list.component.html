@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="ui-g">
+        <form #f="ngForm" autocomplete="off" (ngSubmit)="findByFilter()">
+  
+        <div class="ui-g-12">
+          <h1>Monitoramento de Criação</h1>
+        </div>
+  
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Lote</label>
+          <input pInputText type="number" name="id" [(ngModel)]="filter.chickenLot">
+        </div>
+  
+        <div class="ui-g-6">
+          <label style="display: block">Data</label>
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+            name="dateWeekInitial" [(ngModel)]="filter.dateWeekInitial"></p-calendar>
+  
+          <label class="espaco-icones">até</label>
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+            name="dateWeekFinal" [(ngModel)]="filter.dateWeekFinal"></p-calendar>
+        </div>
+  
+        <div class="ui-g-12">
+          <button pButton type="submit" label="Pesquisar" class="espaco-icones"></button>
+          <button pButton type="button" label="Limpar" class="espaco-icones"
+          (click)="new(f)"></button>
+        </div>
+    </form>
+    </div>
+  
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-table [value]="productionMonitorings" [paginator]="true" [rows]="filter.itensByPage"
+        [lazy]="true" [totalRecords]="totalRegisters" (onLazyLoad)="onChangePage($event)"
+        [responsive]="true" #table>
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Lote</th>
+                  <th>Data</th>
+                  <th>Semanas</th>
+                  <th>Dias</th>
+                  <th>Peso</th>
+                  <th>Ração</th>
+                  <th>Água</th>
+                  <th>Descarte</th>
+                  <th>Mortalidade</th>
+                  <th>Ações</th>
+  
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-productionMonitoring>
+              <tr>
+                  <td class="col-data">{{productionMonitoring.chickenLot.id}}</td>
+                  <td class="col-data">{{productionMonitoring.dateWeek | date:'dd/MM/yyyy'}}</td>
+                  <td class="col-data">{{productionMonitoring.ageWeek}}</td>
+                  <td class="col-data">{{productionMonitoring.ageDay}}</td>
+                  <td class="col-data">{{productionMonitoring.bodyWeight}}</td>
+                  <td class="col-data">{{productionMonitoring.food}}</td>
+                  <td class="col-data">{{productionMonitoring.water}}</td>
+                  <td class="col-data">{{productionMonitoring.discard}}</td>
+                  <td class="col-data">{{productionMonitoring.mortality}}</td>
+                  <td class="col-acoes" >
+                    <a pButton class="espaco-icones" icon="pi pi-pencil"
+                    pTooltip="Editar" tooltipPosition="top"
+                    [routerLink]="['/ProductionMonitorings', productionMonitoring.id]"></a>
+                    <button pButton class="espaco-icones" icon="pi pi-trash"
+                    pTooltip="Excluir" tooltipPosition="top" (click)="delete(productionMonitoring)"></button>
+                 </td>
+              </tr>
+          </ng-template>
+  
+        <ng-template pTemplate="emptymessage">
+            Nenhum monitoramento de criação encontrado
+        </ng-template>
+      </p-table>
+      </div>
+  
+      <div class="ui-g-12">
+        <a pButton label="Novo Monitoramento" routerLink="/ProductionMonitorings/new"></a>
+      </div>
+  
+    </div>
+  
+  </div>
+  

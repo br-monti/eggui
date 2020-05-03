@@ -1,4 +1,4 @@
-import { Shed } from '../core/model';
+import { Shed } from '../../core/model';
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

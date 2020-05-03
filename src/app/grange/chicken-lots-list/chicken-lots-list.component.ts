@@ -1,12 +1,12 @@
-import { ShedService } from './../shed.service';
+import { ShedService } from '../service/shed.service';
 import { FormControl } from '@angular/forms';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ConfirmationService } from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
-import { ChickenLotsFilter, ChickenLotsService } from './../chicken-lots.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table/table';
+import { ChickenLotsFilter, ChickenLotsService } from '../service/chicken-lots.service';
 
 @Component({
   selector: 'app-chicken-lots-list',

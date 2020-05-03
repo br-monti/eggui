@@ -1,0 +1,82 @@
+<div class="container">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)=save(f)>
+  
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <h1> {{ editing ? 'Edição de' : 'Novo'}} Monitoramento de Produção</h1>
+        </div>
+  
+          <div class="ui-g-12 ui-md-3 ui-fluid">
+            <label>Data</label>
+            <p-calendar dateFormat="dd/mm/yy" name="dateWeek"
+              [(ngModel)]="productionMonitoring.dateWeek"></p-calendar>
+          </div>
+  
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Semanas</label>
+          <input pInputText type="number" name="ageWeek"
+            [(ngModel)]="productionMonitoring.ageWeek"
+            required>
+        </div>
+  
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+            <label>Dias</label>
+            <input pInputText type="number" name="ageDay"
+              [(ngModel)]="productionMonitoring.ageDay"
+              required>
+        </div>
+  
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Peso Corporal (g)</label>
+          <input pInputText type="number" name="bodyWeight"
+            [(ngModel)]="productionMonitoring.bodyWeight"
+            required>
+        </div>
+  
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Ração (g)</label>
+          <input pInputText type="number" name="food"
+            [(ngModel)]="productionMonitoring.food"
+            required>
+        </div>
+  
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Água (l)</label>
+          <input pInputText type="number" name="bodyWeight"
+            [(ngModel)]="productionMonitoring.water"
+            required>
+        </div>
+  
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Descarte</label>
+          <input pInputText type="number" name="discard"
+            [(ngModel)]="productionMonitoring.discard"
+            required>
+        </div>
+  
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Mortalidade</label>
+          <input pInputText type="number" name="mortality"
+            [(ngModel)]="productionMonitoring.mortality"
+            required>
+        </div>
+  
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+          <label>Lote</label>
+          <p-dropdown name="chickenLot" [options]="chickenLots" placeholder="Selecione"
+            [filter]="true"
+            [(ngModel)]="productionMonitoring.chickenLot.id"
+            required></p-dropdown>
+        </div>
+  
+        <div class="ui-g-12">
+          <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+          <button pButton type="button" label="Novo" class="ui-button-info"
+          (click)="new(f)"></button>
+          <a routerLink="/ProductionMonitorings">Voltar para a pesquisa</a>
+        </div>
+      </div>
+  
+    </form>
+  </div>
+  

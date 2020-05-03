@@ -24,6 +24,8 @@ import { ChickenLotsListComponent } from './chicken-lots-list/chicken-lots-list.
 import { ChickenLotsEditComponent } from './chicken-lots-edit/chicken-lots-edit.component';
 import { CreationMonitoringsListComponent } from './creation-monitorings-list/creation-monitorings-list.component';
 import { CreationMonitoringsEditComponent } from './creation-monitorings-edit/creation-monitorings-edit.component';
+import { ProductionMonitoringsEditComponent } from './production-monitorings-edit/production-monitorings-edit.component';
+import { ProductionMonitoringsListComponent } from './production-monitorings-list/production-monitorings-list.component';
 
 
 
@@ -35,7 +37,9 @@ import { CreationMonitoringsEditComponent } from './creation-monitorings-edit/cr
     ChickenLotsListComponent,
     ChickenLotsEditComponent,
     CreationMonitoringsListComponent,
-    CreationMonitoringsEditComponent
+    CreationMonitoringsEditComponent,
+    ProductionMonitoringsEditComponent,
+    ProductionMonitoringsListComponent,
   ],
   imports: [
     FormsModule,

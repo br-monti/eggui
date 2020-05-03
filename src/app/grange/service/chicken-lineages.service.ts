@@ -1,8 +1,9 @@
-import { ChickenLineage } from './../core/model';
+
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
+import { ChickenLineage } from 'src/app/core/model';
 
 export class ChickenLineageFilter {
   lineage: string;

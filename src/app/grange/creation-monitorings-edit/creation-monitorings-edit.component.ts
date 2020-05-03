@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ChickenLotsService } from '../chicken-lots.service';
-import { CreationMonitoringsService } from '../creation-monitorings.service';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { CreationMonitoring } from 'src/app/core/model';
+import { CreationMonitoringsService } from '../service/creation-monitorings.service';
+import { ChickenLotsService } from '../service/chicken-lots.service';
 
 @Component({
   selector: 'app-creation-monitorings-edit',
@@ -63,7 +63,7 @@ export class CreationMonitoringsEditComponent implements OnInit {
     .then(() => {
       this.toasty.success('Lote adicionado com sucesso');
 
-      this.router.navigate(['/ChickenLots']);
+      this.router.navigate(['/CreationMonitorings']);
     })
     .catch(error => this.errorHandler.handle(error));
   }
@@ -73,7 +73,7 @@ export class CreationMonitoringsEditComponent implements OnInit {
     .then(creationMonitoring  => {
       this.creationMonitoring = creationMonitoring;
       this.toasty.success('Lote alterado com sucesso"');
-      this.router.navigate(['/ChickenLots']);
+      this.router.navigate(['/CreationMonitorings']);
     })
     .catch(error => this.errorHandler.handle(error));
   }
@@ -82,7 +82,7 @@ export class CreationMonitoringsEditComponent implements OnInit {
     return this.chickenLotsService.listAll()
       .then(chickenLots => {
         this.chickenLots = chickenLots
-          .map(c => ({ label: c.lineage, value: c.id }));
+          .map(c => ({ label: c.id, value: c.id }));
       })
       .catch(error => this.errorHandler.handle(error));
   }

@@ -1,13 +1,12 @@
 import { FormControl } from '@angular/forms';
-import { ChickenLineagesService } from './../chicken-lineages.service';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent} from 'primeng/api/public_api';
 import { ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table/table';
-import { ChickenLineageFilter } from '../chicken-lineages.service';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { ChickenLineageFilter, ChickenLineagesService } from '../service/chicken-lineages.service';
 
 @Component({
   selector: 'app-chicken-lineages-list',

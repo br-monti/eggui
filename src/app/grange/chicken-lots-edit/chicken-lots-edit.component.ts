@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ChickenLot } from 'src/app/core/model';
-import { ChickenLotsService } from '../chicken-lots.service';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { ChickenLineagesService } from '../chicken-lineages.service';
-import { ShedService } from '../shed.service';
+import { ShedService } from '../service/shed.service';
+import { ChickenLotsService } from '../service/chicken-lots.service';
+import { ChickenLineagesService } from '../service/chicken-lineages.service';
 
 @Component({
   selector: 'app-chicken-lots-edit',

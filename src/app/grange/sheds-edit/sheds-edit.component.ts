@@ -1,7 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { ToastyService } from 'ng2-toasty';
 import { Shed } from '../../core/model';
-import { ShedService } from '../shed.service';
+import { ShedService } from '../service/shed.service';
 import { Component, OnInit } from '@angular/core';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ActivatedRoute, Router } from '@angular/router';

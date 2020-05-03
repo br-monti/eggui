@@ -1,9 +1,10 @@
-import { ChickenLot, Shed } from './../core/model';
+
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 
 import 'rxjs/add/operator/toPromise';
+import { ChickenLot } from 'src/app/core/model';
 
 export class ChickenLotsFilter {
   id: number;

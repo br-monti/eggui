@@ -1,9 +1,9 @@
 import { FormControl } from '@angular/forms';
 import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
-import { ShedService } from '../shed.service';
+import { ShedService } from '../service/shed.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ShedsFilter } from '../shed.service';
+import { ShedsFilter } from '../service/shed.service';
 import { Table } from 'primeng/table/table';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
