@@ -3,7 +3,7 @@
         <form #f="ngForm" autocomplete="off" (ngSubmit)="findByFilter()">
   
         <div class="ui-g-12">
-          <h1>Monitoramento de Criação</h1>
+          <h1>Monitoramento de Produção</h1>
         </div>
   
         <div class="ui-g-12 ui-md-3 ui-fluid">
@@ -40,11 +40,15 @@
                   <th>Data</th>
                   <th>Semanas</th>
                   <th>Dias</th>
-                  <th>Peso</th>
+                  <th>Peso Ave</th>
                   <th>Ração</th>
                   <th>Água</th>
                   <th>Descarte</th>
-                  <th>Mortalidade</th>
+                  <th>Mortes</th>
+                  <th>Produção</th>
+                  <th>Ovos 1ª</th>
+                  <th>Ovos 2ª</th>
+                  <th>Peso Ovo</th>
                   <th>Ações</th>
   
               </tr>
@@ -60,6 +64,10 @@
                   <td class="col-data">{{productionMonitoring.water}}</td>
                   <td class="col-data">{{productionMonitoring.discard}}</td>
                   <td class="col-data">{{productionMonitoring.mortality}}</td>
+                  <td class="col-data">{{productionMonitoring.totalProduction}}</td>
+                  <td class="col-data">{{productionMonitoring.firstEggs}}</td>
+                  <td class="col-data">{{productionMonitoring.secondEggs}}</td>
+                  <td class="col-data">{{productionMonitoring.eggWeight}}</td>
                   <td class="col-acoes" >
                     <a pButton class="espaco-icones" icon="pi pi-pencil"
                     pTooltip="Editar" tooltipPosition="top"

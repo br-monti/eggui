@@ -10,6 +10,7 @@
 
   <ul class="navbar-menu" [hidden]="!exibindoMenu">
     <li class="navbar-usuario">Bruno Monti</li>
+    <li class="navbar-menuitem" routerLinkActive="active" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/Dashboard">Dashboard</a></li>
     <li class="navbar-menuitem" routerLinkActive="active" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/ChickenLineages">Linhagens</a></li>
     <li class="navbar-menuitem" routerLinkActive="active" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/Sheds">Galpões</a></li>
     <li class="navbar-menuitem" routerLinkActive="active" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/ChickenLots">Lotes</a></li>

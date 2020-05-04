@@ -11,10 +11,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductionMonitoringsEditComponent } from './grange/production-monitorings-edit/production-monitorings-edit.component';
 import { ProductionMonitoringsListComponent } from './grange/production-monitorings-list/production-monitorings-list.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'ChickenLineages', pathMatch: 'full' }, // Redirecionamento
+  { path: '', redirectTo: 'Dashboard', pathMatch: 'full' }, // Redirecionamento
+  { path: 'Dashboard', component: DashboardComponent },
   { path: 'ChickenLineages', component: ChickenLineagesListComponent },
   { path: 'ChickenLineages/new', component: ChickenLineagesEditComponent },
   { path: 'ChickenLineages/:id', component: ChickenLineagesEditComponent },

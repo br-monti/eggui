@@ -60,6 +60,35 @@
             [(ngModel)]="productionMonitoring.mortality"
             required>
         </div>
+
+        
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Produção</label>
+        <input pInputText type="number" name="totalProduction"
+          [(ngModel)]="productionMonitoring.totalProduction"
+          required>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Ovos 1ª</label>
+        <input pInputText type="number" name="firstEggs"
+          [(ngModel)]="productionMonitoring.firstEggs"
+          required>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Ovos 2ª</label>
+        <input pInputText type="number" name="secondEggs"
+          [(ngModel)]="productionMonitoring.secondEggs"
+          required>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Peso Ovo</label>
+        <input pInputText type="number" name="eggWeight"
+          [(ngModel)]="productionMonitoring.eggWeight"
+          required>
+      </div>
   
       <div class="ui-g-12 ui-md-6 ui-fluid">
           <label>Lote</label>

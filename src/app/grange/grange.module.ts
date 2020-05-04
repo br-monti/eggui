@@ -29,6 +29,7 @@ import { ProductionMonitoringsListComponent } from './production-monitorings-lis
 
 
 
+
 @NgModule({
   declarations: [ChickenLineagesListComponent,
     ChickenLineagesEditComponent,
@@ -39,7 +40,7 @@ import { ProductionMonitoringsListComponent } from './production-monitorings-lis
     CreationMonitoringsListComponent,
     CreationMonitoringsEditComponent,
     ProductionMonitoringsEditComponent,
-    ProductionMonitoringsListComponent,
+    ProductionMonitoringsListComponent
   ],
   imports: [
     FormsModule,

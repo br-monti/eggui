@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {
   MatButtonModule, MatNativeDateModule, MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule} from '@angular/material';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {
     TableModule,
     TooltipModule,
     GrangeModule,
+    DashboardModule,
     HttpClientModule,
     CoreModule,
     AppRoutingModule,
