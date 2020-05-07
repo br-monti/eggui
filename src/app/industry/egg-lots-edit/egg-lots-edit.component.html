@@ -1,0 +1,40 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)=save(f)>
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1> {{ editing ? 'Edição de' : 'Novo'}} Lote de Ovos</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="name" [(ngModel)]=eggLot.name
+        ngModel  #name="ngModel" required minlength="5">
+        <app-message [control]="name" error="required"
+          text="Informe o Nome"></app-message>
+        <app-message [control]="name" error="minlength"
+          text="Mínimo de {{ name.errors?.minlength?.requiredLength }} caracteres"></app-message>
+
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Cor da Caixa</label>
+        <input pInputText type="text" name="boxColor" [(ngModel)]=eggLot.boxColor
+        ngModel #boxColor="ngModel" required minlength="5">
+        <app-message [control]="boxColor" error="required"
+        text="Informe a cor da caixa"></app-message>
+      <app-message [control]="boxColor" error="minlength"
+        text="Mínimo de {{ boxColor.errors?.minlength?.requiredLength }} caracteres"></app-message>
+      </div>
+
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info"
+        (click)="new(f)"></button>
+        <a routerLink="/EggLots">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>

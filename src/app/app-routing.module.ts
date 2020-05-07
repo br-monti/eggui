@@ -1,3 +1,5 @@
+import { EggLotsEditComponent } from './industry/egg-lots-edit/egg-lots-edit.component';
+import { EggLotsListComponent } from './industry/egg-lots-list/egg-lots-list.component';
 import { CreationMonitoringsEditComponent } from './grange/creation-monitorings-edit/creation-monitorings-edit.component';
 import { CreationMonitoringsListComponent } from './grange/creation-monitorings-list/creation-monitorings-list.component';
 import { ChickenLotsListComponent } from './grange/chicken-lots-list/chicken-lots-list.component';
@@ -32,6 +34,9 @@ const routes: Routes = [
   { path: 'ProductionMonitorings', component: ProductionMonitoringsListComponent },
   { path: 'ProductionMonitorings/new', component: ProductionMonitoringsEditComponent },
   { path: 'ProductionMonitorings/:id', component: ProductionMonitoringsEditComponent },
+  { path: 'EggLots', component: EggLotsListComponent },
+  { path: 'EggLots/new', component: EggLotsEditComponent },
+  { path: 'EggLots/:id', component: EggLotsEditComponent },
   { path: 'PageNotFound', component: NotFoundPageComponent },
   { path: '**', redirectTo: 'PageNotFound'}
 ];

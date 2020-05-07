@@ -1,3 +1,5 @@
+//-------------------Grange Module------------------------------
+
 export class ChickenLineage {
   id: number;
   lineage: string;
@@ -61,4 +63,12 @@ export class ProductionMonitoring {
   eggWeight: number;
   chickenLot = new ChickenLot();
 
+}
+
+//-------------------Industry Module------------------------------
+
+export class EggLot {
+  id: number;
+  name: string;
+  boxColor: string;
 }
