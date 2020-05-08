@@ -1,3 +1,4 @@
+import { EggLotsService } from '../industry/service/egg-lots.service';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 import { ToastyModule } from 'ng2-toasty';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -30,6 +31,7 @@ import { ChickenLotsService } from '../grange/service/chicken-lots.service';
     ChickenLineagesService,
     ShedService,
     ShedManufacturerService,
-    ChickenLotsService ]
+    ChickenLotsService,
+    EggLotsService]
 })
 export class CoreModule { }

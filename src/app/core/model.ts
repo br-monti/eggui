@@ -30,6 +30,7 @@ export class ChickenLot {
   debicking: string;
   chickenLineage = new ChickenLineage();
   shed =  new Shed();
+  eggLot =  new EggLot();
 
 }
 

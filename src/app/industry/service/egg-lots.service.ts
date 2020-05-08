@@ -101,6 +101,7 @@ export class EggLotsService {
         return this.http.get(this.eggLotsUrl)
           .toPromise()
           .then(response => response[`${'content'}`]);
+
       }
 
 }

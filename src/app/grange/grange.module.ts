@@ -58,6 +58,6 @@ import { ProductionMonitoringsListComponent } from './production-monitorings-lis
     CalendarModule
 
   ],
-  exports:  []
+  exports:  [ChickenLotsListComponent]
 })
 export class GrangeModule { }

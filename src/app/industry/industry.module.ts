@@ -1,3 +1,6 @@
+import { GrangeModule } from './../grange/grange.module';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { PanelModule } from 'primeng/panel';
 import { EggLotsEditComponent } from './egg-lots-edit/egg-lots-edit.component';
 import { EggLotsListComponent } from './egg-lots-list/egg-lots-list.component';
 import { CalendarModule } from 'primeng/calendar';
@@ -32,7 +35,10 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     SharedModule,
     DropdownModule,
-    CalendarModule
+    CalendarModule,
+    PanelModule,
+    ConfirmDialogModule,
+    GrangeModule
   ]
 })
 export class IndustryModule { }

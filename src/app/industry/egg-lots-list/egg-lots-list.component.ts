@@ -17,6 +17,7 @@ export class EggLotsListComponent implements OnInit {
   totalRegisters = 0;
   @ViewChild('table', {static: true}) grid: Table;
   eggLots = [];
+  exbindoFormularioContato = false;
 
     constructor(
       private eggLotsService: EggLotsService,
@@ -61,6 +62,10 @@ export class EggLotsListComponent implements OnInit {
   new(form: FormControl) {
     form.reset();
     this.findByFilter();
+  }
+
+  prepararNovoContato() {
+    this.exbindoFormularioContato = true;
   }
 
 }
