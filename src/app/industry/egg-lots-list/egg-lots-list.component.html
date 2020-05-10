@@ -52,13 +52,13 @@
                   <button pButton class="espaco-icones" icon="pi pi-trash"
                   pTooltip="Excluir" tooltipPosition="top" (click)="delete(eggLot)"></button>
                   <button pButton class="espaco-icones" icon="pi pi-list"
-                  pTooltip="Detalhes" tooltipPosition="top" (click)="prepararNovoContato()"></button>
+                  pTooltip="Detalhes" tooltipPosition="top" [routerLink]="['/EggLots', eggLot.id]"></button>
                </td>
             </tr>
         </ng-template>
 
       <ng-template pTemplate="emptymessage">
-          Nenhum lote de ovos encontrada
+          Nenhum lote de ovos encontrado
       </ng-template>
     </p-table>
     </div>
@@ -71,6 +71,3 @@
 
 </div>
 
-<p-confirmDialog header="Lote de Aves" [(visible)]="exbindoFormularioContato"  modal="modal">
-
-</p-confirmDialog>

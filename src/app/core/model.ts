@@ -72,4 +72,5 @@ export class EggLot {
   id: number;
   name: string;
   boxColor: string;
+  chickenLots = new Array<ChickenLot>();
 }
