@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 import { ShedService } from '../service/shed.service';
 import { ChickenLotsService } from '../service/chicken-lots.service';
 import { ChickenLineagesService } from '../service/chicken-lineages.service';
+import { EggLotsService } from 'src/app/industry/service/egg-lots.service';
 
 @Component({
   selector: 'app-chicken-lots-edit',
@@ -20,6 +21,7 @@ export class ChickenLotsEditComponent implements OnInit {
 
   sheds = [];
   chickenLineages = [];
+  eggLots = [];
   debickings = [
     { label: 'Convencional', value: 'Convencional' },
     { label: 'Laser', value: 'Laser' },
@@ -31,6 +33,7 @@ export class ChickenLotsEditComponent implements OnInit {
     private chickenLotService: ChickenLotsService,
     private chickenLineageService: ChickenLineagesService,
     private shedService: ShedService,
+    private eggLotsService: EggLotsService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
@@ -46,6 +49,7 @@ export class ChickenLotsEditComponent implements OnInit {
 
     this.loadChickenLineages();
     this.loadSheds();
+    this.loadEggLots();
   }
 
   get editing() {
@@ -106,6 +110,16 @@ export class ChickenLotsEditComponent implements OnInit {
           .map(c => ({label: c.name, value: c.id  }));
       })
       .catch(error => this.errorHandler.handle(error));
+  }
+
+  loadEggLots() {
+    return this.eggLotsService.listAll()
+      .then(eggLots => {
+        this.eggLots = eggLots
+          .map(c => ({label: c.name, value: c.id  }));
+      })
+      .catch(error => this.errorHandler.handle(error));
+
   }
 
   new(form: FormControl) {

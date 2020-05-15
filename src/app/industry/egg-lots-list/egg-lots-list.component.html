@@ -25,6 +25,9 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
+
+    </div>
+    <div class="ui-g-12">
       <p-table [value]="eggLots" [paginator]="true" [rows]="filter.itensByPage"
       [lazy]="true" [totalRecords]="totalRegisters" (onLazyLoad)="onChangePage($event)"
       [responsive]="true" #table>
@@ -48,6 +51,8 @@
                   [routerLink]="['/EggLots', eggLot.id]"></a>
                   <button pButton class="espaco-icones" icon="pi pi-trash"
                   pTooltip="Excluir" tooltipPosition="top" (click)="delete(eggLot)"></button>
+                  <button pButton class="espaco-icones" icon="pi pi-list"
+                  pTooltip="Detalhes" tooltipPosition="top" [routerLink]="['/EggLots', eggLot.id]"></button>
                </td>
             </tr>
         </ng-template>
@@ -70,3 +75,4 @@
   </div>
 
 </div>
+

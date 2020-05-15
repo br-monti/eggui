@@ -30,6 +30,7 @@ export class ChickenLot {
   debicking: string;
   chickenLineage = new ChickenLineage();
   shed =  new Shed();
+  eggLot =  new EggLot();
 
 }
 
@@ -71,4 +72,5 @@ export class EggLot {
   id: number;
   name: string;
   boxColor: string;
+  chickenLots = new Array<ChickenLot>();
 }

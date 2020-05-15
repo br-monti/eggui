@@ -35,12 +35,12 @@ label {
 }
 
 .col-valor {
-  width: 120px;
+  width: 80px;
   text-align: right;
 }
 
 .col-data {
-  width: 120px;
+  width: 80px;
   text-align: center;
 }
 
@@ -65,7 +65,8 @@ label {
 }
 
 .espaco-icones {
-  margin: 0 .25em!important;
+  margin: 0 .15em!important;
+
 }
 
 
