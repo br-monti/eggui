@@ -52,7 +52,7 @@
                 <th>Quantidade Alojada</th>
                 <th>Quantidade Atual</th>
                 <th>Debicagem</th>
-                <th>Ações</th>
+                <th class="col-acoes-header">Ações</th>
 
             </tr>
         </ng-template>
@@ -67,11 +67,13 @@
                 <td class="col-data">{{chickenLot.currentQuantity}}</td>
                 <td class="col-data">{{chickenLot.debicking}}</td>
                 <td class="col-acoes" >
-                  <a pButton class="espaco-icones" icon="pi pi-pencil"
+                  <button  pButton  class="espaco-icones" icon="pi pi-pencil"
                   pTooltip="Editar" tooltipPosition="top"
-                  [routerLink]="['/ChickenLots', chickenLot.id]"></a>
-                  <button pButton class="espaco-icones" icon="pi pi-trash"
-                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(chickenLot)"></button>
+                  [routerLink]="['/ChickenLots', chickenLot.id]"  [disabled]="isSelect"></button>
+                  <button pButton  class="espaco-icones" icon="pi pi-trash"
+                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(chickenLot)" [disabled]="isSelect"></button>
+                  <button pButton  class="espaco-icones" icon="pi pi-plus"
+                  pTooltip="Selecionar" tooltipPosition="top" (click)="feedback(chickenLot)" [disabled]="!isSelect"></button>
                </td>
             </tr>
         </ng-template>

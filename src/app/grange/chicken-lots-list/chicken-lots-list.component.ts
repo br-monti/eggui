@@ -4,7 +4,7 @@ import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ConfirmationService } from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Table } from 'primeng/table/table';
 import { ChickenLotsFilter, ChickenLotsService } from '../service/chicken-lots.service';
 
@@ -21,6 +21,11 @@ export class ChickenLotsListComponent implements OnInit {
   chickenLots = [];
   sheds = [];
 
+  @Input() isSelect;
+  @Output() chickenLotResponse = new EventEmitter;
+
+  button = true;
+
   constructor(
     private chickenLotsService: ChickenLotsService,
     private toasty: ToastyService,
@@ -31,6 +36,9 @@ export class ChickenLotsListComponent implements OnInit {
 
   ngOnInit() {
     this.loadSheds();
+    if(this.isSelect){
+
+    }
   }
 
   findByFilter(page = 0) {
@@ -75,8 +83,10 @@ loadSheds() {
 new(form: FormControl) {
   form.reset();
   this.findByFilter();
+}
 
-
+feedback(chickenLot: any) {
+  this.chickenLotResponse.emit(chickenLot);
 }
 
 

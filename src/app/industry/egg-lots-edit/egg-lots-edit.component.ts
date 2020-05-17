@@ -2,7 +2,7 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
-import { EggLot } from 'src/app/core/model';
+import { EggLot, ChickenLot } from 'src/app/core/model';
 import { Component, OnInit } from '@angular/core';
 import { EggLotsService } from '../service/egg-lots.service';
 
@@ -14,6 +14,8 @@ import { EggLotsService } from '../service/egg-lots.service';
 export class EggLotsEditComponent implements OnInit {
 
   eggLot = new EggLot();
+  showChickenLotForm = false;
+  chickenLot: ChickenLot;
 
   constructor(
     private eggLotsService: EggLotsService,
@@ -29,6 +31,11 @@ export class EggLotsEditComponent implements OnInit {
     if (eggLotId) {
       this.loadEggLot(eggLotId);
     }
+  }
+
+  prepareNewChickenLot() {
+    this.showChickenLotForm = true;
+    this.chickenLot = new ChickenLot();
   }
 
   get editing() {
@@ -80,6 +87,13 @@ export class EggLotsEditComponent implements OnInit {
     }.bind(this), 1);
 
     this.router.navigate(['/EggLots/new']);
+  }
+
+  receiverFeedback(responseChickenLot) {
+
+    console.log(responseChickenLot);
+    this.eggLot.chickenLots.push(responseChickenLot);
+    this.showChickenLotForm = false;
   }
 
 }

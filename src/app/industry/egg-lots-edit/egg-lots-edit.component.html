@@ -3,13 +3,13 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1> {{ editing ? 'Edição de' : 'Novo'}} Lote de Ovos</h1>
+        <h1> {{ editing ? 'Editar' : 'Novo'}} Lote de Ovos</h1>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Nome</label>
         <input pInputText type="text" name="name" [(ngModel)]=eggLot.name
-        ngModel  #name="ngModel" required minlength="5">
+        ngModel  #name="ngModel" required minlength="2">
         <app-message [control]="name" error="required"
           text="Informe o Nome"></app-message>
         <app-message [control]="name" error="minlength"
@@ -20,7 +20,7 @@
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Cor da Caixa</label>
         <input pInputText type="text" name="boxColor" [(ngModel)]=eggLot.boxColor
-        ngModel #boxColor="ngModel" required minlength="5">
+        ngModel #boxColor="ngModel" required minlength="2">
         <app-message [control]="boxColor" error="required"
         text="Informe a cor da caixa"></app-message>
       <app-message [control]="boxColor" error="minlength"
@@ -30,6 +30,9 @@
       <div class="ui-g-12">
         <p-panel header="Lotes de Aves">
           <div class="ui-g">
+            <div class="ui-g-12">
+              <button pButton label="Novo" icon="pi pi-plus" type="button" (click)="prepareNewChickenLot()"></button>
+            </div>
             <div class="ui-g-12">
               <p-table [value]="eggLot.chickenLots" [responsive]="true">
                 <ng-template pTemplate="header">
@@ -61,7 +64,7 @@
 
                 <ng-template pTemplate="emptymessage">
                   <tr>
-                    <td colspan="9">
+                    <td colspan="8">
                       Nenhum lote de aves cadastrado
                     </td>
                   </tr>
@@ -83,3 +86,8 @@
 
   </form>
 </div>
+
+<p-dialog header="Adicionar Lote de Aves" [(visible)]="showChickenLotForm" modal="modal">
+
+  <app-chicken-lots-list [isSelect]="true" (chickenLotResponse)="receiverFeedback($event)"></app-chicken-lots-list>
+</p-dialog>

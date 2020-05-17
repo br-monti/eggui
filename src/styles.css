@@ -45,8 +45,12 @@ label {
 }
 
 .col-acoes {
-  width: 20px;
+  width: 150px;
   text-align: center;
+}
+
+.col-acoes-header {
+  width: 150px;
 }
 
 .col-valor-header {
