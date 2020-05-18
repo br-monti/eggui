@@ -5,6 +5,7 @@ import { EggLotsService, EggLotsFilter } from './../service/egg-lots.service';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table/table';
+import { EggLot } from 'src/app/core/model';
 
 @Component({
   selector: 'app-egg-lots-list',
@@ -17,7 +18,9 @@ export class EggLotsListComponent implements OnInit {
   totalRegisters = 0;
   @ViewChild('table', {static: true}) grid: Table;
   eggLots = [];
-  exbindoFormularioContato = false;
+  showTableDetails = false;
+
+  eggLotDetails = new EggLot();
 
     constructor(
       private eggLotsService: EggLotsService,
@@ -64,8 +67,17 @@ export class EggLotsListComponent implements OnInit {
     this.findByFilter();
   }
 
-  prepararNovoContato() {
-    this.exbindoFormularioContato = true;
+  showEggLotDetails(id: number) {
+    this.showTableDetails = true;
+    this.loadEggLot(id);
+  }
+
+  loadEggLot(id: number) {
+    this.eggLotsService.findById(id)
+    .then (eggLot => {
+      this.eggLotDetails = eggLot;
+    })
+    .catch(error => this.errorHandler.handle(error));
   }
 
 }
