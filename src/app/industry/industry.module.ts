@@ -17,11 +17,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EggBasesEditComponent } from './egg-bases-edit/egg-bases-edit.component';
+import { EggBasesListComponent } from './egg-bases-list/egg-bases-list.component';
 
 
 
 @NgModule({
-  declarations: [EggLotsListComponent, EggLotsEditComponent],
+  declarations: [EggLotsListComponent, EggLotsEditComponent, EggBasesEditComponent, EggBasesListComponent],
   imports: [
     FormsModule,
     CommonModule,

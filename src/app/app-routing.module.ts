@@ -14,6 +14,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductionMonitoringsEditComponent } from './grange/production-monitorings-edit/production-monitorings-edit.component';
 import { ProductionMonitoringsListComponent } from './grange/production-monitorings-list/production-monitorings-list.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { EggBasesListComponent } from './industry/egg-bases-list/egg-bases-list.component';
+import { EggBasesEditComponent } from './industry/egg-bases-edit/egg-bases-edit.component';
 
 
 const routes: Routes = [
@@ -37,6 +39,9 @@ const routes: Routes = [
   { path: 'EggLots', component: EggLotsListComponent },
   { path: 'EggLots/new', component: EggLotsEditComponent },
   { path: 'EggLots/:id', component: EggLotsEditComponent },
+  { path: 'EggBases', component: EggBasesListComponent },
+  { path: 'EggBases/new', component: EggBasesEditComponent },
+  { path: 'EggBases/:id', component: EggBasesEditComponent },
   { path: 'PageNotFound', component: NotFoundPageComponent },
   { path: '**', redirectTo: 'PageNotFound'}
 ];
