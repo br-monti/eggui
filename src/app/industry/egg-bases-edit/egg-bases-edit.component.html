@@ -1,1 +1,84 @@
-<p>egg-bases-edit works!</p>
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)=save(f)>
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1> {{ editing ? 'Edição de' : 'Novo'}} Lote</h1>
+      </div>
+
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Nascimento</label>
+          <p-calendar dateFormat="dd/mm/yy" name="birthDate"
+            [(ngModel)]="chickenLot.birthDate"></p-calendar>
+        </div>
+
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Alojamento</label>
+          <p-calendar dateFormat="dd/mm/yy" name="accommodationDate"
+            [(ngModel)]="chickenLot.accommodationDate"></p-calendar>
+        </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Quantidade Inicial</label>
+        <input pInputText type="text" name="initialQuantity"
+          [(ngModel)]="chickenLot.initialQuantity"
+          required>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Quantidade Atual</label>
+          <input pInputText type="text" name="currentQuantity"
+            [(ngModel)]="chickenLot.currentQuantity"
+            required>
+      </div>
+
+      <!-- <div class="ui-g-12 ui-md-9 ui-fluid">
+          <label>Debicagem</label>
+          <input pInputText type="text" name="debicking"
+            [(ngModel)]="chickenLot.debicking"
+            required>
+      </div> -->
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Debicagem</label>
+        <p-dropdown name="debicking" [options]="debickings" placeholder="Selecione"
+          [filter]="true"
+          [(ngModel)]="chickenLot.debicking"
+          required></p-dropdown>
+      </div>
+
+
+    <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Linhagem</label>
+        <p-dropdown name="chickenLineage" [options]="chickenLineages" placeholder="Selecione"
+          [filter]="true"
+          [(ngModel)]="chickenLot.chickenLineage.id"
+          required></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+          <label>Galpão</label>
+          <p-dropdown name="shed" [options]="sheds" placeholder="Selecione"
+            [filter]="true"
+            [(ngModel)]="chickenLot.shed.id"
+            required></p-dropdown>
+        </div>
+
+        <!-- <div class="ui-g-12 ui-md-6 ui-fluid">
+          <label>Lote de Ovos</label>
+          <p-dropdown name="eggLot" [options]="eggLots" placeholder="Selecione"
+            [filter]="true"
+            [(ngModel)]="chickenLot.eggLot.id"
+            required></p-dropdown>
+        </div> -->
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info"
+        (click)="new(f)"></button>
+        <a routerLink="/ChickenLots">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>

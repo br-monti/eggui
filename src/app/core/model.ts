@@ -74,3 +74,11 @@ export class EggLot {
   boxColor: string;
   chickenLots = new Array<ChickenLot>();
 }
+
+export class EggBase {
+  id: number;
+  quantity: number;
+  productionDate: Date;
+  validityDate: Date;
+  eggLot = new EggLot();
+}
