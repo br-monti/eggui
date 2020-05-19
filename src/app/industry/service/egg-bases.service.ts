@@ -83,10 +83,12 @@ export class EggBasesService {
   create(eggBase: EggBase): Promise<EggBase> {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
-
+    
     return this.http.post<EggBase>(
       this.eggBasesUrl, eggBase, {headers})
       .toPromise();
+
+      
   }
 
     update(eggBase: EggBase): Promise<EggBase> {
@@ -98,6 +100,7 @@ export class EggBasesService {
         .toPromise()
         .then(response => {
           const eggBaseUpdated = response as EggBase;
+          this.convertStringsToDate([eggBaseUpdated]);
           return eggBaseUpdated;
         });
     }
@@ -110,6 +113,7 @@ export class EggBasesService {
           .toPromise()
           .then(response => {
             const eggBase = response as EggBase;
+            this.convertStringsToDate([eggBase]);
             return eggBase;
           } );
       }
@@ -118,6 +122,22 @@ export class EggBasesService {
         return this.http.get(this.eggBasesUrl)
           .toPromise()
           .then(response => response[`${'content'}`]);
+
+      }
+
+      private convertStringsToDate(eggBases: EggBase[]) {
+        for (const eggBase of eggBases) {
+
+         if (eggBase.productionDate) {
+          eggBase.productionDate = moment(eggBase.productionDate,
+            'YYYY-MM-DD').toDate();
+         }
+
+         if (eggBase.validityDate) {
+            eggBase.validityDate = moment(eggBase.validityDate,
+              'YYYY-MM-DD').toDate();
+          }
+        }
 
       }
 

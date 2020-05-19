@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { EggBase, EggLot } from 'src/app/core/model';
+import { EggBasesService } from '../service/egg-bases.service';
+import { ToastyService } from 'ng2-toasty';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { EggLotsService } from '../service/egg-lots.service';
 
 @Component({
   selector: 'app-egg-bases-edit',
@@ -8,22 +15,11 @@ import { Component, OnInit } from '@angular/core';
 export class EggBasesEditComponent implements OnInit {
 
 
-  chickenLot = new ChickenLot();
-
-  sheds = [];
-  chickenLineages = [];
+  eggBase = new EggBase();
   eggLots = [];
-  debickings = [
-    { label: 'Convencional', value: 'Convencional' },
-    { label: 'Laser', value: 'Laser' },
-    { label: 'V', value: 'V' }
-  ];
-
-
+  
   constructor(
-    private chickenLotService: ChickenLotsService,
-    private chickenLineageService: ChickenLineagesService,
-    private shedService: ShedService,
+    private eggBasesService: EggBasesService,
     private eggLotsService: EggLotsService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
@@ -31,95 +27,73 @@ export class EggBasesEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    // this.chickenLot.chickenColor = 'Branca';
-    const chickenLotId = this.route.snapshot.params[`${'id'}`];
+    const eggBaseId = this.route.snapshot.params[`${'id'}`];
 
-    if (chickenLotId) {
-      this.loadChickenLot(chickenLotId);
+    if (eggBaseId) {
+      this.loadEggBase(eggBaseId);
     }
-
-    this.loadChickenLineages();
-    this.loadSheds();
     this.loadEggLots();
   }
 
   get editing() {
-    return Boolean(this.chickenLot.id);
+    return Boolean(this.eggBase.id);
   }
 
-  loadChickenLot(id: number) {
-    this.chickenLotService.findById(id)
-    .then (chickenLot => {
-      this.chickenLot = chickenLot;
+  loadEggBase(id: number) {
+    this.eggBasesService.findById(id)
+    .then (eggBase => {
+      this.eggBase = eggBase;
 
     })
     .catch(error => this.errorHandler.handle(error));
   }
 
-  save(form: FormControl) {
+  save() {
     if (this.editing) {
-      this.update(form);
+      this.update();
     } else {
-      this.create(form);
+      this.create();
     }
   }
 
-  create(form: FormControl)  {
-    this.chickenLotService.create(this.chickenLot)
+  create()  {
+    this.eggBasesService.create(this.eggBase)
 
     .then(() => {
-      this.toasty.success('Lote adicionado com sucesso');
+      this.toasty.success('Matéria Prima adicionado com sucesso');
 
-      this.router.navigate(['/ChickenLots']);
+      this.router.navigate(['/EggBases']);
     })
     .catch(error => this.errorHandler.handle(error));
   }
 
-  update(form: FormControl) {
-    this.chickenLotService.update(this.chickenLot)
-    .then(chickenLot  => {
-      this.chickenLot = chickenLot;
-      this.toasty.success('Lote alterado com sucesso"');
-      this.router.navigate(['/ChickenLots']);
+  update() {
+    this.eggBasesService.update(this.eggBase)
+    .then(eggBase  => {
+      this.eggBase = eggBase;
+      this.toasty.success('Matéria Prima alterada com sucesso"');
+      this.router.navigate(['/EggBases']);
     })
     .catch(error => this.errorHandler.handle(error));
-  }
-
-  loadChickenLineages() {
-    return this.chickenLineageService.listAll()
-      .then(chickenLineages => {
-        this.chickenLineages = chickenLineages
-          .map(c => ({ label: c.lineage, value: c.id }));
-      })
-      .catch(error => this.errorHandler.handle(error));
-  }
-
-  loadSheds() {
-    return this.shedService.listAll()
-      .then(sheds => {
-        this.sheds = sheds
-          .map(c => ({label: c.name, value: c.id  }));
-      })
-      .catch(error => this.errorHandler.handle(error));
   }
 
   loadEggLots() {
     return this.eggLotsService.listAll()
       .then(eggLots => {
         this.eggLots = eggLots
-          .map(c => ({label: c.name, value: c.id  }));
+          .map(c => ({ label: c.name, value: c.id }));
       })
       .catch(error => this.errorHandler.handle(error));
-
   }
+
 
   new(form: FormControl) {
     form.reset();
 
     setTimeout(function() {
-      this.chickenLot = new ChickenLot();
+      this.eggLot = new EggLot();
     }.bind(this), 1);
 
-    this.router.navigate(['/ChickenLots/new']);
+    this.router.navigate(['/EggBases/new']);
   }
 }

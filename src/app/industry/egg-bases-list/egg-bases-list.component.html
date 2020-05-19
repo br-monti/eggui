@@ -3,30 +3,35 @@
       <form #f="ngForm" autocomplete="off" (ngSubmit)="findByFilter()">
 
       <div class="ui-g-12">
-        <h1>Lotes</h1>
+        <h1>Ovos de Matéria Prima</h1>
       </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label>Lote</label>
-        <input pInputText type="number" name="id" [(ngModel)]="filter.id">
-      </div>
-
-      <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label>Galpão</label>
-        <p-dropdown name="sheds" [options]="sheds" placeholder="Selecione"
+        <label>Lote de Ovos</label>
+        <p-dropdown name="eggLots" [options]="eggLots" placeholder="Selecione"
           [filter]="true"
-          [(ngModel)]="filter.shed"
+          [(ngModel)]="filter.eggLot"
           required></p-dropdown>
       </div>
 
       <div class="ui-g-6">
-        <label style="display: block">Nascimento</label>
+        <label style="display: block">Produção</label>
         <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
-          name="birthDateInitial" [(ngModel)]="filter.birthDateInitial"></p-calendar>
+          name="productionDateInitial" [(ngModel)]="filter.productionDateInitial"></p-calendar>
 
         <label class="espaco-icones">até</label>
         <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
-          name="birthDateFinal" [(ngModel)]="filter.birthDateFinal"></p-calendar>
+          name="productionDateFinal" [(ngModel)]="filter.productionDateFinal"></p-calendar>
+      </div>
+
+      <div class="ui-g-6">
+        <label style="display: block">Validade</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+          name="validityDateInitial" [(ngModel)]="filter.validityDateInitial"></p-calendar>
+
+        <label class="espaco-icones">até</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+          name="validityDateFinal" [(ngModel)]="filter.validityDateFinal"></p-calendar>
       </div>
 
       <div class="ui-g-12">
@@ -39,49 +44,41 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-table [value]="chickenLots" [paginator]="true" [rows]="filter.itensByPage"
+      <p-table [value]="eggBases" [paginator]="true" [rows]="filter.itensByPage"
       [lazy]="true" [totalRecords]="totalRegisters" (onLazyLoad)="onChangePage($event)"
       [responsive]="true" #table>
         <ng-template pTemplate="header">
             <tr>
-                <th>Lote</th>
-                <th>Galpão</th>
-                <th>Linhagem</th>
-                <th>Nascimento</th>
-                <th>Alojamento</th>
-                <th>Quantidade Alojada</th>
-                <th>Quantidade Atual</th>
-                <th>Debicagem</th>
+                <th>Lote de Ovos</th>
+                <th>Caixa</th>
+                <th>Produção</th>
+                <th>Validade</th>
                 <th class="col-acoes-header">Ações</th>
 
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-chickenLot>
+        <ng-template pTemplate="body" let-eggBase>
             <tr>
-                <td class="col-data" >{{chickenLot.id}}</td>
-                <td class="col-data" >{{chickenLot.shed.name}}</td>
-                <td class="col-data" >{{chickenLot.chickenLineage.lineage}}</td>
-                <td class="col-data">{{chickenLot.birthDate | date:'dd/MM/yyyy'}}</td>
-                <td class="col-data">{{chickenLot.accommodationDate | date:'dd/MM/yyyy'}}</td>
-                <td class="col-data" >{{chickenLot.initialQuantity}}</td>
-                <td class="col-data">{{chickenLot.currentQuantity}}</td>
-                <td class="col-data">{{chickenLot.debicking}}</td>
+                <td class="col-data" >{{eggBase.eggLot.name}}</td>
+                <td class="col-data" >{{eggBase.eggLot.boxColor}}</td>
+                <td class="col-data">{{eggBase.productionDate | date:'dd/MM/yyyy'}}</td>
+                <td class="col-data">{{eggBase.validityDate | date:'dd/MM/yyyy'}}</td>
                 <td class="col-acoes" >
                   <button  pButton  class="espaco-icones" icon="pi pi-pencil"
                   pTooltip="Editar" tooltipPosition="top"
-                  [routerLink]="['/ChickenLots', chickenLot.id]"  [disabled]="isSelect"></button>
+                  [routerLink]="['/EggBases', eggBase.id]" ></button>
                   <button pButton  class="espaco-icones" icon="pi pi-trash"
-                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(chickenLot)" [disabled]="isSelect"></button>
-                  <button pButton  class="espaco-icones" icon="pi pi-plus"
-                  pTooltip="Selecionar" tooltipPosition="top" (click)="feedback(chickenLot)" [disabled]="!isSelect"></button>
+                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(eggBase)"></button>
+                  <!-- <button pButton  class="espaco-icones" icon="pi pi-plus"
+                  pTooltip="Selecionar" tooltipPosition="top" (click)="feedback(chickenLot)" [disabled]="!isSelect"></button> -->
                </td>
             </tr>
         </ng-template>
 
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="9">
-              Nenhum lote de ovos encontrado
+            <td colspan="5">
+              Nenhum Ovos de Matéria Prima encontrado
             </td>
           </tr>
 
@@ -90,7 +87,7 @@
     </div>
 
     <div class="ui-g-12">
-      <a pButton label="Novo Lote" routerLink="/ChickenLots/new"></a>
+      <a pButton label="Novo Lote" routerLink="/EggBases/new"></a>
     </div>
 
   </div>

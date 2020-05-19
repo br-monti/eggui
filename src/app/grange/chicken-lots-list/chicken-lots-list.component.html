@@ -69,11 +69,11 @@
                 <td class="col-acoes" >
                   <button  pButton  class="espaco-icones" icon="pi pi-pencil"
                   pTooltip="Editar" tooltipPosition="top"
-                  [routerLink]="['/ChickenLots', chickenLot.id]"  [disabled]="isSelect"></button>
+                  [routerLink]="['/ChickenLots', chickenLot.id]" *ngIf="!isSelect"></button>
                   <button pButton  class="espaco-icones" icon="pi pi-trash"
-                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(chickenLot)" [disabled]="isSelect"></button>
+                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(chickenLot)" *ngIf="!isSelect"></button>
                   <button pButton  class="espaco-icones" icon="pi pi-plus"
-                  pTooltip="Selecionar" tooltipPosition="top" (click)="feedback(chickenLot)" [disabled]="!isSelect"></button>
+                  pTooltip="Selecionar" tooltipPosition="top" (click)="feedback(chickenLot)" *ngIf="isSelect"></button>
                </td>
             </tr>
         </ng-template>

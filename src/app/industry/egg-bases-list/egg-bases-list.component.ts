@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Table } from 'primeng/table/table';
+import { EggBasesFilter, EggBasesService } from '../service/egg-bases.service';
+import { ToastyService } from 'ng2-toasty';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { EggLotsService } from '../service/egg-lots.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-egg-bases-list',
@@ -8,36 +15,32 @@ import { Component, OnInit } from '@angular/core';
 export class EggBasesListComponent implements OnInit {
 
 
-  filter = new ChickenLotsFilter();
+  filter = new EggBasesFilter();
   totalRegisters = 0;
   @ViewChild('table', {static: true}) grid: Table;
-  chickenLots = [];
-  sheds = [];
-
-  @Input() isSelect;
-  @Output() chickenLotResponse = new EventEmitter;
+  
+  eggBases = [];
+  eggLots = [];
+  
 
   button = true;
 
-  constructor(private chickenLotsService: ChickenLotsService,
+  constructor(private eggBasesService: EggBasesService,
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
     private errorHandler: ErrorHandlerService,
-    private shedService: ShedService) { }
+    private eggLotsService: EggLotsService) { }
 
     ngOnInit() {
-      this.loadSheds();
-      if(this.isSelect){
-
-      }
+      this.loadEggLots();
     }
 
     findByFilter(page = 0) {
       this.filter.page = page;
-      this.chickenLotsService.findByFilter(this.filter)
+      this.eggBasesService.findByFilter(this.filter)
       .then(result => {
         this.totalRegisters = result.total;
-        this.chickenLots = result.chickenLots;
+        this.eggBases = result.eggBases;
       })
       .catch(error => this.errorHandler.handle(error));
   }
@@ -47,11 +50,11 @@ export class EggBasesListComponent implements OnInit {
     this.findByFilter(page);
   }
 
-  delete(chickenLot: any) {
+  delete(eggBase: any) {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir?',
       accept: () => {
-        this.chickenLotsService.delete(chickenLot.id)
+        this.eggBasesService.delete(eggBase.id)
         .then(() => {
           this.grid.reset();
           this.toasty.success('Galpão excluído com sucesso');
@@ -60,10 +63,10 @@ export class EggBasesListComponent implements OnInit {
     });
   }
 
-  loadSheds() {
-    return this.shedService.listAll()
-      .then(sheds => {
-        this.sheds = sheds
+  loadEggLots() {
+    return this.eggLotsService.listAll()
+      .then(eggLots => {
+        this.eggLots = eggLots
           .map(c => {
             return ({ label: c.name, value: c.id });
           });
@@ -75,10 +78,5 @@ export class EggBasesListComponent implements OnInit {
     form.reset();
     this.findByFilter();
   }
-
-  feedback(chickenLot: any) {
-    this.chickenLotResponse.emit(chickenLot);
-  }
-
-
+  
   }
