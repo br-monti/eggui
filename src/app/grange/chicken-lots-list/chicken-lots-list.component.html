@@ -84,13 +84,13 @@
               Nenhum lote de ovos encontrado
             </td>
           </tr>
-            
+
         </ng-template>
     </p-table>
     </div>
 
     <div class="ui-g-12">
-      <a pButton label="Novo Lote" routerLink="/ChickenLots/new"></a>
+      <a pButton label="Novo Lote" routerLink="/ChickenLots/new" *ngIf="!isSelect"></a>
     </div>
 
   </div>

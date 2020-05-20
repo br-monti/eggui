@@ -83,12 +83,11 @@ export class EggBasesService {
   create(eggBase: EggBase): Promise<EggBase> {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
-    
+
     return this.http.post<EggBase>(
       this.eggBasesUrl, eggBase, {headers})
       .toPromise();
 
-      
   }
 
     update(eggBase: EggBase): Promise<EggBase> {

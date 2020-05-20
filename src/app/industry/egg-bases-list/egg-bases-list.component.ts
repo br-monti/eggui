@@ -17,27 +17,29 @@ export class EggBasesListComponent implements OnInit {
 
   filter = new EggBasesFilter();
   totalRegisters = 0;
-  @ViewChild('table', {static: true}) grid: Table;
-  
+  @ViewChild('table', { static: true }) grid: Table;
+
   eggBases = [];
   eggLots = [];
-  
+
 
   button = true;
 
-  constructor(private eggBasesService: EggBasesService,
+  constructor(
+    private eggBasesService: EggBasesService,
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
     private errorHandler: ErrorHandlerService,
-    private eggLotsService: EggLotsService) { }
+    private eggLotsService: EggLotsService
+    ) { }
 
-    ngOnInit() {
-      this.loadEggLots();
-    }
+  ngOnInit() {
+    this.loadEggLots();
+  }
 
-    findByFilter(page = 0) {
-      this.filter.page = page;
-      this.eggBasesService.findByFilter(this.filter)
+  findByFilter(page = 0) {
+    this.filter.page = page;
+    this.eggBasesService.findByFilter(this.filter)
       .then(result => {
         this.totalRegisters = result.total;
         this.eggBases = result.eggBases;
@@ -55,10 +57,10 @@ export class EggBasesListComponent implements OnInit {
       message: 'Tem certeza que deseja excluir?',
       accept: () => {
         this.eggBasesService.delete(eggBase.id)
-        .then(() => {
-          this.grid.reset();
-          this.toasty.success('Galpão excluído com sucesso');
-        });
+          .then(() => {
+            this.grid.reset();
+            this.toasty.success('Galpão excluído com sucesso');
+          });
       }
     });
   }
@@ -78,5 +80,5 @@ export class EggBasesListComponent implements OnInit {
     form.reset();
     this.findByFilter();
   }
-  
-  }
+
+}

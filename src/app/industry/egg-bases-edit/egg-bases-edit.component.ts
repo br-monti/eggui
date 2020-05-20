@@ -14,10 +14,9 @@ import { EggLotsService } from '../service/egg-lots.service';
 })
 export class EggBasesEditComponent implements OnInit {
 
-
   eggBase = new EggBase();
   eggLots = [];
-  
+
   constructor(
     private eggBasesService: EggBasesService,
     private eggLotsService: EggLotsService,
@@ -60,7 +59,7 @@ export class EggBasesEditComponent implements OnInit {
     this.eggBasesService.create(this.eggBase)
 
     .then(() => {
-      this.toasty.success('Matéria Prima adicionado com sucesso');
+      this.toasty.success('Matéria Prima adicionada com sucesso');
 
       this.router.navigate(['/EggBases']);
     })
