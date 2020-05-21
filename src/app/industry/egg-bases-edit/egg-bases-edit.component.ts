@@ -18,6 +18,10 @@ export class EggBasesEditComponent implements OnInit {
   eggBase = new EggBase();
   eggLots = [];
 
+  box = 0;
+  card = 0;
+  egg = 0 ;
+
   constructor(
     private eggBasesService: EggBasesService,
     private eggLotsService: EggLotsService,
@@ -36,19 +40,19 @@ export class EggBasesEditComponent implements OnInit {
   }
 
   onSelected() {
-    var validityDate = moment(
+    let validityDate = moment(
 
       this.eggBase.productionDate
   ).add(
-      28, 'd' 
+      28, 'd'
   );
 
-  if(validityDate === undefined){
+    if (validityDate === undefined) {
     validityDate = null;
-  }else{
+      } else {
     this.eggBase.validityDate = validityDate.toDate();
   }
-  
+
   }
 
   get editing() {
@@ -58,6 +62,10 @@ export class EggBasesEditComponent implements OnInit {
   loadEggBase(id: number) {
     this.eggBasesService.findById(id)
     .then (eggBase => {
+      this.box = Math.trunc(eggBase.quantity / 360);
+      const boxDecimal = (eggBase.quantity / 360) - (this.box);
+      this.card = Math.trunc(boxDecimal * 12);
+      this.egg  = Math.trunc(this.card);
       this.eggBase = eggBase;
 
     })
@@ -73,6 +81,7 @@ export class EggBasesEditComponent implements OnInit {
   }
 
   create()  {
+    this.eggBase.quantity = ((this.box * 360) + (this.card * 30) +  (this.egg * 1)) ;
     this.eggBasesService.create(this.eggBase)
 
     .then(() => {
@@ -84,6 +93,8 @@ export class EggBasesEditComponent implements OnInit {
   }
 
   update() {
+
+    this.eggBase.quantity = (this.box * 360) + (this.card * 30) + this.egg ;
     this.eggBasesService.update(this.eggBase)
     .then(eggBase  => {
       this.eggBase = eggBase;

@@ -6,32 +6,46 @@
         <h1> {{ editing ? 'Editar' : 'Novo'}} Ovos de Matéria Prima</h1>
       </div>
 
-        <div class="ui-g-12 ui-md-3 ui-fluid">
+        <div class="ui-g-6 ui-md-4 ui-fluid">
           <label>Produção</label>
           <p-calendar dateFormat="dd/mm/yy" name="productionDate"
             [(ngModel)]="eggBase.productionDate" (onSelect)="onSelected()" ></p-calendar>
         </div>
 
-        <div class="ui-g-12 ui-md-3 ui-fluid">
+        <div class="ui-g-6 ui-md-4 ui-fluid">
           <label>Validade</label>
           <p-calendar dateFormat="dd/mm/yy" name="validityDate"
             [(ngModel)]="eggBase.validityDate"></p-calendar>
         </div>
 
-      <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label>Quantidade</label>
-        <input pInputText type="text" name="quantity"
-          [(ngModel)]="eggBase.quantity"
-          required>
-      </div>
 
-
-    <div class="ui-g-12 ui-md-6 ui-fluid">
+    <div class="ui-g-6 ui-md-4 ui-fluid">
         <label>Lote de Ovos</label>
         <p-dropdown name="eggLot" [options]="eggLots" placeholder="Selecione"
           [filter]="true"
           [(ngModel)]="eggBase.eggLot.id"
           required></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Caixas</label>
+        <input pInputText type="text" name="box"
+          [(ngModel)]="box"
+          required>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Bandejas</label>
+        <input pInputText type="text" name="card"
+          [(ngModel)]="card"
+          required>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Ovos</label>
+        <input pInputText type="text" name="egg"
+          [(ngModel)]="egg"
+          required>
       </div>
 
       <div class="ui-g-12">
