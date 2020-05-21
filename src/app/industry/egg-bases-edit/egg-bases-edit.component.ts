@@ -6,6 +6,7 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { EggLotsService } from '../service/egg-lots.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-egg-bases-edit',
@@ -32,6 +33,22 @@ export class EggBasesEditComponent implements OnInit {
       this.loadEggBase(eggBaseId);
     }
     this.loadEggLots();
+  }
+
+  onSelected() {
+    var validityDate = moment(
+
+      this.eggBase.productionDate
+  ).add(
+      28, 'd' 
+  );
+
+  if(validityDate === undefined){
+    validityDate = null;
+  }else{
+    this.eggBase.validityDate = validityDate.toDate();
+  }
+  
   }
 
   get editing() {

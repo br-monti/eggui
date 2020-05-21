@@ -9,7 +9,7 @@
         <div class="ui-g-12 ui-md-3 ui-fluid">
           <label>Produção</label>
           <p-calendar dateFormat="dd/mm/yy" name="productionDate"
-            [(ngModel)]="eggBase.productionDate"></p-calendar>
+            [(ngModel)]="eggBase.productionDate" (onSelect)="onSelected()" ></p-calendar>
         </div>
 
         <div class="ui-g-12 ui-md-3 ui-fluid">
