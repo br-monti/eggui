@@ -21,6 +21,7 @@ export class EggBasesEditComponent implements OnInit {
   box = 0;
   card = 0;
   egg = 0 ;
+  cardDecimal: number;
 
   constructor(
     private eggBasesService: EggBasesService,
@@ -63,9 +64,10 @@ export class EggBasesEditComponent implements OnInit {
     this.eggBasesService.findById(id)
     .then (eggBase => {
       this.box = Math.trunc(eggBase.quantity / 360);
-      const boxDecimal = (eggBase.quantity / 360) - (this.box);
+      const boxDecimal = (eggBase.quantity / 360) - Math.trunc(eggBase.quantity / 360);
       this.card = Math.trunc(boxDecimal * 12);
-      this.egg  = Math.trunc(this.card);
+      const cardDecimal = (boxDecimal * 12) - Math.trunc(boxDecimal * 12);
+      this.egg  = Math.round(cardDecimal * 30);
       this.eggBase = eggBase;
 
     })
@@ -94,7 +96,7 @@ export class EggBasesEditComponent implements OnInit {
 
   update() {
 
-    this.eggBase.quantity = (this.box * 360) + (this.card * 30) + this.egg ;
+    this.eggBase.quantity = ((this.box * 360) + (this.card * 30) +  (this.egg * 1)) ;
     this.eggBasesService.update(this.eggBase)
     .then(eggBase  => {
       this.eggBase = eggBase;
