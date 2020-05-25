@@ -19,11 +19,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EggBasesEditComponent } from './egg-bases-edit/egg-bases-edit.component';
 import { EggBasesListComponent } from './egg-bases-list/egg-bases-list.component';
+import { ClassificationsListComponent } from './classifications-list/classifications-list.component';
+import { ClassificationsEditComponent } from './classifications-edit/classifications-edit.component';
 
 
 
 @NgModule({
-  declarations: [EggLotsListComponent, EggLotsEditComponent, EggBasesEditComponent, EggBasesListComponent],
+  declarations: [EggLotsListComponent, 
+    EggLotsEditComponent, 
+    EggBasesEditComponent, 
+    EggBasesListComponent,
+     ClassificationsListComponent, 
+     ClassificationsEditComponent],
   imports: [
     FormsModule,
     CommonModule,

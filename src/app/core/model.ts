@@ -82,3 +82,18 @@ export class EggBase {
   validityDate: Date;
   eggLot = new EggLot();
 }
+
+export class EggType {
+  id: number;
+  type: string;
+  category: string;
+  minWeight: number;
+  maxWeight: number;
+}
+
+export class Classification {
+  id: number;
+  quantity: number;
+  eggType = new EggType();
+  eggBase = new EggBase();
+}

@@ -16,6 +16,8 @@ import { ProductionMonitoringsListComponent } from './grange/production-monitori
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { EggBasesListComponent } from './industry/egg-bases-list/egg-bases-list.component';
 import { EggBasesEditComponent } from './industry/egg-bases-edit/egg-bases-edit.component';
+import { ClassificationsListComponent } from './industry/classifications-list/classifications-list.component';
+import { ClassificationsEditComponent } from './industry/classifications-edit/classifications-edit.component';
 
 
 const routes: Routes = [
@@ -42,6 +44,9 @@ const routes: Routes = [
   { path: 'EggBases', component: EggBasesListComponent },
   { path: 'EggBases/new', component: EggBasesEditComponent },
   { path: 'EggBases/:id', component: EggBasesEditComponent },
+  { path: 'Classifications', component: ClassificationsListComponent },
+  { path: 'Classifications/new', component: ClassificationsEditComponent },
+  { path: 'Classifications/:id', component: ClassificationsEditComponent },
   { path: 'PageNotFound', component: NotFoundPageComponent },
   { path: '**', redirectTo: 'PageNotFound'}
 ];
