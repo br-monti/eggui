@@ -37,6 +37,8 @@ export class ClassificationsListComponent implements OnInit {
 
   findByFilter(page = 0) {
     this.filter.page = page;
+
+    console.log(this.filter);
     this.classificationsService.findByFilter(this.filter)
       .then(result => {
         this.totalRegisters = result.total;
@@ -79,7 +81,7 @@ export class ClassificationsListComponent implements OnInit {
       .then(eggBases => {
         this.eggBases = eggBases
           .map(c => {
-            return ({ label: c.eggLot.name, value: c.id });
+            return ({ label: c.eggLot.name, value: c.id});
           });
       })
       .catch(error => this.errorHandler.handle(error));

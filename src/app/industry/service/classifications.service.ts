@@ -7,7 +7,7 @@ import { Classification } from 'src/app/core/model';
 
 export class ClassificationsFilter {
   id: number;
-  eggLot: number;
+  eggBase: number;
   page = 0;
   itensByPage = 5;
 }
@@ -33,8 +33,8 @@ export class ClassificationsService {
       params =  params.set('id', filter.id.toString());
     }
 
-    if (filter.eggLot) {
-      params =  params.set('eggLot', filter.eggLot.toString());
+    if (filter.eggBase) {
+      params =  params.set('eggBase', filter.eggBase.toString());
     }
 
     return this.http.get(`${this.classificationsUrl}`, {params})
