@@ -91,7 +91,6 @@ export class EggLotsEditComponent implements OnInit {
 
   receiverFeedback(responseChickenLot) {
 
-    console.log(responseChickenLot);
     this.eggLot.chickenLots.push(responseChickenLot);
     this.showChickenLotForm = false;
   }

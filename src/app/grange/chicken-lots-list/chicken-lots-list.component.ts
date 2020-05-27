@@ -22,7 +22,7 @@ export class ChickenLotsListComponent implements OnInit {
   sheds = [];
 
   @Input() isSelect;
-  @Output() chickenLotResponse = new EventEmitter;
+  @Output() chickenLotResponse = new EventEmitter();
 
   button = true;
 
