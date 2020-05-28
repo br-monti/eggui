@@ -37,8 +37,7 @@ export class ClassificationsListComponent implements OnInit {
 
   findByFilter(page = 0) {
     this.filter.page = page;
-
-    console.log(this.filter);
+    
     this.classificationsService.findByFilter(this.filter)
       .then(result => {
         this.totalRegisters = result.total;

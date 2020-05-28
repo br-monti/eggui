@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Table } from 'primeng/table/table';
 import { EggBasesFilter, EggBasesService } from '../service/egg-bases.service';
 import { ToastyService } from 'ng2-toasty';
@@ -18,6 +18,9 @@ export class EggBasesListComponent implements OnInit {
   filter = new EggBasesFilter();
   totalRegisters = 0;
   @ViewChild('table', { static: true }) grid: Table;
+
+  @Input() isSelect;
+  @Output() eggBaseResponse = new EventEmitter();
 
   eggBases = [];
   eggLots = [];
@@ -79,6 +82,10 @@ export class EggBasesListComponent implements OnInit {
   new(form: FormControl) {
     form.reset();
     this.findByFilter();
+  }
+
+  feedback(eggBase: any) {
+    this.eggBaseResponse.emit(eggBase);
   }
 
 }

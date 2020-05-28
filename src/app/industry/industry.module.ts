@@ -48,6 +48,7 @@ import { ClassificationsEditComponent } from './classifications-edit/classificat
     PanelModule,
     DialogModule,
     GrangeModule
-  ]
+  ],
+  exports: [EggBasesListComponent]
 })
 export class IndustryModule { }

@@ -68,11 +68,11 @@
                 <td class="col-acoes" >
                   <button  pButton  class="espaco-icones" icon="pi pi-pencil"
                   pTooltip="Editar" tooltipPosition="top"
-                  [routerLink]="['/EggBases', eggBase.id]" ></button>
+                  [routerLink]="['/EggBases', eggBase.id]" *ngIf="!isSelect"></button>
                   <button pButton  class="espaco-icones" icon="pi pi-trash"
-                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(eggBase)"></button>
-                  <!-- <button pButton  class="espaco-icones" icon="pi pi-plus"
-                  pTooltip="Selecionar" tooltipPosition="top" (click)="feedback(chickenLot)" [disabled]="!isSelect"></button> -->
+                  pTooltip="Excluir" tooltipPosition="top" (click)="delete(eggBase)" *ngIf="!isSelect"></button>
+                  <button pButton  class="espaco-icones" icon="pi pi-plus"
+                  pTooltip="Selecionar" tooltipPosition="top" (click)="feedback(eggBase)" *ngIf="isSelect"></button>
                </td>
             </tr>
         </ng-template>
@@ -89,7 +89,7 @@
     </div>
 
     <div class="ui-g-12">
-      <a pButton label="Novo Lote" routerLink="/EggBases/new"></a>
+      <a pButton label="Novo Lote" routerLink="/EggBases/new" *ngIf="!isSelect"></a>
     </div>
 
   </div>

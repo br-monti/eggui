@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
 import { ClassificationsService } from './../service/classifications.service';
-import { Classification } from './../../core/model';
+import { Classification, EggBase } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,8 +14,11 @@ import { Component, OnInit } from '@angular/core';
 export class ClassificationsEditComponent implements OnInit {
 
   classification = new Classification();
-  showChickenLotForm = false;
-  // chickenLot: ChickenLot;
+  showEggBaseForm = false;
+  eggBase: EggBase;
+  eggBases = [];
+
+  buttonName = 'Adicionar';
 
   constructor(
     private classificationsService: ClassificationsService,
@@ -25,7 +28,6 @@ export class ClassificationsEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    // this.eggLot.chickenColor = 'Branca';
     const classificationId = this.route.snapshot.params[`${'id'}`];
 
     if (classificationId) {
@@ -33,9 +35,10 @@ export class ClassificationsEditComponent implements OnInit {
     }
   }
 
-  prepareNewChickenLot() {
-    this.showChickenLotForm = true;
-    // this.chickenLot = new ChickenLot();
+  prepareNewEggBase() {
+    this.showEggBaseForm = true;
+    this.eggBase = new EggBase();
+    this.eggBases.splice(0, this.eggBases.length);
   }
 
   get editing() {
@@ -89,11 +92,12 @@ export class ClassificationsEditComponent implements OnInit {
     this.router.navigate(['/Classifications/new']);
   }
 
-  // receiverFeedback(responseChickenLot) {
+ receiverFeedback(eggBaseResponse) {
 
-  //   console.log(responseChickenLot);
-  //   this.eggLot.chickenLots.push(responseChickenLot);
-  //   this.showChickenLotForm = false;
-  // }
+    this.eggBases.push(eggBaseResponse);
+    this.classification.eggBase = eggBaseResponse;
+    this.showEggBaseForm = false;
+    this.buttonName = 'Trocar';
+}
 
 }

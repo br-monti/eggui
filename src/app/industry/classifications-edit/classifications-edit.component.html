@@ -6,6 +6,48 @@
         <h1> {{ editing ? 'Editar' : 'Nova'}} Classificação</h1>
       </div>
 
+      <div class="ui-g-12">
+        <p-panel header="Matéria Prima">
+          <div class="ui-g">
+            <div class="ui-g-12">
+              <button pButton label={{buttonName}} icon="pi pi-plus" type="button" (click)="prepareNewEggBase()"></button>
+            </div>
+            <div class="ui-g-12">
+              <p-table [value]="eggBases" [responsive]="true">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Lote</th>
+                    <th>Caixa</th>
+                    <th>Quantidade</th>
+                    <th>Produção</th>
+                    <th>Validade</th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-eggBase >
+                  <tr>
+                    <td class="col-data" >{{eggBase.eggLot.name}}</td>
+                    <td class="col-data" >{{eggBase.eggLot.boxColor}}</td>
+                    <td class="col-data" >{{eggBase.quantity}}</td>
+                    <td class="col-data">{{eggBase.productionDate | date:'dd/MM/yyyy'}}</td>
+                    <td class="col-data">{{eggBase.validityDate | date:'dd/MM/yyyy'}}</td>
+
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <td colspan="5">
+                      Nenhuma matéria prima associada
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </p-panel>
+      </div>
+
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Quantidade</label>
         <input pInputText type="text" name="quantity"
@@ -27,55 +69,6 @@
           required>
       </div>
 
-      <!-- <div class="ui-g-12">
-        <p-panel header="Lotes de Aves">
-          <div class="ui-g">
-            <div class="ui-g-12">
-              <button pButton label="Novo" icon="pi pi-plus" type="button" (click)="prepareNewChickenLot()"></button>
-            </div>
-            <div class="ui-g-12">
-              <p-table [value]="eggLot.chickenLots" [responsive]="true">
-                <ng-template pTemplate="header">
-                  <tr>
-                    <th>Lote</th>
-                    <th>Galpão</th>
-                    <th>Linhagem</th>
-                    <th>Nascimento</th>
-                    <th>Alojamento</th>
-                    <th>Quantidade Alojada</th>
-                    <th>Quantidade Atual</th>
-                    <th>Debicagem</th>
-                  </tr>
-                </ng-template>
-
-                <ng-template pTemplate="body" let-chickenLot>
-                  <tr>
-                    <td class="col-data" >{{chickenLot.id}}</td>
-                    <td class="col-data" >{{chickenLot.shed.name}}</td>
-                    <td class="col-data" >{{chickenLot.chickenLineage.lineage}}</td>
-                    <td class="col-data">{{chickenLot.birthDate | date:'dd/MM/yyyy'}}</td>
-                    <td class="col-data">{{chickenLot.accommodationDate | date:'dd/MM/yyyy'}}</td>
-                    <td class="col-data" >{{chickenLot.initialQuantity}}</td>
-                    <td class="col-data">{{chickenLot.currentQuantity}}</td>
-                    <td class="col-data">{{chickenLot.debicking}}</td>
-
-                  </tr>
-                </ng-template>
-
-                <ng-template pTemplate="emptymessage">
-                  <tr>
-                    <td colspan="8">
-                      Nenhum lote de aves cadastrado
-                    </td>
-                  </tr>
-                </ng-template>
-              </p-table>
-            </div>
-          </div>
-        </p-panel>
-      </div> -->
-
-
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" [disabled]="f.invalid" class="espaco-icones"></button>
         <button pButton type="button" label="Novo" class="ui-button-info"
@@ -87,7 +80,6 @@
   </form>
 </div>
 
-<!-- <p-dialog header="Adicionar Lote de Aves" [(visible)]="showChickenLotForm" modal="modal">
-
-  <app-chicken-lots-list [isSelect]="true" (chickenLotResponse)="receiverFeedback($event)"></app-chicken-lots-list>
-</p-dialog> -->
+<p-dialog header="Adicionar Matéria Prima" [(visible)]="showEggBaseForm" modal="modal">
+    <app-egg-bases-list [isSelect]="true" (eggBaseResponse)="receiverFeedback($event)"></app-egg-bases-list>
+</p-dialog>
