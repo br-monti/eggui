@@ -10,7 +10,7 @@
         <p-panel header="Matéria Prima">
           <div class="ui-g">
             <div class="ui-g-12">
-              <button pButton label={{buttonName}} icon="pi pi-plus" type="button" (click)="prepareNewEggBase()"></button>
+              <button pButton label={{buttonName}} icon={{icon}} type="button" (click)="prepareNewEggBase()"></button>
             </div>
             <div class="ui-g-12">
               <p-table [value]="eggBases" [responsive]="true">
