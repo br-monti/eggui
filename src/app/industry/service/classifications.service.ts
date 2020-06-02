@@ -9,7 +9,7 @@ export class ClassificationsFilter {
   id: number;
   eggBase: number;
   page = 0;
-  itensByPage = 10;
+  itensByPage = 7
 }
 
 @Injectable({
@@ -67,36 +67,36 @@ export class ClassificationsService {
       .toPromise();
   }
 
-    update(classification: Classification): Promise<Classification> {
+  update(classification: Classification): Promise<Classification> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.put<Classification>(
+      `${this.classificationsUrl}/${classification.id}`, classification, { headers })
+      .toPromise()
+      .then(response => {
+        const classificationUpdated = response as Classification;
+        return classificationUpdated;
+      });
+  }
+
+    findById(id: number): Promise<Classification> {
       let headers = new HttpHeaders();
       headers = headers.append('Content-Type', 'application/json');
 
-      return this.http.put<Classification>(
-        `${this.classificationsUrl}/${classification.id}`, classification, { headers })
+      return this.http.get(`${this.classificationsUrl}/${id}` , {headers})
         .toPromise()
         .then(response => {
-          const classificationUpdated = response as Classification;
-          return classificationUpdated;
-        });
+          const classification = response as Classification;
+          return classification;
+        } );
     }
 
-      findById(id: number): Promise<Classification> {
-        let headers = new HttpHeaders();
-        headers = headers.append('Content-Type', 'application/json');
+    listAll(): Promise<any> {
+      return this.http.get(this.classificationsUrl)
+        .toPromise()
+        .then(response => response[`${'content'}`]);
 
-        return this.http.get(`${this.classificationsUrl}/${id}` , {headers})
-          .toPromise()
-          .then(response => {
-            const classification = response as Classification;
-            return classification;
-          } );
-      }
-
-      listAll(): Promise<any> {
-        return this.http.get(this.classificationsUrl)
-          .toPromise()
-          .then(response => response[`${'content'}`]);
-
-      }
+    }
 
 }

@@ -23,6 +23,9 @@ export class ClassificationsListComponent implements OnInit {
 
   button = true;
 
+  buttonName = 'Selecionar';
+  icon = "pi pi-plus";
+
   constructor(
     private eggBasesService: EggBasesService,
     private toasty: ToastyService,

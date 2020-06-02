@@ -71,36 +71,36 @@ export class EggTypesService {
       .toPromise();
   }
 
-    update(eggType: EggType): Promise<EggType> {
-      let headers = new HttpHeaders();
-      headers = headers.append('Content-Type', 'application/json');
+  update(eggType: EggType): Promise<EggType> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
 
-      return this.http.put<EggType>(
-        `${this.eggTypesUrl}/${eggType.id}`, eggType, { headers })
-        .toPromise()
-        .then(response => {
-          const eggBaseUpdated = response as EggType;
-          return eggBaseUpdated;
-        });
-    }
+    return this.http.put<EggType>(
+      `${this.eggTypesUrl}/${eggType.id}`, eggType, { headers })
+      .toPromise()
+      .then(response => {
+        const eggBaseUpdated = response as EggType;
+        return eggBaseUpdated;
+      });
+  }
 
-      findById(id: number): Promise<EggType> {
-        let headers = new HttpHeaders();
-        headers = headers.append('Content-Type', 'application/json');
+  findById(id: number): Promise<EggType> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
 
-        return this.http.get(`${this.eggTypesUrl}/${id}` , {headers})
-          .toPromise()
-          .then(response => {
-            const eggType = response as EggType;
-            return eggType;
-          } );
-      }
+    return this.http.get(`${this.eggTypesUrl}/${id}` , {headers})
+      .toPromise()
+      .then(response => {
+        const eggType = response as EggType;
+        return eggType;
+      } );
+  }
 
-      listAll(): Promise<any> {
-        return this.http.get(this.eggTypesUrl)
-          .toPromise()
-          .then(response => response[`${'content'}`]);
+  listAll(): Promise<any> {
+    return this.http.get(this.eggTypesUrl)
+      .toPromise()
+      .then(response => response[`${'content'}`]);
 
-      }
+  }
 
 }

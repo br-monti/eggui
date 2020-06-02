@@ -48,26 +48,29 @@
         </p-panel>
       </div>
 
-      <div class="ui-g-12 ui-md-3 ui-fluid">
+      <!-- <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Quantidade</label>
         <input pInputText type="text" name="quantity"
           [(ngModel)]="classification.quantity"
           required>
-      </div>
+      </div> -->
 
-      <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label>Lote de Ovos</label>
-        <input pInputText type="text" name="eggLot"
-          [(ngModel)]="classification.eggBase.id"
-          required>
-      </div>
+      <!-- <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Lote de Ovos</label>
+          <input pInputText type="text" name="eggLot"
+            [(ngModel)]="classification.eggBase.id"
+            required>
+        </div> -->
 
-      <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label>Tipo</label>
-        <input pInputText type="text" name="eggType"
-          [(ngModel)]="classification.eggType.id"
-          required>
-      </div>
+
+
+        <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let eggType of eggTypes">
+          <label>{{eggType.type}}</label>
+          <input pInputText type="text" name="quantity"
+            [(ngModel)]="quantity[eggType.id]"
+            required>
+        </div>
+
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" [disabled]="f.invalid" class="espaco-icones"></button>

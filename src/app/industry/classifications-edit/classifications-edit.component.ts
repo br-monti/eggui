@@ -3,8 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
 import { ClassificationsService } from './../service/classifications.service';
-import { Classification, EggBase } from './../../core/model';
+import { Classification, EggBase, EggType } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
+import { EggTypesService } from '../service/egg-types.service';
 
 @Component({
   selector: 'app-classifications-edit',
@@ -17,12 +18,15 @@ export class ClassificationsEditComponent implements OnInit {
   showEggBaseForm = false;
   eggBase: EggBase;
   eggBases = [];
+  eggTypes = [];
+  quantity = [];
 
   buttonName = 'Adicionar';
   icon = "pi pi-plus";
 
   constructor(
     private classificationsService: ClassificationsService,
+    private eggTypesService: EggTypesService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
@@ -31,10 +35,11 @@ export class ClassificationsEditComponent implements OnInit {
   ngOnInit() {
     const classificationId = this.route.snapshot.params[`${'id'}`];
 
-    if (classificationId) {
-      
+    if (classificationId) {      
       this.loadClassification(classificationId);
     }
+
+    this.loadEggTypes();
   }
 
   prepareNewEggBase() {
@@ -60,6 +65,24 @@ export class ClassificationsEditComponent implements OnInit {
     .catch(error => this.errorHandler.handle(error));
   }
 
+  loadEggTypes() {
+    this.eggTypes = new Array<EggType>();
+
+    return this.eggTypesService.listAll()
+      .then(eggTypes => {
+        this.eggTypes = eggTypes
+        
+          // .map(c => {
+          //   return ({ label: c.type, value: c.id});
+          // });
+
+          //console.log(this.eggTypes);
+      })
+      .catch(error => this.errorHandler.handle(error));
+
+      
+  }
+
   save(form: FormControl) {
     if (this.editing) {      
       this.update(form);
@@ -69,15 +92,34 @@ export class ClassificationsEditComponent implements OnInit {
   }
 
   create(form: FormControl)  {
-    this.classificationsService.create(this.classification)
 
-    .then(() => {
-      this.toasty.success('Classificação adicionada com sucesso');
+    
+    const classificationCreated = new Classification();
+    
 
-      this.router.navigate(['/Classifications']);
-    })
-    .catch(error => this.errorHandler.handle(error));
-  }
+    for (let index = 1; index < this.quantity.length; index++)
+    
+    {
+      classificationCreated.eggBase = this.classification.eggBase;
+      classificationCreated.quantity = this.quantity[index];
+      classificationCreated.eggType = this.eggTypes[index - 1];
+
+      console.log(classificationCreated.eggBase);
+
+      this.classificationsService.create(classificationCreated)
+      .then(() => {
+        setTimeout(function() {
+          this.classification = new Classification();
+        }.bind(this), 1);
+        this.toasty.success('Classificação adicionada com sucesso');  
+        this.router.navigate(['/Classifications']);
+      })
+      .catch(error => this.errorHandler.handle(error));
+    }
+      
+    }
+
+
 
   update(form: FormControl) {
     this.classificationsService.update(this.classification)
