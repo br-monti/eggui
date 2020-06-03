@@ -1,12 +1,12 @@
 <div class="container">
     <div class="ui-g">
         <form #f="ngForm" autocomplete="off" (ngSubmit)="findByFilter()">
-  
+
         <div class="ui-g-12">
           <h1>Classificação</h1>
         </div>
 
-        <div class="ui-g-12">
+        <!-- <div class="ui-g-12">
           <p-panel header="Matéria Prima">
             <div class="ui-g">
               <div class="ui-g-12">
@@ -23,7 +23,7 @@
                       <th>Validade</th>
                     </tr>
                   </ng-template>
-  
+
                   <ng-template pTemplate="body" let-eggBase >
                     <tr>
                       <td class="col-data" >{{eggBase.eggLot.name}}</td>
@@ -31,10 +31,10 @@
                       <td class="col-data" >{{eggBase.quantity}}</td>
                       <td class="col-data">{{eggBase.productionDate | date:'dd/MM/yyyy'}}</td>
                       <td class="col-data">{{eggBase.validityDate | date:'dd/MM/yyyy'}}</td>
-  
+
                     </tr>
                   </ng-template>
-  
+
                   <ng-template pTemplate="emptymessage">
                     <tr>
                       <td colspan="5">
@@ -46,8 +46,8 @@
               </div>
             </div>
           </p-panel>
-        </div>
-  
+        </div> -->
+
         <div class="ui-g-6 ui-md-3 ui-fluid">
           <label>Matéria Prima</label>
           <p-dropdown name="eggBases" [options]="eggBases" placeholder="Selecione"
@@ -55,7 +55,7 @@
             [(ngModel)]="filter.eggBase"
             required ></p-dropdown>
         </div>
-  
+
         <div class="ui-g-12">
           <button pButton type="submit" label="Pesquisar" class="espaco-icones"></button>
           <button pButton type="button" label="Limpar" class="espaco-icones"
@@ -63,7 +63,7 @@
         </div>
     </form>
     </div>
-  
+
     <div class="ui-g">
       <div class="ui-g-12">
         <p-table [value]="classifications" [paginator]="true" [rows]="filter.itensByPage"
@@ -73,12 +73,12 @@
               <tr>
                   <th>Lote</th>
                   <th>Produção</th>
-                  <th>Validade</th>                  
+                  <th>Validade</th>
                   <th>Quantidade</th>
                   <th>Tipo</th>
                   <th>Categoria</th>
                   <th class="col-acoes-header">Ações</th>
-  
+
               </tr>
           </ng-template>
           <ng-template pTemplate="body" let-classification>
@@ -100,23 +100,22 @@
                  </td>
               </tr>
           </ng-template>
-  
+
           <ng-template pTemplate="emptymessage">
             <tr>
               <td colspan="7">
                 Nenhuma classificação encontrada
               </td>
             </tr>
-  
+
           </ng-template>
       </p-table>
       </div>
-  
+
       <div class="ui-g-12">
         <a pButton label="Novo Lote" routerLink="/Classifications/new"></a>
       </div>
-  
+
     </div>
-  
+
   </div>
-  

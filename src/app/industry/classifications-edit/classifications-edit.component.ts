@@ -21,8 +21,11 @@ export class ClassificationsEditComponent implements OnInit {
   eggTypes = [];
   quantity = [];
 
+  success: boolean;
+  error: any;
+
   buttonName = 'Adicionar';
-  icon = "pi pi-plus";
+  icon = 'pi pi-plus';
 
   constructor(
     private classificationsService: ClassificationsService,
@@ -35,7 +38,7 @@ export class ClassificationsEditComponent implements OnInit {
   ngOnInit() {
     const classificationId = this.route.snapshot.params[`${'id'}`];
 
-    if (classificationId) {      
+    if (classificationId) {
       this.loadClassification(classificationId);
     }
 
@@ -53,9 +56,9 @@ export class ClassificationsEditComponent implements OnInit {
   }
 
   loadClassification(id: number) {
-    
+
     this.buttonName = 'Trocar';
-    this.icon = "pi pi-refresh"
+    this.icon = 'pi pi-refresh';
     this.classificationsService.findById(id)
     .then (classification => {
       this.classification = classification;
@@ -70,21 +73,15 @@ export class ClassificationsEditComponent implements OnInit {
 
     return this.eggTypesService.listAll()
       .then(eggTypes => {
-        this.eggTypes = eggTypes
-        
-          // .map(c => {
-          //   return ({ label: c.type, value: c.id});
-          // });
-
-          //console.log(this.eggTypes);
+        this.eggTypes = eggTypes;
       })
       .catch(error => this.errorHandler.handle(error));
 
-      
+
   }
 
   save(form: FormControl) {
-    if (this.editing) {      
+    if (this.editing) {
       this.update(form);
     } else {
       this.create (form);
@@ -93,13 +90,9 @@ export class ClassificationsEditComponent implements OnInit {
 
   create(form: FormControl)  {
 
-    
     const classificationCreated = new Classification();
-    
+    for (let index = 1; index < this.quantity.length; index++) {
 
-    for (let index = 1; index < this.quantity.length; index++)
-    
-    {
       classificationCreated.eggBase = this.classification.eggBase;
       classificationCreated.quantity = this.quantity[index];
       classificationCreated.eggType = this.eggTypes[index - 1];
@@ -108,18 +101,22 @@ export class ClassificationsEditComponent implements OnInit {
 
       this.classificationsService.create(classificationCreated)
       .then(() => {
-        setTimeout(function() {
-          this.classification = new Classification();
-        }.bind(this), 1);
-        this.toasty.success('Classificação adicionada com sucesso');  
-        this.router.navigate(['/Classifications']);
+        this.success = true;
       })
-      .catch(error => this.errorHandler.handle(error));
-    }
-      
+      .catch(error => {
+        this.error = error;
+        this.success = false;
+      });
     }
 
+    if (this.success) {
+      this.toasty.success('Classificação adicionada com sucesso');
+      this.router.navigate(['/Classifications']);
+    } else {
+      this.errorHandler.handle(this.error);
+    }
 
+    }
 
   update(form: FormControl) {
     this.classificationsService.update(this.classification)
@@ -147,7 +144,7 @@ export class ClassificationsEditComponent implements OnInit {
     this.classification.eggBase = eggBaseResponse;
     this.showEggBaseForm = false;
     this.buttonName = 'Trocar';
-    this.icon = "pi pi-refresh"
+    this.icon = 'pi pi-refresh';
 }
 
 }
