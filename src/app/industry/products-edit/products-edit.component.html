@@ -1,1 +1,38 @@
-<p>products-edit works!</p>
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)=save(f)>
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1> {{ editing ? 'Editar' : 'Novo'}} Produto</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nick" [(ngModel)]=product.nick
+        ngModel  #name="ngModel" required minlength="2">
+
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Embalagem</label>
+        <input pInputText type="text" name="packing" [(ngModel)]=product.packing.id
+        required minlength="1">
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Tipo Ovo</label>
+        <input pInputText type="text" name="eggType" [(ngModel)]=product.eggType.id
+        required minlength="1">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid" class="espaco-icones"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info"
+        (click)="new(f)"></button>
+        <a routerLink="/EggLots">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>
+

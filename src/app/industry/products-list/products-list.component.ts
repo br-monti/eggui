@@ -42,7 +42,7 @@ export class ProductsListComponent implements OnInit {
     this.productsService.findByFilter(this.filter)
       .then(result => {
         this.totalRegisters = result.total;
-        this.products = result.eggBases;
+        this.products = result.products;
       })
       .catch(error => this.errorHandler.handle(error));
   }
