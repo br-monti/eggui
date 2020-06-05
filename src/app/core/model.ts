@@ -97,3 +97,12 @@ export class Classification {
   eggType = new EggType();
   eggBase = new EggBase();
 }
+
+export class Packing {
+  id: number;
+  name: string;
+  packingType: string;
+  quantityByPacking: number;
+  packingByBox: number;
+  quantityByBox: number;
+}

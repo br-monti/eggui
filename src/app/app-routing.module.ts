@@ -1,3 +1,5 @@
+import { PackingEditComponent } from './industry/packing-edit/packing-edit.component';
+import { PackingListComponent } from './industry/packing-list/packing-list.component';
 import { EggLotsEditComponent } from './industry/egg-lots-edit/egg-lots-edit.component';
 import { EggLotsListComponent } from './industry/egg-lots-list/egg-lots-list.component';
 import { CreationMonitoringsEditComponent } from './grange/creation-monitorings-edit/creation-monitorings-edit.component';
@@ -47,6 +49,9 @@ const routes: Routes = [
   { path: 'Classifications', component: ClassificationsListComponent },
   { path: 'Classifications/new', component: ClassificationsEditComponent },
   { path: 'Classifications/:id', component: ClassificationsEditComponent },
+  { path: 'Packings', component: PackingListComponent },
+  { path: 'Packings/new', component: PackingEditComponent },
+  { path: 'Packings/:id', component: PackingEditComponent },
   { path: 'PageNotFound', component: NotFoundPageComponent },
   { path: '**', redirectTo: 'PageNotFound'}
 ];
