@@ -2,16 +2,16 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
-import { PackingsService } from './../service/packings.service';
-import { Packing } from './../../core/model';
+import { PackingsService } from '../service/packings.service';
+import { Packing } from '../../core/model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-packing-edit',
-  templateUrl: './packing-edit.component.html',
-  styleUrls: ['./packing-edit.component.css']
+  selector: 'app-packings-edit',
+  templateUrl: './packings-edit.component.html',
+  styleUrls: ['./packings-edit.component.css']
 })
-export class PackingEditComponent implements OnInit {
+export class PackingsEditComponent implements OnInit {
 
   packing = new Packing();
 

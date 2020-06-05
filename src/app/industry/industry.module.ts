@@ -21,8 +21,10 @@ import { EggBasesEditComponent } from './egg-bases-edit/egg-bases-edit.component
 import { EggBasesListComponent } from './egg-bases-list/egg-bases-list.component';
 import { ClassificationsListComponent } from './classifications-list/classifications-list.component';
 import { ClassificationsEditComponent } from './classifications-edit/classifications-edit.component';
-import { PackingListComponent } from './packing-list/packing-list.component';
-import { PackingEditComponent } from './packing-edit/packing-edit.component';
+import { PackingsListComponent } from './packings-list/packings-list.component';
+import { PackingsEditComponent } from './packings-edit/packings-edit.component';
+import { ProductsListComponent } from './products-list/products-list.component';
+import { ProductsEditComponent } from './products-edit/products-edit.component';
 
 
 
@@ -32,7 +34,11 @@ import { PackingEditComponent } from './packing-edit/packing-edit.component';
     EggBasesEditComponent, 
     EggBasesListComponent,
      ClassificationsListComponent, 
-     ClassificationsEditComponent, PackingListComponent, PackingEditComponent],
+     ClassificationsEditComponent, 
+     PackingsListComponent, 
+     PackingsEditComponent, 
+     ProductsListComponent, 
+     ProductsEditComponent],
   imports: [
     FormsModule,
     CommonModule,

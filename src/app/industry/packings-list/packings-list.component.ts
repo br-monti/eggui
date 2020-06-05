@@ -2,16 +2,16 @@ import { FormControl } from '@angular/forms';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
-import { PackingsFilter, PackingsService } from './../service/packings.service';
+import { PackingsFilter, PackingsService } from '../service/packings.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table/table';
 
 @Component({
-  selector: 'app-packing-list',
-  templateUrl: './packing-list.component.html',
-  styleUrls: ['./packing-list.component.css']
+  selector: 'app-packings-list',
+  templateUrl: './packings-list.component.html',
+  styleUrls: ['./packings-list.component.css']
 })
-export class PackingListComponent implements OnInit {
+export class PackingsListComponent implements OnInit {
 
   filter = new PackingsFilter();
   totalRegisters = 0;

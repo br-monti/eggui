@@ -1,5 +1,5 @@
-import { PackingEditComponent } from './industry/packing-edit/packing-edit.component';
-import { PackingListComponent } from './industry/packing-list/packing-list.component';
+import { PackingsEditComponent } from './industry/packings-edit/packings-edit.component';
+import { PackingsListComponent } from './industry/packings-list/packings-list.component';
 import { EggLotsEditComponent } from './industry/egg-lots-edit/egg-lots-edit.component';
 import { EggLotsListComponent } from './industry/egg-lots-list/egg-lots-list.component';
 import { CreationMonitoringsEditComponent } from './grange/creation-monitorings-edit/creation-monitorings-edit.component';
@@ -20,6 +20,8 @@ import { EggBasesListComponent } from './industry/egg-bases-list/egg-bases-list.
 import { EggBasesEditComponent } from './industry/egg-bases-edit/egg-bases-edit.component';
 import { ClassificationsListComponent } from './industry/classifications-list/classifications-list.component';
 import { ClassificationsEditComponent } from './industry/classifications-edit/classifications-edit.component';
+import { ProductsListComponent } from './industry/products-list/products-list.component';
+import { ProductsEditComponent } from './industry/products-edit/products-edit.component';
 
 
 const routes: Routes = [
@@ -49,9 +51,12 @@ const routes: Routes = [
   { path: 'Classifications', component: ClassificationsListComponent },
   { path: 'Classifications/new', component: ClassificationsEditComponent },
   { path: 'Classifications/:id', component: ClassificationsEditComponent },
-  { path: 'Packings', component: PackingListComponent },
-  { path: 'Packings/new', component: PackingEditComponent },
-  { path: 'Packings/:id', component: PackingEditComponent },
+  { path: 'Packings', component: PackingsListComponent },
+  { path: 'Packings/new', component: PackingsEditComponent },
+  { path: 'Packings/:id', component: PackingsEditComponent },
+  { path: 'Products', component: ProductsListComponent },
+  { path: 'Products/new', component: ProductsEditComponent },
+  { path: 'Products/:id', component: ProductsEditComponent },
   { path: 'PageNotFound', component: NotFoundPageComponent },
   { path: '**', redirectTo: 'PageNotFound'}
 ];
