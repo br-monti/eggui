@@ -106,3 +106,10 @@ export class Packing {
   packingByBox: number;
   quantityByBox: number;
 }
+
+export class Product {
+  id: number;
+  nick: string;
+  packing = new Packing();
+  eggType = new EggType();
+}

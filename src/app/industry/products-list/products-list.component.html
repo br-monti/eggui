@@ -1,1 +1,80 @@
-<p>products-list works!</p>
+<div class="container">
+    <div class="ui-g">
+        <form #f="ngForm" autocomplete="off" (ngSubmit)="findByFilter()">
+  
+        <div class="ui-g-12">
+          <h1>Produtos</h1>
+        </div>
+  
+        <div class="ui-g-6 ui-md-3 ui-fluid">
+          <label>Tipo de Ovos</label>
+          <p-dropdown name="eggTypes" [options]="eggTypes" placeholder="Selecione"
+            [filter]="true"
+            [(ngModel)]="filter.eggType"
+            required ></p-dropdown>
+        </div>
+        
+        <div class="ui-g-6 ui-md-3 ui-fluid">
+          <label>Embalagem</label>
+          <p-dropdown name="packings" [options]="packings" placeholder="Selecione"
+            [filter]="true"
+            [(ngModel)]="filter.packing"
+            required ></p-dropdown>
+        </div>
+  
+        <div class="ui-g-12">
+          <button pButton type="submit" label="Pesquisar" class="espaco-icones"></button>
+          <button pButton type="button" label="Limpar" class="espaco-icones"
+          (click)="new(f)"></button>
+        </div>
+    </form>
+    </div>
+  
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-table [value]="products" [paginator]="true" [rows]="filter.itensByPage"
+        [lazy]="true" [totalRecords]="totalRegisters" (onLazyLoad)="onChangePage($event)"
+        [responsive]="true" #table>
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Sigla</th>
+                  <th>Tipo</th>
+                  <th>Embalagem</th>
+                  <th class="col-acoes-header">Ações</th>
+  
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+              <tr>
+                  <td class="col-data" >{{product.nick}}</td>
+                  <td class="col-data" >{{product.packing.name}}</td>
+                  <td class="col-data" >{{product.eggType.type}}</td>
+                  <td class="col-acoes" >
+                    <button  pButton  class="espaco-icones" icon="pi pi-pencil"
+                    pTooltip="Editar" tooltipPosition="top"
+                    [routerLink]="['/Products', product.id]"></button>
+                    <button pButton  class="espaco-icones" icon="pi pi-trash"
+                    pTooltip="Excluir" tooltipPosition="top" (click)="delete(product)"></button>
+                 </td>
+              </tr>
+          </ng-template>
+  
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="5">
+                Nenhum Produto encontrado
+              </td>
+            </tr>
+  
+          </ng-template>
+      </p-table>
+      </div>
+  
+      <div class="ui-g-12">
+        <a pButton label="Novo Lote" routerLink="/Products/new" *ngIf="!isSelect"></a>
+      </div>
+  
+    </div>
+  
+  </div>
+  
