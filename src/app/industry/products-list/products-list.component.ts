@@ -81,7 +81,7 @@ export class ProductsListComponent implements OnInit {
       .then(packings => {
         this.packings = packings
           .map(c => {
-            return ({ label: c.packingType, value: c.id });
+            return ({ label: c.name, value: c.id });
           });
       })
       .catch(error => this.errorHandler.handle(error));

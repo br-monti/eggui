@@ -5,6 +5,8 @@ import { ToastyService } from 'ng2-toasty';
 import { ProductsService } from './../service/products.service';
 import { Product } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
+import { EggTypesService } from '../service/egg-types.service';
+import { PackingsService } from '../service/packings.service';
 
 @Component({
   selector: 'app-products-edit',
@@ -15,12 +17,17 @@ export class ProductsEditComponent implements OnInit {
 
   product = new Product();
 
+  eggTypes = [];
+  packings = [];
+
   constructor(
     private productsService: ProductsService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private eggTypesService: EggTypesService,
+    private packingsService: PackingsService) { }
 
   ngOnInit() {
     const productId = this.route.snapshot.params[`${'id'}`];
@@ -28,7 +35,12 @@ export class ProductsEditComponent implements OnInit {
     if (productId) {
       this.loadProduct(productId);
     }
+
+    this.loadEggTypes();
+    this.loadPackings();
   }
+
+  
 
   get editing() {
     return Boolean(this.product.id);
@@ -43,6 +55,7 @@ export class ProductsEditComponent implements OnInit {
   }
 
   save() {
+
     if (this.editing) {
       this.update();
     } else {
@@ -51,6 +64,8 @@ export class ProductsEditComponent implements OnInit {
   }
 
   create()  {
+
+    this.product.nick = `${this.product.eggType.type} ${this.product.packing.name}`;
     this.productsService.create(this.product)
 
     .then(() => {
@@ -62,6 +77,8 @@ export class ProductsEditComponent implements OnInit {
   }
 
   update() {
+
+    this.product.nick = `${this.product.eggType.type} ${this.product.packing.name}`;
     this.productsService.update(this.product)
     .then(product  => {
       this.product = product;
@@ -79,6 +96,28 @@ export class ProductsEditComponent implements OnInit {
     }.bind(this), 1);
 
     this.router.navigate(['/Products/new']);
+  }
+
+  loadEggTypes() {
+    return this.eggTypesService.listAll()
+      .then(eggTypes => {
+        this.eggTypes = eggTypes
+          .map(c => {
+            return ({ label: c.type, value: c.id });
+          });
+      })
+      .catch(error => this.errorHandler.handle(error));
+  }
+
+  loadPackings() {
+    return this.packingsService.listAll()
+      .then(packings => {
+        this.packings = packings
+          .map(c => {
+            return ({ label: c.name, value: c.id });
+          });
+      })
+      .catch(error => this.errorHandler.handle(error));
   }
 
 }

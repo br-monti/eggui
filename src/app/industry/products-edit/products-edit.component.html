@@ -6,30 +6,27 @@
         <h1> {{ editing ? 'Editar' : 'Novo'}} Produto</h1>
       </div>
 
-      <div class="ui-g-12 ui-md-9 ui-fluid">
-        <label>Nome</label>
-        <input pInputText type="text" name="nick" [(ngModel)]=product.nick
-        ngModel  #name="ngModel" required minlength="2">
-
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Tipo</label>
+        <p-dropdown name="eggType" [options]="eggTypes" placeholder="Selecione"
+          [filter]="true"
+          [(ngModel)]="product.eggType.id"
+          required></p-dropdown>
       </div>
 
-      <div class="ui-g-12 ui-md-9 ui-fluid">
-        <label>Embalagem</label>
-        <input pInputText type="text" name="packing" [(ngModel)]=product.packing.id
-        required minlength="1">
-      </div>
-
-      <div class="ui-g-12 ui-md-9 ui-fluid">
-        <label>Tipo Ovo</label>
-        <input pInputText type="text" name="eggType" [(ngModel)]=product.eggType.id
-        required minlength="1">
-      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+          <label>Embalagem</label>
+          <p-dropdown name="packing" [options]="packings" placeholder="Selecione"
+            [filter]="true"
+            [(ngModel)]="product.packing.id"
+            required></p-dropdown>
+        </div>
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" [disabled]="f.invalid" class="espaco-icones"></button>
         <button pButton type="button" label="Novo" class="ui-button-info"
         (click)="new(f)"></button>
-        <a routerLink="/EggLots">Voltar para a pesquisa</a>
+        <a routerLink="/Products">Voltar para a pesquisa</a>
       </div>
     </div>
 
