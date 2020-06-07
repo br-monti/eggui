@@ -23,11 +23,15 @@
         </div>
 
         <div class="ui-g-12">
-          <button pButton type="submit" label="Pesquisar" class="espaco-icones"></button>
-          <button pButton type="button" label="Limpar" class="espaco-icones"
-          (click)="new(f)"></button>
+          <button pButton type="submit" class="espaco-icones" icon="pi pi-search" 
+          pTooltip="Adicionar" tooltipPosition="top"></button>
+          <button pButton type="button" class="espaco-icones" icon="pi pi-times" 
+          pTooltip="Limpar" tooltipPosition="top" (click)="new(f)"></button>
+          <button pButton type="button" class="espaco-icones" routerLink="/Products/new" 
+          icon="pi pi-plus" pTooltip="Adicionar" tooltipPosition="top"></button>
         </div>
-    </form>
+
+      </form>
     </div>
 
     <div class="ui-g">
@@ -37,7 +41,7 @@
         [responsive]="true" #table>
           <ng-template pTemplate="header">
               <tr>
-                  <th>Nome</th>
+                  
                   <th>Tipo</th>
                   <th>Embalagem</th>
                   <th class="col-acoes-header">Ações</th>
@@ -46,9 +50,9 @@
           </ng-template>
           <ng-template pTemplate="body" let-product>
               <tr>
-                  <td class="col-data" >{{product.nick}}</td>
-                  <td class="col-data" >{{product.packing.name}}</td>
+                  
                   <td class="col-data" >{{product.eggType.type}}</td>
+                  <td class="col-data" >{{product.packing.name}}</td>
                   <td class="col-acoes" >
                     <button  pButton  class="espaco-icones" icon="pi pi-pencil"
                     pTooltip="Editar" tooltipPosition="top"
@@ -61,7 +65,7 @@
 
           <ng-template pTemplate="emptymessage">
             <tr>
-              <td colspan="4">
+              <td colspan="3">
                 Nenhum Produto encontrado
               </td>
             </tr>
@@ -70,9 +74,7 @@
       </p-table>
       </div>
 
-      <div class="ui-g-12">
-        <a pButton label="Novo Produto" routerLink="/Products/new"></a>
-      </div>
+
 
     </div>
 

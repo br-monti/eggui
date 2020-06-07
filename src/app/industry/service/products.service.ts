@@ -10,7 +10,7 @@ export class ProductsFilter {
   packing: number;
   eggType: number;
   page = 0;
-  itensByPage = 5;
+  itensByPage = 50;
 }
 
 @Injectable({

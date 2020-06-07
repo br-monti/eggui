@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
 import { ProductsService } from './../service/products.service';
-import { Product } from './../../core/model';
+import { Product, EggType, Packing } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { EggTypesService } from '../service/egg-types.service';
 import { PackingsService } from '../service/packings.service';
@@ -16,7 +16,6 @@ import { PackingsService } from '../service/packings.service';
 export class ProductsEditComponent implements OnInit {
 
   product = new Product();
-
   eggTypes = [];
   packings = [];
 
@@ -38,9 +37,7 @@ export class ProductsEditComponent implements OnInit {
 
     this.loadEggTypes();
     this.loadPackings();
-  }
-
-  
+  }  
 
   get editing() {
     return Boolean(this.product.id);
@@ -55,7 +52,6 @@ export class ProductsEditComponent implements OnInit {
   }
 
   save() {
-
     if (this.editing) {
       this.update();
     } else {
@@ -64,10 +60,8 @@ export class ProductsEditComponent implements OnInit {
   }
 
   create()  {
-
-    this.product.nick = `${this.product.eggType.type} ${this.product.packing.name}`;
+    
     this.productsService.create(this.product)
-
     .then(() => {
       this.toasty.success('Produto adicionado com sucesso');
 
@@ -77,12 +71,10 @@ export class ProductsEditComponent implements OnInit {
   }
 
   update() {
-
-    this.product.nick = `${this.product.eggType.type} ${this.product.packing.name}`;
     this.productsService.update(this.product)
     .then(product  => {
       this.product = product;
-      this.toasty.success('Produto alterado com sucesso"');
+      this.toasty.success('Produto alterado com sucesso');
       this.router.navigate(['/Products']);
     })
     .catch(error => this.errorHandler.handle(error));
