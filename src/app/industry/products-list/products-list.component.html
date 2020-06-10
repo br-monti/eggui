@@ -23,11 +23,11 @@
         </div>
 
         <div class="ui-g-12">
-          <button pButton type="submit" class="espaco-icones" icon="pi pi-search" 
+          <button pButton type="submit" class="espaco-icones" icon="pi pi-search"
           pTooltip="Pesquisar" tooltipPosition="top"></button>
-          <button pButton type="button" class="espaco-icones" icon="pi pi-times" 
+          <button pButton type="button" class="espaco-icones" icon="pi pi-times"
           pTooltip="Limpar" tooltipPosition="top" (click)="new(f)"></button>
-          <button pButton type="button" class="espaco-icones" routerLink="/Products/new" 
+          <button pButton type="button" class="espaco-icones" routerLink="/Products/new"
           icon="pi pi-plus" pTooltip="Adicionar" tooltipPosition="top"></button>
         </div>
 
@@ -41,7 +41,7 @@
         [responsive]="true" #table>
           <ng-template pTemplate="header">
               <tr>
-                  
+                  <th>Nome</th>
                   <th>Tipo</th>
                   <th>Embalagem</th>
                   <th class="col-acoes-header">Ações</th>
@@ -50,7 +50,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-product>
               <tr>
-                  
+                  <td class="col-data" >{{product.nick}}</td>
                   <td class="col-data" >{{product.eggType.type}}</td>
                   <td class="col-data" >{{product.packing.name}}</td>
                   <td class="col-acoes" >

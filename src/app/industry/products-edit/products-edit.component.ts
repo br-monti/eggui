@@ -19,6 +19,9 @@ export class ProductsEditComponent implements OnInit {
   eggTypes = [];
   packings = [];
 
+
+  productAux = new Product();
+
   constructor(
     private productsService: ProductsService,
     private toasty: ToastyService,
@@ -37,7 +40,7 @@ export class ProductsEditComponent implements OnInit {
 
     this.loadEggTypes();
     this.loadPackings();
-  }  
+  }
 
   get editing() {
     return Boolean(this.product.id);
@@ -52,6 +55,15 @@ export class ProductsEditComponent implements OnInit {
   }
 
   save() {
+
+
+    this.loadEggType(this.product.eggType.id);
+    this.loadPacking(this.product.packing.id);
+
+    // this.product.nick = `${this.productAux.eggType.type} ${this.productAux.packing.name}`;
+
+    // console.log(this.product.nick);
+
     if (this.editing) {
       this.update();
     } else {
@@ -60,7 +72,7 @@ export class ProductsEditComponent implements OnInit {
   }
 
   create()  {
-    
+
     this.productsService.create(this.product)
     .then(() => {
       this.toasty.success('Produto adicionado com sucesso');
@@ -88,6 +100,24 @@ export class ProductsEditComponent implements OnInit {
     }.bind(this), 1);
 
     this.router.navigate(['/Products/new']);
+  }
+
+  loadEggType(id: number) {
+    this.eggTypesService.findById(id)
+    .then (eggType => {
+      this.productAux.eggType = eggType;
+      this.product.nick = `${eggType}`;
+    })
+    .catch(error => this.errorHandler.handle(error));
+  }
+
+  loadPacking(id: number) {
+    this.packingsService.findById(id)
+    .then (packing => {
+      this.productAux.packing = packing;
+      this.product.nick = `${packing}`;
+    })
+    .catch(error => this.errorHandler.handle(error));
   }
 
   loadEggTypes() {
