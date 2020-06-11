@@ -19,6 +19,9 @@ export class ProductsEditComponent implements OnInit {
   eggTypes = [];
   packings = [];
 
+  eggType = new EggType();
+  packing = new Packing();
+
 
   productAux = new Product();
 
@@ -54,24 +57,26 @@ export class ProductsEditComponent implements OnInit {
     .catch(error => this.errorHandler.handle(error));
   }
 
-  save() {
-
+  save(form: FormControl) {
 
     this.loadEggType(this.product.eggType.id);
     this.loadPacking(this.product.packing.id);
 
-    // this.product.nick = `${this.productAux.eggType.type} ${this.productAux.packing.name}`;
+    // console.log(this.eggType);
+    // console.log(this.packing);
 
-    // console.log(this.product.nick);
+    //this.product.nick = `${this.eggType.type} ${this.packing.name}`;
+    //console.log(this.product.nick);
 
     if (this.editing) {
-      this.update();
+      this.update(form);
     } else {
-      this.create ();
+      this.create (form);
     }
+
   }
 
-  create()  {
+  create(form: FormControl)  {
 
     this.productsService.create(this.product)
     .then(() => {
@@ -82,7 +87,7 @@ export class ProductsEditComponent implements OnInit {
     .catch(error => this.errorHandler.handle(error));
   }
 
-  update() {
+  update(form: FormControl) {
     this.productsService.update(this.product)
     .then(product  => {
       this.product = product;
@@ -105,19 +110,21 @@ export class ProductsEditComponent implements OnInit {
   loadEggType(id: number) {
     this.eggTypesService.findById(id)
     .then (eggType => {
-      this.productAux.eggType = eggType;
-      this.product.nick = `${eggType}`;
+      this.eggType = eggType;
+      console.log(this.eggType);
+      this.product.nick = `${this.eggType.type} `;
     })
-    .catch(error => this.errorHandler.handle(error));
+    //.catch(error => this.errorHandler.handle(error));
   }
 
   loadPacking(id: number) {
     this.packingsService.findById(id)
     .then (packing => {
-      this.productAux.packing = packing;
-      this.product.nick = `${packing}`;
+     this.packing = packing;     
+     console.log(this.packing);
+     this.product.nick = `${this.packing.name}`;
     })
-    .catch(error => this.errorHandler.handle(error));
+    //.catch(error => this.errorHandler.handle(error));
   }
 
   loadEggTypes() {
