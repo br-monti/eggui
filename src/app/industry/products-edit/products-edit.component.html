@@ -10,7 +10,7 @@
         <label>Tipo</label>
         <p-dropdown name="eggType" [options]="eggTypes" placeholder="Selecione"
           [filter]="true"
-          [(ngModel)]="product.eggType.id"
+          [(ngModel)]="eggTypeSelected"
           required></p-dropdown>
       </div>
 
@@ -18,11 +18,9 @@
           <label>Embalagem</label>
           <p-dropdown name="packing" [options]="packings" placeholder="Selecione"
             [filter]="true"
-            [(ngModel)]="product.packing.id"
+            [(ngModel)]="packingSelected"
             required></p-dropdown>
         </div>
-
-
 
 
       <div class="ui-g-12">
