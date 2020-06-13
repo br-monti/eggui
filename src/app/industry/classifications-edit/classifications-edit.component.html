@@ -48,22 +48,6 @@
         </p-panel>
       </div>
 
-      <!-- <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label>Quantidade</label>
-        <input pInputText type="text" name="quantity"
-          [(ngModel)]="classification.quantity"
-          required>
-      </div> -->
-
-      <!-- <div class="ui-g-12 ui-md-3 ui-fluid">
-          <label>Lote de Ovos</label>
-          <input pInputText type="text" name="eggLot"
-            [(ngModel)]="classification.eggBase.id"
-            required>
-        </div> -->
-
-
-
         <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let eggType of eggTypes">
           <label>{{eggType.type}}</label>
           <input pInputText type="text" name="quantity"
@@ -71,12 +55,13 @@
             required>
         </div>
 
-
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar" [disabled]="f.invalid" class="espaco-icones"></button>
-        <button pButton type="button" label="Novo" class="ui-button-info"
-        (click)="new(f)"></button>
-        <a routerLink="/Classifications">Voltar para a pesquisa</a>
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid" 
+        class="espaco-icones" icon="pi pi-save"></button>
+        <button pButton type="button" label="Limpar" 
+        class="ui-button-info" (click)="new(f)" class="espaco-icones" icon="pi pi-times"></button>
+        <button pButton type="button" label="Voltar" 
+        class="ui-button-info" routerLink="/Classifications" class="espaco-icones" icon="pi pi-undo"></button>
       </div>
     </div>
 

@@ -97,12 +97,14 @@
             [(ngModel)]="productionMonitoring.chickenLot.id"
             required></p-dropdown>
         </div>
-  
+
         <div class="ui-g-12">
-          <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
-          <button pButton type="button" label="Novo" class="ui-button-info"
-          (click)="new(f)"></button>
-          <a routerLink="/ProductionMonitorings">Voltar para a pesquisa</a>
+          <button pButton type="submit" label="Salvar" [disabled]="f.invalid" 
+          class="espaco-icones" icon="pi pi-save"></button>
+          <button pButton type="button" label="Limpar" 
+          class="ui-button-info" (click)="new(f)" class="espaco-icones" icon="pi pi-times"></button>
+          <button pButton type="button" label="Voltar" 
+          class="ui-button-info" routerLink="/ProductionMonitorings" class="espaco-icones" icon="pi pi-undo"></button>
         </div>
       </div>
   

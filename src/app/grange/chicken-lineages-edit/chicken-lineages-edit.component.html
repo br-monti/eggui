@@ -32,12 +32,13 @@
         text="Mínimo de {{ lineage.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
 
-
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
-        <button pButton type="button" label="Novo" class="ui-button-info"
-        (click)="new(f)"></button>
-        <a routerLink="/ChickenLineages">Voltar para a pesquisa</a>
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid" 
+        class="espaco-icones" icon="pi pi-save"></button>
+        <button pButton type="button" label="Limpar" 
+        class="ui-button-info" (click)="new(f)" class="espaco-icones" icon="pi pi-times"></button>
+        <button pButton type="button" label="Voltar" 
+        class="ui-button-info" routerLink="/ChickenLineages" class="espaco-icones" icon="pi pi-undo"></button>
       </div>
     </div>
 
