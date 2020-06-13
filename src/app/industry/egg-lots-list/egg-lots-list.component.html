@@ -6,19 +6,20 @@
         <h1>Lotes de Ovos</h1>
       </div>
 
-      <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-6 ui-fluid">
         <label>Nome</label>
         <input pInputText type="text" name="name" [(ngModel)]="filter.name">
       </div>
-      <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-6 ui-fluid">
         <label>Caixa</label>
         <input pInputText type="text" name="boxColor" [(ngModel)]="filter.boxColor">
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Pesquisar" class="espaco-icones"></button>
-        <button pButton type="button" label="Limpar" class="espaco-icones"
-        (click)="new(f)"></button>
+        <button label="Pesquisar" pButton type="submit" class="espaco-icones" icon="pi pi-search" tooltipPosition="top"></button>
+        <button label="Limpar" pButton type="button" class="espaco-icones" icon="pi pi-times" tooltipPosition="top" (click)="new(f)"></button>
+        <button label="Adicionar" pButton type="button" class="espaco-icones" routerLink="/EggLots/new"
+        icon="pi pi-plus" tooltipPosition="top"></button>
       </div>
   </form>
   </div>
@@ -67,11 +68,6 @@
       </ng-template>
     </p-table>
     </div>
-
-    <div class="ui-g-12">
-      <a pButton label="Novo Lote" routerLink="/EggLots/new"></a>
-    </div>
-
   </div>
 
 </div>

@@ -35,9 +35,10 @@
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Pesquisar" class="espaco-icones"></button>
-        <button pButton type="button" label="Limpar" class="espaco-icones"
-        (click)="new(f)"></button>
+        <button label="Pesquisar" pButton type="submit" class="espaco-icones" icon="pi pi-search" tooltipPosition="top"></button>
+        <button label="Limpar" pButton type="button" class="espaco-icones" icon="pi pi-times" tooltipPosition="top" (click)="new(f)"></button>
+        <button label="Adicionar" pButton type="button" class="espaco-icones" routerLink="/EggBases/new"
+        *ngIf="!isSelect" icon="pi pi-plus" tooltipPosition="top"></button>
       </div>
   </form>
   </div>
@@ -86,10 +87,6 @@
 
         </ng-template>
     </p-table>
-    </div>
-
-    <div class="ui-g-12">
-      <a pButton label="Novo Lote" routerLink="/EggBases/new" *ngIf="!isSelect"></a>
     </div>
 
   </div>
