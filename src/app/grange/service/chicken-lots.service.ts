@@ -12,7 +12,7 @@ export class ChickenLotsFilter {
   birthDateFinal: Date;
   shed: number;
   page = 0;
-  itensByPage = 5;
+  itensByPage = 50;
 }
 
 @Injectable({

@@ -10,7 +10,7 @@ export class PackingsFilter {
   name: string;
   packingType: string;
   page = 0;
-  itensByPage = 5;
+  itensByPage = 50;
 }
 
 @Injectable({

@@ -10,7 +10,7 @@ export class EggTypesFilter {
   type: string;
   category: string;
   page = 0;
-  itensByPage = 5;
+  itensByPage = 50;
 }
 
 @Injectable({

@@ -9,7 +9,7 @@ export class ClassificationsFilter {
   id: number;
   eggBase: number;
   page = 0;
-  itensByPage = 7
+  itensByPage = 50
 }
 
 @Injectable({

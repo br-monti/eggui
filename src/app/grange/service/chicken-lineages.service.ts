@@ -8,7 +8,7 @@ import { ChickenLineage } from 'src/app/core/model';
 export class ChickenLineageFilter {
   lineage: string;
   page = 0;
-  itensByPage = 5;
+  itensByPage = 50;
 }
 
 @Injectable({

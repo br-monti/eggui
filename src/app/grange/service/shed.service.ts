@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 export class ShedsFilter {
   name: string;
   page = 0;
-  itensByPage = 5;
+  itensByPage = 50;
 }
 
 @Injectable({

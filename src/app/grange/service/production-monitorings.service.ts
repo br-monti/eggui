@@ -9,7 +9,7 @@ export class ProductionMonitoringsFilter {
   dateWeekFinal: Date;
   chickenLot: number;
   page = 0;
-  itensByPage = 5;
+  itensByPage = 50;
 }
 
 @Injectable({
