@@ -48,10 +48,10 @@
         </p-panel>
       </div>
 
-        <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let eggType of eggTypes">
-          <label>{{eggType.type}}</label>
+        <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let product of products">
+          <label>{{product.nick}}</label>
           <input pInputText type="text" name="quantity"
-            [(ngModel)]="quantity[eggType.id]"
+            [(ngModel)]="quantity[product.id]"
             required>
         </div>
 

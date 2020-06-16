@@ -94,7 +94,7 @@ export class EggType {
 export class Classification {
   id: number;
   quantity: number;
-  eggType = new EggType();
+  product = new Product();
   eggBase = new EggBase();
 }
 

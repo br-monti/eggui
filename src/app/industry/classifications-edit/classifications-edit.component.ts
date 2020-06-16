@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
 import { ClassificationsService } from './../service/classifications.service';
-import { Classification, EggBase, EggType } from './../../core/model';
+import { Classification, EggBase, EggType, Product } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { EggTypesService } from '../service/egg-types.service';
+import { ProductsService } from '../service/products.service';
 
 @Component({
   selector: 'app-classifications-edit',
@@ -18,7 +19,7 @@ export class ClassificationsEditComponent implements OnInit {
   showEggBaseForm = false;
   eggBase: EggBase;
   eggBases = [];
-  eggTypes = [];
+  products = [];
   quantity = [];
 
   success: boolean;
@@ -29,7 +30,7 @@ export class ClassificationsEditComponent implements OnInit {
 
   constructor(
     private classificationsService: ClassificationsService,
-    private eggTypesService: EggTypesService,
+    private productsService: ProductsService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
@@ -42,7 +43,7 @@ export class ClassificationsEditComponent implements OnInit {
       this.loadClassification(classificationId);
     }
 
-    this.loadEggTypes();
+    this.loadProducts();
   }
 
   prepareNewEggBase() {
@@ -68,12 +69,12 @@ export class ClassificationsEditComponent implements OnInit {
     .catch(error => this.errorHandler.handle(error));
   }
 
-  loadEggTypes() {
-    this.eggTypes = new Array<EggType>();
+  loadProducts() {
+    this.products = new Array<Product>();
 
-    return this.eggTypesService.listAll()
-      .then(eggTypes => {
-        this.eggTypes = eggTypes;
+    return this.productsService.listAll()
+      .then(products => {
+        this.products = products;
       })
       .catch(error => this.errorHandler.handle(error));
 
@@ -95,9 +96,9 @@ export class ClassificationsEditComponent implements OnInit {
 
       classificationCreated.eggBase = this.classification.eggBase;
       classificationCreated.quantity = this.quantity[index];
-      classificationCreated.eggType = this.eggTypes[index - 1];
+      classificationCreated.product = this.products[index - 1];
 
-      console.log(classificationCreated.eggBase);
+      console.log(classificationCreated);
 
       this.classificationsService.create(classificationCreated)
       .then(() => {
