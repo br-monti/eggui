@@ -13,6 +13,8 @@ import { ShedManufacturerService } from '../grange/shed-manufacturers/shed-manuf
 import { ChickenLineagesService } from '../grange/service/chicken-lineages.service';
 import { ChickenLotsService } from '../grange/service/chicken-lots.service';
 
+import {MenubarModule} from 'primeng/menubar';
+
 
 @NgModule({
   declarations: [NavbarComponent, NotFoundPageComponent],
@@ -20,6 +22,7 @@ import { ChickenLotsService } from '../grange/service/chicken-lots.service';
     CommonModule,
     RouterModule,
     ConfirmDialogModule,
+    MenubarModule,
     ToastyModule.forRoot()
   ],
   exports: [NavbarComponent,
