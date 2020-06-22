@@ -12,8 +12,14 @@ import { ShedService } from '../grange/service/shed.service';
 import { ShedManufacturerService } from '../grange/shed-manufacturers/shed-manufacturers.service';
 import { ChickenLineagesService } from '../grange/service/chicken-lineages.service';
 import { ChickenLotsService } from '../grange/service/chicken-lots.service';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 import {MenubarModule} from 'primeng/menubar';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+
+import {PanelMenuModule} from 'primeng/panelmenu';
 
 
 @NgModule({
@@ -22,12 +28,22 @@ import {MenubarModule} from 'primeng/menubar';
     CommonModule,
     RouterModule,
     ConfirmDialogModule,
+    MatSidenavModule,
+    MatListModule,
     MenubarModule,
+    MatToolbarModule,
+    MatIconModule,
+    PanelMenuModule,
     ToastyModule.forRoot()
   ],
   exports: [NavbarComponent,
     ToastyModule,
-    ConfirmDialogModule],
+    ConfirmDialogModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatIconModule,
+    PanelMenuModule],
   providers: [
     ErrorHandlerService,
     ConfirmationService,

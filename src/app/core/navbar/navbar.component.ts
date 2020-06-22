@@ -1,4 +1,5 @@
 import { MenuItem } from 'primeng/api';
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,6 +14,8 @@ export class NavbarComponent implements OnInit {
   items: MenuItem[];
 
   ngOnInit() {
+
+    exibindoMenu: Boolean;
 
     this.items = [
       { label: 'Dashboard', routerLink: '/Dashboard'},

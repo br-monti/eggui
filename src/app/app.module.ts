@@ -13,12 +13,14 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { DashboardModule } from './dashboard/dashboard.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    MatSidenavModule,
     BrowserModule,
     BrowserAnimationsModule,
     InputTextModule,

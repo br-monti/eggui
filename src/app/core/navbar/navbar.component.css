@@ -1,5 +1,5 @@
 .navbar {
-  padding: 10px 0;
+  padding: 10px;
   background-color: #1e94d2 !important;
 }
 
@@ -48,3 +48,7 @@
 .navbar-menuitem.ativo {
   background-color: #494541;
 }
+
+/* mat-sidenav {
+  width: 200px;
+} */
