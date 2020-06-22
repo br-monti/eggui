@@ -33,7 +33,7 @@
   </p-menubar> -->
 
   <nav class="navbar" >
-  <div class="container">
+  <div >
     <div class="ui-g">
       <div class="ui-g-12">
         <a  href="javascript:;" class="navbar-toggle" (click)="showMenu = !showMenu"><i class="pi pi-bars"></i></a>
@@ -43,11 +43,15 @@
 </nav>
 
 <mat-sidenav-container style="height:100%">
-  <mat-sidenav mode="side" [(opened)] = "showMenu" >
+  <mat-sidenav mode="side" [(opened)] = "showMenu" style="width: 150px" >
     <p-panelMenu [model]="items" class="navbar-menuitem"></p-panelMenu>
   </mat-sidenav>
-  <mat-sidenav-content style="width:auto">
+<mat-sidenav-content [style]="{'width':auto, 'padding': '10px'}">
+  <div class="ui-g">
+    <div class="ui-g-12">
     <router-outlet></router-outlet>
+  </div>
+  </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
