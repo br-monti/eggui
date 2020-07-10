@@ -27,7 +27,7 @@ label {
   width: 100%;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1500px) {
   .container {
     width: 1200px;
     margin: 0 auto;
