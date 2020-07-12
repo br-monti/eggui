@@ -1,3 +1,4 @@
+import { EggBasesService } from './../service/egg-bases.service';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -34,7 +35,8 @@ export class ClassificationsEditComponent implements OnInit {
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private eggBasesService: EggBasesService) { }
 
   ngOnInit() {
     const classificationId = this.route.snapshot.params[`${'id'}`];
@@ -63,8 +65,8 @@ export class ClassificationsEditComponent implements OnInit {
     this.classificationsService.findById(id)
     .then (classification => {
       this.classification = classification;
-      this.eggBases.splice(0, this.eggBases.length);
-      this.eggBases.push(this.classification.eggBase);
+      // this.eggBases.splice(0, this.eggBases.length);
+      // this.eggBases.push(this.classification.eggBase);
     })
     .catch(error => this.errorHandler.handle(error));
   }
@@ -77,8 +79,6 @@ export class ClassificationsEditComponent implements OnInit {
         this.products = products;
       })
       .catch(error => this.errorHandler.handle(error));
-
-
   }
 
   save(form: FormControl) {
@@ -89,35 +89,58 @@ export class ClassificationsEditComponent implements OnInit {
     }
   }
 
+  // create(form: FormControl)  {
+
+  //   const classificationCreated = new Classification();
+  //   for (let index = 1; index < this.quantity.length; index++) {
+
+  //     classificationCreated.eggBase = this.classification.eggBase;
+  //     classificationCreated.quantity = this.quantity[index];
+  //     classificationCreated.product = this.products[index - 1];
+
+  //     console.log(classificationCreated);
+
+  //     this.classificationsService.create(classificationCreated)
+  //     .then(() => {
+  //       this.success = true;
+  //     })
+  //     .catch(error => {
+  //       this.error = error;
+  //       this.success = false;
+  //     });
+  //   }
+
+  //   if (this.success) {
+  //     this.toasty.success('Classificação adicionada com sucesso');
+  //     this.router.navigate(['/Classifications']);
+  //   } else {
+  //     this.errorHandler.handle(this.error);
+  //   }
+
+  //   }
+
+  // create(form: FormControl)  {
+  //   this.classificationsService.create(this.classification)
+
+  //   .then(() => {
+  //     this.toasty.success('Classificação adicionada com sucesso');
+  //     this.router.navigate(['/Classifications']);
+  //   })
+  //   .catch(error => this.errorHandler.handle(error));
+  // }
+
   create(form: FormControl)  {
 
-    const classificationCreated = new Classification();
-    for (let index = 1; index < this.quantity.length; index++) {
+    // this.eggBase.classifications = this.classification
 
-      classificationCreated.eggBase = this.classification.eggBase;
-      classificationCreated.quantity = this.quantity[index];
-      classificationCreated.product = this.products[index - 1];
+    this.eggBasesService.create(this.eggBase)
 
-      console.log(classificationCreated);
-
-      this.classificationsService.create(classificationCreated)
-      .then(() => {
-        this.success = true;
-      })
-      .catch(error => {
-        this.error = error;
-        this.success = false;
-      });
-    }
-
-    if (this.success) {
+    .then(() => {
       this.toasty.success('Classificação adicionada com sucesso');
       this.router.navigate(['/Classifications']);
-    } else {
-      this.errorHandler.handle(this.error);
-    }
-
-    }
+    })
+    .catch(error => this.errorHandler.handle(error));
+  }
 
   update(form: FormControl) {
     this.classificationsService.update(this.classification)
@@ -142,7 +165,7 @@ export class ClassificationsEditComponent implements OnInit {
  receiverFeedback(eggBaseResponse) {
 
     this.eggBases.push(eggBaseResponse);
-    this.classification.eggBase = eggBaseResponse;
+    // this.classification.eggBase = eggBaseResponse;
     this.showEggBaseForm = false;
     this.buttonName = 'Trocar';
     this.icon = 'pi pi-refresh';

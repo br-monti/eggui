@@ -81,6 +81,7 @@ export class EggBase {
   productionDate: Date;
   validityDate: Date;
   eggLot = new EggLot();
+  classifications = new Array<Classification>();
 }
 
 export class EggType {
@@ -95,7 +96,7 @@ export class Classification {
   id: number;
   quantity: number;
   product = new Product();
-  eggBase = new EggBase();
+  //eggBase = new EggBase();
 }
 
 export class Packing {
