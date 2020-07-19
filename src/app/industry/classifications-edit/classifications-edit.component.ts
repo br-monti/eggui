@@ -17,11 +17,13 @@ import { ProductsService } from '../service/products.service';
 export class ClassificationsEditComponent implements OnInit {
 
   classification = new Classification();
+  classificationAux: Classification;
   showEggBaseForm = false;
   eggBase: EggBase;
+  classifications = [];
   eggBases = [];
   products = [];
-  quantity = [];
+  quantitys = [];
 
   success: boolean;
   error: any;
@@ -45,7 +47,28 @@ export class ClassificationsEditComponent implements OnInit {
       this.loadClassification(classificationId);
     }
 
+
     this.loadProducts();
+    // const classificationAux = new Classification();
+
+    console.log(this.products);
+
+    // for (const iterator of this.products) {
+    //   classificationAux.product = this.products[iterator];
+    //   classificationAux.quantity = 0;
+    //   this.classifications.push(classificationAux);
+
+    // }
+
+
+
+    // for (let index = 0; index < this.loadProducts.length; index++) {
+    //   classificationAux.product = this.products[index];
+    //   classificationAux.quantity = 0;
+    //   this.classifications.push(classificationAux);
+    // }
+    // console.log(this.classifications);
+
   }
 
   prepareNewEggBase() {
@@ -77,6 +100,13 @@ export class ClassificationsEditComponent implements OnInit {
     return this.productsService.listAll()
       .then(products => {
         this.products = products;
+        this.classificationAux = new Classification();
+        for (let index = 0; index < this.products.length; index++) {
+          this.classificationAux.product = this.products[index];
+          this.classificationAux.quantity = 0;
+          this.classifications.push(this.classificationAux);
+        }
+
       })
       .catch(error => this.errorHandler.handle(error));
   }

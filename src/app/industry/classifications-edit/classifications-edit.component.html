@@ -48,7 +48,7 @@
         </p-panel>
 
         <div class="ui-g-12">
-          <p-table [value]="eggBase.classifications" [responsive]="true">
+          <p-table [value]="classifications" [responsive]="true">
             <ng-template pTemplate="header">
               <tr>
                 <th>Nome</th>
@@ -58,8 +58,17 @@
 
             <ng-template pTemplate="body" let-classification >
               <tr>
-                <td class="col-data" >{{classification.product.name}}</td>
-                <td class="col-data" >{{classification.quantity}}</td>
+                <td class="col-data" >{{classification.product.nick}}</td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <input pInputText type="text" [(ngModel)]="classification.quantity" name="quantity">
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{classification.quantity}}
+                      </ng-template>
+                  </p-cellEditor>
+              </td>
 
               </tr>
             </ng-template>
