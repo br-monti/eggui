@@ -95,7 +95,8 @@ export class ProductsService {
   listAll(): Promise<any> {
     return this.http.get(this.productsUrl)
       .toPromise()
-      .then(response => response[`${'content'}`]);
+      .then(response => response[`${'content'}`]
+      );
 
   }
 

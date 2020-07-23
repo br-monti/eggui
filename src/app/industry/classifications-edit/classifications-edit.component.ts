@@ -20,7 +20,7 @@ export class ClassificationsEditComponent implements OnInit {
   classificationAux: Classification;
   showEggBaseForm = false;
   eggBase: EggBase;
-  classifications = [];
+  classifications: Classification[];
   eggBases = [];
   products = [];
   quantitys = [];
@@ -46,29 +46,7 @@ export class ClassificationsEditComponent implements OnInit {
     if (classificationId) {
       this.loadClassification(classificationId);
     }
-
-
     this.loadProducts();
-    // const classificationAux = new Classification();
-
-    console.log(this.products);
-
-    // for (const iterator of this.products) {
-    //   classificationAux.product = this.products[iterator];
-    //   classificationAux.quantity = 0;
-    //   this.classifications.push(classificationAux);
-
-    // }
-
-
-
-    // for (let index = 0; index < this.loadProducts.length; index++) {
-    //   classificationAux.product = this.products[index];
-    //   classificationAux.quantity = 0;
-    //   this.classifications.push(classificationAux);
-    // }
-    // console.log(this.classifications);
-
   }
 
   prepareNewEggBase() {
@@ -95,18 +73,16 @@ export class ClassificationsEditComponent implements OnInit {
   }
 
   loadProducts() {
-    this.products = new Array<Product>();
-
     return this.productsService.listAll()
       .then(products => {
         this.products = products;
-        this.classificationAux = new Classification();
-        for (let index = 0; index < this.products.length; index++) {
-          this.classificationAux.product = this.products[index];
-          this.classificationAux.quantity = 0;
+        this.classifications = new Array<Classification>();
+        for (const product of this.products) {
+          this.classificationAux = new Classification();
+          this.classificationAux.product = product;
+          //this.classificationAux.quantity = 0;
           this.classifications.push(this.classificationAux);
         }
-
       })
       .catch(error => this.errorHandler.handle(error));
   }
@@ -119,7 +95,72 @@ export class ClassificationsEditComponent implements OnInit {
     }
   }
 
-  // create(form: FormControl)  {
+  create(form: FormControl)  {
+
+     this.eggBase.classifications = this.classifications;
+     console.log(this.eggBase);
+     this.eggBasesService.update(this.eggBase)
+
+    .then(() => {
+      this.toasty.success('Classificação adicionada com sucesso');
+      this.router.navigate(['/Classifications']);
+    })
+    .catch(error => this.errorHandler.handle(error));
+  }
+
+  update(form: FormControl) {
+    this.classificationsService.update(this.classification)
+    .then(classification  => {
+      this.classification = classification;
+      this.toasty.success('Classificação alterada com sucesso"');
+      this.router.navigate(['/Classifications']);
+    })
+    .catch(error => this.errorHandler.handle(error));
+  }
+
+  new(form: FormControl) {
+    form.reset();
+
+    setTimeout(function() {
+      this.classification = new Classification();
+    }.bind(this), 1);
+
+    this.router.navigate(['/Classifications/new']);
+  }
+
+ receiverFeedback(eggBaseResponse) {
+
+    this.eggBases.push(eggBaseResponse);
+    this.eggBase = eggBaseResponse;
+    this.showEggBaseForm = false;
+    this.buttonName = 'Trocar';
+    this.icon = 'pi pi-refresh';
+}
+
+}
+
+
+// const classificationAux = new Classification();
+
+    // for (const iterator of this.products) {
+    //   classificationAux.product = this.products[iterator];
+    //   classificationAux.quantity = 0;
+    //   this.classifications.push(classificationAux);
+
+    // }
+
+
+
+    // for (let index = 0; index < this.loadProducts.length; index++) {
+    //   classificationAux.product = this.products[index];
+    //   classificationAux.quantity = 0;
+    //   this.classifications.push(classificationAux);
+    // }
+    // console.log(this.classifications);
+
+
+
+     // create(form: FormControl)  {
 
   //   const classificationCreated = new Classification();
   //   for (let index = 1; index < this.quantity.length; index++) {
@@ -158,47 +199,3 @@ export class ClassificationsEditComponent implements OnInit {
   //   })
   //   .catch(error => this.errorHandler.handle(error));
   // }
-
-  create(form: FormControl)  {
-
-    // this.eggBase.classifications = this.classification
-
-    this.eggBasesService.create(this.eggBase)
-
-    .then(() => {
-      this.toasty.success('Classificação adicionada com sucesso');
-      this.router.navigate(['/Classifications']);
-    })
-    .catch(error => this.errorHandler.handle(error));
-  }
-
-  update(form: FormControl) {
-    this.classificationsService.update(this.classification)
-    .then(classification  => {
-      this.classification = classification;
-      this.toasty.success('Classificação alterada com sucesso"');
-      this.router.navigate(['/Classifications']);
-    })
-    .catch(error => this.errorHandler.handle(error));
-  }
-
-  new(form: FormControl) {
-    form.reset();
-
-    setTimeout(function() {
-      this.classification = new Classification();
-    }.bind(this), 1);
-
-    this.router.navigate(['/Classifications/new']);
-  }
-
- receiverFeedback(eggBaseResponse) {
-
-    this.eggBases.push(eggBaseResponse);
-    // this.classification.eggBase = eggBaseResponse;
-    this.showEggBaseForm = false;
-    this.buttonName = 'Trocar';
-    this.icon = 'pi pi-refresh';
-}
-
-}

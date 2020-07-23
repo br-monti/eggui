@@ -50,7 +50,7 @@ export class ProductsEditComponent implements OnInit {
   loadProduct(id: number) {
     this.productsService.findById(id)
     .then (product => {
-      this.product = product;      
+      this.product = product;
       this.eggTypeSelected = this.product.eggType;
       this.packingSelected = this.product.packing;
 
@@ -105,7 +105,7 @@ export class ProductsEditComponent implements OnInit {
       .then(eggTypes => {
         this.eggTypes = eggTypes
           .map(c => {
-            return ({ label: c.type, value: {id: c.id, type: c.type, 
+            return ({ label: c.type, value: {id: c.id, type: c.type,
               category: c.category, minWeight: c.minWeight, maxWeight: c.maxWeight}});
           });
       })
