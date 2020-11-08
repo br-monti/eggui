@@ -22,6 +22,7 @@ export class ClassificationsEditComponent implements OnInit {
   eggBase: EggBase;
   classifications: Classification[];
   eggBases = [];
+  eggTypes = [];
   products = [];
   quantitys = [];
 
@@ -33,7 +34,7 @@ export class ClassificationsEditComponent implements OnInit {
 
   constructor(
     private classificationsService: ClassificationsService,
-    private productsService: ProductsService,
+    private eggTypesService: EggTypesService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
@@ -46,7 +47,7 @@ export class ClassificationsEditComponent implements OnInit {
     if (classificationId) {
       this.loadClassification(classificationId);
     }
-    this.loadProducts();
+    this.loadEggTypes();
   }
 
   prepareNewEggBase() {
@@ -72,15 +73,31 @@ export class ClassificationsEditComponent implements OnInit {
     .catch(error => this.errorHandler.handle(error));
   }
 
-  loadProducts() {
-    return this.productsService.listAll()
-      .then(products => {
-        this.products = products;
+  // loadProducts() {
+  //   return this.productsService.listAll()
+  //     .then(products => {
+  //       this.products = products;
+  //       this.classifications = new Array<Classification>();
+  //       for (const product of this.products) {
+  //         this.classificationAux = new Classification();
+  //         this.classificationAux.product = product;
+  //         //this.classificationAux.quantity = 0;
+  //         this.classifications.push(this.classificationAux);
+  //       }
+  //     })
+  //     .catch(error => this.errorHandler.handle(error));
+  // }
+
+  loadEggTypes() {
+    return this.eggTypesService.listAll()
+      .then(eggTypes => {
+        this.eggTypes = eggTypes;
+        console.log(this.eggTypes);
         this.classifications = new Array<Classification>();
-        for (const product of this.products) {
+        for (const eggType of this.eggTypes) {
           this.classificationAux = new Classification();
-          this.classificationAux.product = product;
-          //this.classificationAux.quantity = 0;
+          this.classificationAux.eggType = eggType;
+          // this.classificationAux.quantity = 0;
           this.classifications.push(this.classificationAux);
         }
       })

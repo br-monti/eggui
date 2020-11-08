@@ -51,14 +51,14 @@
           <p-table [value]="classifications" [responsive]="true">
             <ng-template pTemplate="header">
               <tr>
-                <th>Nome</th>
+                <th>Tipo</th>
                 <th>Quantidade</th>
               </tr>
             </ng-template>
 
             <ng-template pTemplate="body" let-classification >
               <tr>
-                <td class="col-data" >{{classification.product.nick}}</td>
+                <td class="col-data" >{{classification.eggType.type}}</td>
                 <td pEditableColumn>
                   <p-cellEditor>
                       <ng-template pTemplate="input">
@@ -76,7 +76,7 @@
             <ng-template pTemplate="emptymessage">
               <tr>
                 <td colspan="2">
-                  Nenhuma matéria prima associada
+                  Nenhum tipo disponível
                 </td>
               </tr>
             </ng-template>
