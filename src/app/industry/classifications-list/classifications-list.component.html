@@ -33,8 +33,9 @@
                   <th>Lote</th>
                   <th>Produção</th>
                   <th>Validade</th>
-                  <th>Produto</th>
-                  <th>Quantidade</th>
+                  <th>Categoria A</th>
+                  <th>Categoria B</th>
+                  <th>Descarte</th>
                   <th class="col-acoes-header">Ações</th>
 
               </tr>
@@ -45,6 +46,7 @@
                   <td class="col-data">{{classification.eggBase.productionDate | date:'dd/MM/yyyy'}}</td>
                   <td class="col-data">{{classification.eggBase.validityDate | date:'dd/MM/yyyy'}}</td>
                   <td class="col-data" >{{classification.eggType.type}}</td>
+                  <td class="col-data">{{classification.quantity}}</td>
                   <td class="col-data">{{classification.quantity}}</td>
                   <td class="col-acoes" >
                     <button  pButton  class="espaco-icones" icon="pi pi-pencil"

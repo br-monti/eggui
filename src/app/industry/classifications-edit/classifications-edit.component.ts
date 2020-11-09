@@ -67,26 +67,10 @@ export class ClassificationsEditComponent implements OnInit {
     this.classificationsService.findById(id)
     .then (classification => {
       this.classification = classification;
-      // this.eggBases.splice(0, this.eggBases.length);
-      // this.eggBases.push(this.classification.eggBase);
     })
     .catch(error => this.errorHandler.handle(error));
   }
 
-  // loadProducts() {
-  //   return this.productsService.listAll()
-  //     .then(products => {
-  //       this.products = products;
-  //       this.classifications = new Array<Classification>();
-  //       for (const product of this.products) {
-  //         this.classificationAux = new Classification();
-  //         this.classificationAux.product = product;
-  //         //this.classificationAux.quantity = 0;
-  //         this.classifications.push(this.classificationAux);
-  //       }
-  //     })
-  //     .catch(error => this.errorHandler.handle(error));
-  // }
 
   loadEggTypes() {
     return this.eggTypesService.listAll()
@@ -155,64 +139,3 @@ export class ClassificationsEditComponent implements OnInit {
 }
 
 }
-
-
-// const classificationAux = new Classification();
-
-    // for (const iterator of this.products) {
-    //   classificationAux.product = this.products[iterator];
-    //   classificationAux.quantity = 0;
-    //   this.classifications.push(classificationAux);
-
-    // }
-
-
-
-    // for (let index = 0; index < this.loadProducts.length; index++) {
-    //   classificationAux.product = this.products[index];
-    //   classificationAux.quantity = 0;
-    //   this.classifications.push(classificationAux);
-    // }
-    // console.log(this.classifications);
-
-
-
-     // create(form: FormControl)  {
-
-  //   const classificationCreated = new Classification();
-  //   for (let index = 1; index < this.quantity.length; index++) {
-
-  //     classificationCreated.eggBase = this.classification.eggBase;
-  //     classificationCreated.quantity = this.quantity[index];
-  //     classificationCreated.product = this.products[index - 1];
-
-  //     console.log(classificationCreated);
-
-  //     this.classificationsService.create(classificationCreated)
-  //     .then(() => {
-  //       this.success = true;
-  //     })
-  //     .catch(error => {
-  //       this.error = error;
-  //       this.success = false;
-  //     });
-  //   }
-
-  //   if (this.success) {
-  //     this.toasty.success('Classificação adicionada com sucesso');
-  //     this.router.navigate(['/Classifications']);
-  //   } else {
-  //     this.errorHandler.handle(this.error);
-  //   }
-
-  //   }
-
-  // create(form: FormControl)  {
-  //   this.classificationsService.create(this.classification)
-
-  //   .then(() => {
-  //     this.toasty.success('Classificação adicionada com sucesso');
-  //     this.router.navigate(['/Classifications']);
-  //   })
-  //   .catch(error => this.errorHandler.handle(error));
-  // }
