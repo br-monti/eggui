@@ -55,6 +55,7 @@
                 <th>Quantidade</th>
                 <th>Produção</th>
                 <th>Validade</th>
+                <th>Status</th>
                 <th class="col-acoes-header">Ações</th>
 
             </tr>
@@ -66,6 +67,7 @@
                 <td class="col-data" >{{eggBase.quantity}}</td>
                 <td class="col-data">{{eggBase.productionDate | date:'dd/MM/yyyy'}}</td>
                 <td class="col-data">{{eggBase.validityDate | date:'dd/MM/yyyy'}}</td>
+                <td class="col-data" ><span>{{eggBase.industryStatus}}</span></td>
                 <td class="col-acoes" >
                   <button  pButton  class="espaco-icones" icon="pi pi-pencil"
                   pTooltip="Editar" tooltipPosition="top"

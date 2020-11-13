@@ -80,6 +80,7 @@ export class EggBase {
   quantity: number;
   productionDate: Date;
   validityDate: Date;
+  industryStatus: string;
   eggLot = new EggLot();
   classifications = new Array<Classification>();
 }

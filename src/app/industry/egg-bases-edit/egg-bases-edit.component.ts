@@ -15,6 +15,13 @@ import * as moment from 'moment';
 })
 export class EggBasesEditComponent implements OnInit {
 
+  industryStatus = [
+    { label: 'EggBase', value: 'Branca' },
+    { label: 'Classification', value: 'Classification' },
+    { label: 'Packing', value: 'Packing' },
+    { label: 'Expedition', value: 'Expedition' },
+  ];
+
   eggBase = new EggBase();
   eggLots = [];
 
@@ -83,6 +90,7 @@ export class EggBasesEditComponent implements OnInit {
   }
 
   create()  {
+    this.eggBase.industryStatus = 'EggBase';
     this.eggBase.quantity = ((this.box * 360) + (this.card * 30) +  (this.egg * 1)) ;
     this.eggBasesService.create(this.eggBase)
 
@@ -95,7 +103,7 @@ export class EggBasesEditComponent implements OnInit {
   }
 
   update() {
-
+    this.eggBase.industryStatus = 'EggBase';
     this.eggBase.quantity = ((this.box * 360) + (this.card * 30) +  (this.egg * 1)) ;
     this.eggBasesService.update(this.eggBase)
     .then(eggBase  => {
