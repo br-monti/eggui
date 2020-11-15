@@ -46,6 +46,22 @@ export class EggBasesListComponent implements OnInit {
       .then(result => {
         this.totalRegisters = result.total;
         this.eggBases = result.eggBases;
+
+        this.eggBases.forEach(eggBase => {
+           if (eggBase.industryStatus === 'EggBase') {
+            eggBase.industryStatus = 'Matéria Prima';
+           }
+           if (eggBase.industryStatus === 'Classification') {
+            eggBase.industryStatus = 'Classificação';
+           }
+           if (eggBase.industryStatus === 'Packing') {
+            eggBase.industryStatus = 'Embalagem';
+           }
+           if (eggBase.industryStatus === 'Expedition') {
+            eggBase.industryStatus = 'Expedição';
+           }
+        });
+
       })
       .catch(error => this.errorHandler.handle(error));
   }
