@@ -1,3 +1,5 @@
+import { EggLotsService } from './../service/egg-lots.service';
+import { EggBasesFilter } from './../service/egg-bases.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClassificationsFilter, ClassificationsService } from '../service/classifications.service';
 import { Table } from 'primeng/table/table';
@@ -14,17 +16,18 @@ import { FormControl } from '@angular/forms';
 })
 export class ClassificationsListComponent implements OnInit {
 
-  filter = new ClassificationsFilter();
+  filter = new EggBasesFilter();
   totalRegisters = 0;
   @ViewChild('table', { static: true }) grid: Table;
 
   eggBases = [];
   classifications = [];
+  eggLots = [];
 
   button = true;
 
   buttonName = 'Selecionar';
-  icon = "pi pi-plus";
+  icon = 'pi pi-plus';
 
   constructor(
     private eggBasesService: EggBasesService,
@@ -32,22 +35,33 @@ export class ClassificationsListComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private errorHandler: ErrorHandlerService,
     private classificationsService: ClassificationsService,
+    private eggLotsService: EggLotsService,
     ) { }
 
   ngOnInit() {
-    this.loadEggBases();
+    this.loadEggLots();
   }
 
   findByFilter(page = 0) {
     this.filter.page = page;
 
-    this.classificationsService.findByFilter(this.filter)
-      .then(result => {
-        this.totalRegisters = result.total;
-        this.classifications = result.classifications;
-      })
-      .catch(error => this.errorHandler.handle(error));
+  //   this.classificationsService.findByFilter(this.filter)
+  //     .then(result => {
+  //       this.totalRegisters = result.total;
+  //       this.classifications = result.classifications;
+  //     })
+  //     .catch(error => this.errorHandler.handle(error));
+  // }
+
+    this.eggBasesService.findByFilter(this.filter)
+    .then(result => {
+      this.totalRegisters = result.total;
+      this.eggBases = result.eggBases;
+    })
+    .catch(error => this.errorHandler.handle(error));
   }
+
+
 
   onChangePage(event: LazyLoadEvent) {
     const page = event.first / event.rows;
@@ -77,6 +91,17 @@ export class ClassificationsListComponent implements OnInit {
   //     })
   //     .catch(error => this.errorHandler.handle(error));
   // }
+
+  loadEggLots() {
+    return this.eggLotsService.listAll()
+      .then(eggLots => {
+        this.eggLots = eggLots
+          .map(c => {
+            return ({ label: c.name, value: c.id });
+          });
+      })
+      .catch(error => this.errorHandler.handle(error));
+  }
 
   loadEggBases() {
     return this.eggBasesService.listAll()

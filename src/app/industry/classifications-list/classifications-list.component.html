@@ -6,14 +6,33 @@
           <h1>Classificação</h1>
         </div>
 
-       <div class="ui-g-6 ui-md-3 ui-fluid">
-          <label>Matéria Prima</label>
-          <p-dropdown name="eggBases" [options]="eggBases" placeholder="Selecione"
+        <div class="ui-g-6 ui-md-3 ui-fluid">
+          <label>Lote de Ovos</label>
+          <p-dropdown name="eggLots" [options]="eggLots" placeholder="Selecione"
             [filter]="true"
-            [(ngModel)]="filter.eggBase"
+            [(ngModel)]="filter.eggLot"
             required ></p-dropdown>
         </div>
 
+        <div class="ui-g-3">
+          <label style="display: block">Produção</label>
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+            name="productionDateInitial" [(ngModel)]="filter.productionDateInitial"></p-calendar>
+
+          <label class="espaco-icones">até</label>
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+            name="productionDateFinal" [(ngModel)]="filter.productionDateFinal"></p-calendar>
+        </div>
+
+        <div class="ui-g-3">
+          <label style="display: block">Validade</label>
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+            name="validityDateInitial" [(ngModel)]="filter.validityDateInitial"></p-calendar>
+
+          <label class="espaco-icones">até</label>
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+            name="validityDateFinal" [(ngModel)]="filter.validityDateFinal"></p-calendar>
+        </div>
         <div class="ui-g-12">
           <button label="Pesquisar" pButton type="submit" class="espaco-icones" icon="pi pi-search" tooltipPosition="top"></button>
           <button label="Limpar" pButton type="button" class="espaco-icones" icon="pi pi-times" tooltipPosition="top" (click)="new(f)"></button>
@@ -25,7 +44,7 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-        <p-table [value]="classifications" [paginator]="true" [rows]="filter.itensByPage"
+        <p-table [value]="eggBases" [paginator]="true" [rows]="filter.itensByPage"
         [lazy]="true" [totalRecords]="totalRegisters" (onLazyLoad)="onChangePage($event)"
         [responsive]="true" #table>
           <ng-template pTemplate="header">
@@ -36,24 +55,26 @@
                   <th>Categoria A</th>
                   <th>Categoria B</th>
                   <th>Descarte</th>
+                  <th>Status</th>
                   <th class="col-acoes-header">Ações</th>
 
               </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-classification>
+          <ng-template pTemplate="body" let-eggBase>
               <tr>
-                  <td class="col-data" >{{classification.eggBase.eggLot.name}}</td>
-                  <td class="col-data">{{classification.eggBase.productionDate | date:'dd/MM/yyyy'}}</td>
-                  <td class="col-data">{{classification.eggBase.validityDate | date:'dd/MM/yyyy'}}</td>
-                  <td class="col-data" >{{classification.eggType.type}}</td>
-                  <td class="col-data">{{classification.quantity}}</td>
-                  <td class="col-data">{{classification.quantity}}</td>
+                  <td class="col-data" >{{eggBase.eggLot.name}}</td>
+                  <td class="col-data">{{eggBase.productionDate | date:'dd/MM/yyyy'}}</td>
+                  <td class="col-data">{{eggBase.validityDate | date:'dd/MM/yyyy'}}</td>
+                  <td class="col-data" >{{eggBase.eggLot.name}}</td>
+                  <td class="col-data">{{eggBase.eggLot.name}}</td>
+                  <td class="col-data">{{eggBase.eggLot.name}}</td>
+                  <td class="col-data">{{eggBase.industryStatus}}</td>
                   <td class="col-acoes" >
                     <button  pButton  class="espaco-icones" icon="pi pi-pencil"
                     pTooltip="Editar" tooltipPosition="top"
-                    [routerLink]="['/Classifications', classification.id]" ></button>
+                    [routerLink]="['/Classifications', eggBase.id]" ></button>
                     <button pButton  class="espaco-icones" icon="pi pi-trash"
-                    pTooltip="Excluir" tooltipPosition="top" (click)="delete(classification)"></button>
+                    pTooltip="Excluir" tooltipPosition="top" (click)="delete(eggBase)"></button>
                     <!-- <button pButton  class="espaco-icones" icon="pi pi-plus"
                     pTooltip="Selecionar" tooltipPosition="top" (click)="feedback(chickenLot)" [disabled]="!isSelect"></button> -->
                  </td>
@@ -62,7 +83,7 @@
 
           <ng-template pTemplate="emptymessage">
             <tr>
-              <td colspan="6">
+              <td colspan="7">
                 Nenhuma classificação encontrada
               </td>
             </tr>

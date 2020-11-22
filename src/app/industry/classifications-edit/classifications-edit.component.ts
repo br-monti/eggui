@@ -42,31 +42,27 @@ export class ClassificationsEditComponent implements OnInit {
     private eggBasesService: EggBasesService) { }
 
   ngOnInit() {
-    const classificationId = this.route.snapshot.params[`${'id'}`];
 
-    if (classificationId) {
-      this.loadClassification(classificationId);
+    const eggBaseId = this.route.snapshot.params[`${'id'}`];
+
+    if (eggBaseId) {
+      this.loadEggBase(eggBaseId);
     }
     this.loadEggTypes();
   }
 
-  prepareNewEggBase() {
-    this.showEggBaseForm = true;
-    this.eggBase = new EggBase();
-    this.eggBases.splice(0, this.eggBases.length);
-  }
 
   get editing() {
     return Boolean(this.classification.id);
   }
 
-  loadClassification(id: number) {
 
-    this.buttonName = 'Trocar';
-    this.icon = 'pi pi-refresh';
-    this.classificationsService.findById(id)
-    .then (classification => {
-      this.classification = classification;
+  loadEggBase(id: number) {
+
+    this.eggBasesService.findById(id)
+    .then (eggBase => {
+      this.eggBase = eggBase;
+      this.eggBases.push(eggBase);
     })
     .catch(error => this.errorHandler.handle(error));
   }
@@ -100,6 +96,7 @@ export class ClassificationsEditComponent implements OnInit {
 
      this.eggBase.classifications = this.classifications;
      console.log(this.eggBase);
+     this.eggBase.industryStatus = 'Classification';
      this.eggBasesService.update(this.eggBase)
 
     .then(() => {
@@ -129,13 +126,5 @@ export class ClassificationsEditComponent implements OnInit {
     this.router.navigate(['/Classifications/new']);
   }
 
- receiverFeedback(eggBaseResponse) {
-
-    this.eggBases.push(eggBaseResponse);
-    this.eggBase = eggBaseResponse;
-    this.showEggBaseForm = false;
-    this.buttonName = 'Trocar';
-    this.icon = 'pi pi-refresh';
-}
 
 }
