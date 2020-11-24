@@ -68,6 +68,22 @@ export class EggBasesService {
         eggBases,
         total: response[`${'totalElements'}`]
       };
+
+      result.eggBases.forEach(eggBase => {
+        if (eggBase.industryStatus === 'EggBase') {
+         eggBase.industryStatus = 'Matéria Prima';
+        }
+        if (eggBase.industryStatus === 'Classification') {
+         eggBase.industryStatus = 'Classificação';
+        }
+        if (eggBase.industryStatus === 'Packing') {
+         eggBase.industryStatus = 'Embalagem';
+        }
+        if (eggBase.industryStatus === 'Expedition') {
+         eggBase.industryStatus = 'Expedição';
+        }
+     });
+
       return result;
     });
   }
