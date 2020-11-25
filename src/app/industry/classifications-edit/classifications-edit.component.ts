@@ -26,11 +26,6 @@ export class ClassificationsEditComponent implements OnInit {
   products = [];
   quantitys = [];
 
-  success: boolean;
-  error: any;
-
-  buttonName = 'Adicionar';
-  icon = 'pi pi-plus';
 
   constructor(
     private classificationsService: ClassificationsService,
@@ -62,6 +57,8 @@ export class ClassificationsEditComponent implements OnInit {
     this.eggBasesService.findById(id)
     .then (eggBase => {
       this.eggBase = eggBase;
+      console.log(this.eggBase.classifications);
+      this.classifications = this.eggBase.classifications;
       this.eggBases.push(eggBase);
     })
     .catch(error => this.errorHandler.handle(error));
@@ -72,7 +69,6 @@ export class ClassificationsEditComponent implements OnInit {
     return this.eggTypesService.listAll()
       .then(eggTypes => {
         this.eggTypes = eggTypes;
-        console.log(this.eggTypes);
         this.classifications = new Array<Classification>();
         for (const eggType of this.eggTypes) {
           this.classificationAux = new Classification();
@@ -95,7 +91,6 @@ export class ClassificationsEditComponent implements OnInit {
   create(form: FormControl)  {
 
      this.eggBase.classifications = this.classifications;
-     console.log(this.eggBase);
      this.eggBase.industryStatus = 'Classification';
      this.eggBasesService.update(this.eggBase)
 
