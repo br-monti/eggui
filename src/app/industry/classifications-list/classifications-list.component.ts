@@ -72,7 +72,7 @@ export class ClassificationsListComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir?',
       accept: () => {
-        this.classificationsService.delete(eggBase.id)
+        this.eggBasesService.delete(eggBase.id)
           .then(() => {
             this.grid.reset();
             this.toasty.success('Classificação excluída com sucesso');

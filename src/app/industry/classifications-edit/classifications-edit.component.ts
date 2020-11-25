@@ -48,7 +48,7 @@ export class ClassificationsEditComponent implements OnInit {
 
 
   get editing() {
-    return Boolean(this.classification.id);
+    return Boolean(this.eggBase.id);
   }
 
 
