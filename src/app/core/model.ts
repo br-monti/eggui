@@ -78,6 +78,9 @@ export class EggLot {
 export class EggBase {
   id: number;
   quantity: number;
+  categoryA: number;
+  categoryB: number;
+  discard: number;
   productionDate: Date;
   validityDate: Date;
   industryStatus: string;

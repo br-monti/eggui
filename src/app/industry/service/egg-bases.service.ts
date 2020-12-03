@@ -72,6 +72,9 @@ export class EggBasesService {
       result.eggBases.forEach(eggBase => {
         if (eggBase.industryStatus === 'EggBase') {
          eggBase.industryStatus = 'Matéria Prima';
+         eggBase.categoryA = 0;
+         eggBase.categoryB = 0;
+         eggBase.discard = 0;
         }
         if (eggBase.industryStatus === 'Classification') {
          eggBase.industryStatus = 'Classificação';

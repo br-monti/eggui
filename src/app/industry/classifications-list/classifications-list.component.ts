@@ -1,3 +1,4 @@
+import { IndustryModule } from './../industry.module';
 import { EggLotsService } from './../service/egg-lots.service';
 import { EggBasesFilter } from './../service/egg-bases.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -57,6 +58,7 @@ export class ClassificationsListComponent implements OnInit {
     .then(result => {
       this.totalRegisters = result.total;
       this.eggBases = result.eggBases;
+
     })
     .catch(error => this.errorHandler.handle(error));
   }
@@ -103,16 +105,16 @@ export class ClassificationsListComponent implements OnInit {
       .catch(error => this.errorHandler.handle(error));
   }
 
-  loadEggBases() {
-    return this.eggBasesService.listAll()
-      .then(eggBases => {
-        this.eggBases = eggBases
-          .map(c => {
-            return ({ label: c.eggLot.name, value: c.id});
-          });
-      })
-      .catch(error => this.errorHandler.handle(error));
-  }
+  // loadEggBases() {
+  //   return this.eggBasesService.listAll()
+  //     .then(eggBases => {
+  //       this.eggBases = eggBases
+  //         .map(c => {
+  //           return ({ label: c.eggLot.name, value: c.id});
+  //         });
+  //     })
+  //     .catch(error => this.errorHandler.handle(error));
+  // }
 
   new(form: FormControl) {
     form.reset();
