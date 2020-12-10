@@ -37,17 +37,21 @@ export class ClassificationsEditComponent implements OnInit {
     private eggBasesService: EggBasesService) { }
 
   ngOnInit() {
-
+    this.loadEggTypes();
+    //console.log(this.eggTypes);
     const eggBaseId = this.route.snapshot.params[`${'id'}`];
+
 
     if (eggBaseId) {
       this.loadEggBase(eggBaseId);
+
     }
-    this.loadEggTypes();
+
   }
 
 
   get editing() {
+    console.log(this.eggBase.id);
     return Boolean(this.eggBase.id);
   }
 
@@ -57,9 +61,8 @@ export class ClassificationsEditComponent implements OnInit {
     this.eggBasesService.findById(id)
     .then (eggBase => {
       this.eggBase = eggBase;
-      console.log(this.eggBase.classifications);
-      this.classifications = this.eggBase.classifications;
-      this.eggBases.push(eggBase);
+      //this.classifications = this.eggBase.classifications;
+      //this.eggBases.push(eggBase);
     })
     .catch(error => this.errorHandler.handle(error));
   }
@@ -82,7 +85,7 @@ export class ClassificationsEditComponent implements OnInit {
 
   save(form: FormControl) {
     if (this.editing) {
-      this.update(form);
+      this.create(form);
     } else {
       this.create (form);
     }
