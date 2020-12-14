@@ -4,10 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
 import { ClassificationsService } from './../service/classifications.service';
-import { Classification, EggBase, EggType, Product } from './../../core/model';
+import { Classification, EggBase} from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { EggTypesService } from '../service/egg-types.service';
-import { ProductsService } from '../service/products.service';
 
 @Component({
   selector: 'app-classifications-edit',
@@ -26,7 +25,6 @@ export class ClassificationsEditComponent implements OnInit {
   products = [];
   quantitys = [];
 
-
   constructor(
     private classificationsService: ClassificationsService,
     private eggTypesService: EggTypesService,
@@ -37,32 +35,32 @@ export class ClassificationsEditComponent implements OnInit {
     private eggBasesService: EggBasesService) { }
 
   ngOnInit() {
-    this.loadEggTypes();
+    //this.loadEggTypes();
     //console.log(this.eggTypes);
     const eggBaseId = this.route.snapshot.params[`${'id'}`];
 
-
     if (eggBaseId) {
+      this.eggBase = new EggBase();
       this.loadEggBase(eggBaseId);
 
+
+      console.log(this.eggBase);
     }
 
-  }
 
+  }
 
   get editing() {
-    console.log(this.eggBase.id);
     return Boolean(this.eggBase.id);
   }
-
 
   loadEggBase(id: number) {
 
     this.eggBasesService.findById(id)
     .then (eggBase => {
       this.eggBase = eggBase;
-      //this.classifications = this.eggBase.classifications;
-      //this.eggBases.push(eggBase);
+      this.classifications = this.eggBase.classifications;
+      this.eggBases.push(eggBase);
     })
     .catch(error => this.errorHandler.handle(error));
   }
