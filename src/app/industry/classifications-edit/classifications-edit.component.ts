@@ -16,7 +16,6 @@ import { EggTypesService } from '../service/egg-types.service';
 export class ClassificationsEditComponent implements OnInit {
 
   classification = new Classification();
-  classificationAux: Classification;
   showEggBaseForm = false;
   eggBase: EggBase;
   classifications: Classification[];
@@ -27,7 +26,6 @@ export class ClassificationsEditComponent implements OnInit {
 
   constructor(
     private classificationsService: ClassificationsService,
-    private eggTypesService: EggTypesService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
@@ -35,19 +33,12 @@ export class ClassificationsEditComponent implements OnInit {
     private eggBasesService: EggBasesService) { }
 
   ngOnInit() {
-    //this.loadEggTypes();
-    //console.log(this.eggTypes);
     const eggBaseId = this.route.snapshot.params[`${'id'}`];
 
     if (eggBaseId) {
       this.eggBase = new EggBase();
       this.loadEggBase(eggBaseId);
-
-
-      console.log(this.eggBase);
     }
-
-
   }
 
   get editing() {
@@ -63,22 +54,6 @@ export class ClassificationsEditComponent implements OnInit {
       this.eggBases.push(eggBase);
     })
     .catch(error => this.errorHandler.handle(error));
-  }
-
-
-  loadEggTypes() {
-    return this.eggTypesService.listAll()
-      .then(eggTypes => {
-        this.eggTypes = eggTypes;
-        this.classifications = new Array<Classification>();
-        for (const eggType of this.eggTypes) {
-          this.classificationAux = new Classification();
-          this.classificationAux.eggType = eggType;
-          // this.classificationAux.quantity = 0;
-          this.classifications.push(this.classificationAux);
-        }
-      })
-      .catch(error => this.errorHandler.handle(error));
   }
 
   save(form: FormControl) {

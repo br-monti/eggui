@@ -35,7 +35,6 @@ export class ClassificationsListComponent implements OnInit {
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
     private errorHandler: ErrorHandlerService,
-    private classificationsService: ClassificationsService,
     private eggLotsService: EggLotsService,
     ) { }
 
@@ -46,14 +45,6 @@ export class ClassificationsListComponent implements OnInit {
   findByFilter(page = 0) {
     this.filter.page = page;
 
-  //   this.classificationsService.findByFilter(this.filter)
-  //     .then(result => {
-  //       this.totalRegisters = result.total;
-  //       this.classifications = result.classifications;
-  //     })
-  //     .catch(error => this.errorHandler.handle(error));
-  // }
-
     this.eggBasesService.findByFilter(this.filter)
     .then(result => {
       this.totalRegisters = result.total;
@@ -62,8 +53,6 @@ export class ClassificationsListComponent implements OnInit {
     })
     .catch(error => this.errorHandler.handle(error));
   }
-
-
 
   onChangePage(event: LazyLoadEvent) {
     const page = event.first / event.rows;
@@ -83,17 +72,6 @@ export class ClassificationsListComponent implements OnInit {
     });
   }
 
-  // loadClassifications() {
-  //   return this.classificationsService.listAll()
-  //     .then(classifications => {
-  //       this.classificationsService = classifications
-  //         .map(c => {
-  //           return ({ label: c.quantity, value: c.id });
-  //         });
-  //     })
-  //     .catch(error => this.errorHandler.handle(error));
-  // }
-
   loadEggLots() {
     return this.eggLotsService.listAll()
       .then(eggLots => {
@@ -104,17 +82,6 @@ export class ClassificationsListComponent implements OnInit {
       })
       .catch(error => this.errorHandler.handle(error));
   }
-
-  // loadEggBases() {
-  //   return this.eggBasesService.listAll()
-  //     .then(eggBases => {
-  //       this.eggBases = eggBases
-  //         .map(c => {
-  //           return ({ label: c.eggLot.name, value: c.id});
-  //         });
-  //     })
-  //     .catch(error => this.errorHandler.handle(error));
-  // }
 
   new(form: FormControl) {
     form.reset();
