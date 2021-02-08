@@ -35,8 +35,8 @@ export class NavbarComponent implements OnInit {
             {label: 'Lote de Ovos', routerLink: '/EggLots'},
             {label: 'Recepção', routerLink: '/EggBases'},
             {label: 'Classificação', routerLink: '/Classifications'},
-            {label: 'Embalagens', routerLink: '/Packings'},
-            {label: 'Produtos', routerLink: '/Products'}
+            {label: 'Produtos', routerLink: '/Products'},
+            {label: 'Embalagens', routerLink: '/Packings'}
           ]
       }
   ];
