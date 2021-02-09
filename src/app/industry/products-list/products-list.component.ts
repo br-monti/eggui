@@ -1,3 +1,5 @@
+import { EggLotsService } from './../service/egg-lots.service';
+import { EggBasesFilter, EggBasesService } from './../service/egg-bases.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductsFilter, ProductsService } from '../service/products.service';
 import { Table } from 'primeng/table/table';
@@ -15,36 +17,41 @@ import { FormControl } from '@angular/forms';
 })
 export class ProductsListComponent implements OnInit {
 
-  filter = new ProductsFilter();
+  filter = new EggBasesFilter();
   totalRegisters = 0;
   @ViewChild('table', { static: true }) grid: Table;
 
-  products = [];
-  eggTypes = [];
-  packings = [];
+  eggBases = [];
+  classifications = [];
+  eggLots = [];
+
+  button = true;
+
+  buttonName = 'Selecionar';
+  icon = 'pi pi-plus';
 
   constructor(
-    private productsService: ProductsService,
+    private eggBasesService: EggBasesService,
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
     private errorHandler: ErrorHandlerService,
-    private eggTypesService: EggTypesService,
-    private packingsService: PackingsService
+    private eggLotsService: EggLotsService,
     ) { }
 
   ngOnInit() {
-    this.loadEggTypes();
-    this.loadPackings();
+    this.loadEggLots();
   }
 
   findByFilter(page = 0) {
     this.filter.page = page;
-    this.productsService.findByFilter(this.filter)
-      .then(result => {
-        this.totalRegisters = result.total;
-        this.products = result.products;
-      })
-      .catch(error => this.errorHandler.handle(error));
+
+    this.eggBasesService.findByFilter(this.filter)
+    .then(result => {
+      this.totalRegisters = result.total;
+      this.eggBases = result.eggBases;
+
+    })
+    .catch(error => this.errorHandler.handle(error));
   }
 
   onChangePage(event: LazyLoadEvent) {
@@ -56,30 +63,19 @@ export class ProductsListComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir?',
       accept: () => {
-        this.productsService.delete(eggBase.id)
+        this.eggBasesService.delete(eggBase.id)
           .then(() => {
             this.grid.reset();
-            this.toasty.success('Produto excluído com sucesso');
+            this.toasty.success('Classificação excluída com sucesso');
           });
       }
     });
   }
 
-  loadEggTypes() {
-    return this.eggTypesService.listAll()
-      .then(eggTypes => {
-        this.eggTypes = eggTypes
-          .map(c => {
-            return ({ label: c.type, value: c.id });
-          });
-      })
-      .catch(error => this.errorHandler.handle(error));
-  }
-
-  loadPackings() {
-    return this.packingsService.listAll()
-      .then(packings => {
-        this.packings = packings
+  loadEggLots() {
+    return this.eggLotsService.listAll()
+      .then(eggLots => {
+        this.eggLots = eggLots
           .map(c => {
             return ({ label: c.name, value: c.id });
           });
@@ -92,6 +88,4 @@ export class ProductsListComponent implements OnInit {
     this.findByFilter();
   }
 
-
 }
-
