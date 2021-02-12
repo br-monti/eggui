@@ -1,9 +1,11 @@
+import { EggBasesService } from './../service/egg-bases.service';
+import { ClassificationsService } from './../service/classifications.service';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
 import { ProductsService } from './../service/products.service';
-import { Product, EggType, Packing } from './../../core/model';
+import { Product, EggType, Packing, Classification, EggBase } from './../../core/model';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { EggTypesService } from '../service/egg-types.service';
 import { PackingsService } from '../service/packings.service';
@@ -16,115 +18,87 @@ import { PackingsService } from '../service/packings.service';
 
 export class ProductsEditComponent implements OnInit {
 
-  product = new Product();
-  eggTypes: EggType[];
-  packings: Packing[];
-
-  eggTypeSelected: EggType;
-  packingSelected: Packing;
+  classification = new Classification();
+  showEggBaseForm = false;
+  eggBase: EggBase;
+  classifications: Classification[];
+  eggBases = [];
+  eggTypes = [];
+  products = [];
+  quantitys = [];
 
   constructor(
-    private productsService: ProductsService,
+    private classificationsService: ClassificationsService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
     private router: Router,
-    private eggTypesService: EggTypesService,
-    private packingsService: PackingsService) { }
+    private eggBasesService: EggBasesService) { }
 
   ngOnInit() {
-    const productId = this.route.snapshot.params[`${'id'}`];
+    const eggBaseId = this.route.snapshot.params[`${'id'}`];
 
-    if (productId) {
-      this.loadProduct(productId);
+    if (eggBaseId) {
+      this.eggBase = new EggBase();
+      this.loadEggBase(eggBaseId);
     }
-
-    this.loadEggTypes();
-    this.loadPackings();
   }
 
   get editing() {
-    return Boolean(this.product.id);
+    return Boolean(this.eggBase.id);
   }
 
-  loadProduct(id: number) {
-    this.productsService.findById(id)
-    .then (product => {
-      this.product = product;
-      this.eggTypeSelected = this.product.eggType;
-      this.packingSelected = this.product.packing;
+  loadEggBase(id: number) {
 
-    })
-    .catch(error => this.errorHandler.handle(error));
+    this.eggBasesService.findById(id)
+      .then(eggBase => {
+        this.eggBase = eggBase;
+        this.classifications = this.eggBase.classifications;
+        this.eggBases.push(eggBase);
+      })
+      .catch(error => this.errorHandler.handle(error));
   }
 
   save(form: FormControl) {
-
-    this.product.eggType = this.eggTypeSelected;
-    this.product.packing = this.packingSelected;
-    this.product.nick = `${this.eggTypeSelected.type} ${this.packingSelected.name}`;
-
     if (this.editing) {
-      this.update(form);
+      this.create(form);
     } else {
-      this.create (form);
+      this.create(form);
     }
-
   }
 
-  create(form: FormControl)  {
+  create(form: FormControl) {
 
-    this.productsService.create(this.product)
-    .then(() => {
-      this.toasty.success('Produto adicionado com sucesso');
-      this.router.navigate(['/Products']);
-    })
-    .catch(error => this.errorHandler.handle(error));
+    this.eggBase.classifications = this.classifications;
+    this.eggBase.industryStatus = 'Classification';
+    this.eggBasesService.update(this.eggBase)
+
+      .then(() => {
+        this.toasty.success('Classificação adicionada com sucesso');
+        this.router.navigate(['/Classifications']);
+      })
+      .catch(error => this.errorHandler.handle(error));
   }
 
   update(form: FormControl) {
-    this.productsService.update(this.product)
-    .then(product  => {
-      this.product = product;
-      this.toasty.success('Produto alterado com sucesso');
-      this.router.navigate(['/Products']);
-    })
-    .catch(error => this.errorHandler.handle(error));
+    this.classificationsService.update(this.classification)
+      .then(classification => {
+        this.classification = classification;
+        this.toasty.success('Classificação alterada com sucesso"');
+        this.router.navigate(['/Classifications']);
+      })
+      .catch(error => this.errorHandler.handle(error));
   }
 
   new(form: FormControl) {
     form.reset();
-    setTimeout(function() {
-      this.product = new Product();
+
+    setTimeout(function () {
+      this.classification = new Classification();
     }.bind(this), 1);
-    this.router.navigate(['/Products/new']);
+
+    this.router.navigate(['/Classifications/new']);
   }
 
-  loadEggTypes() {
-    return this.eggTypesService.listAll()
-      .then(eggTypes => {
-        this.eggTypes = eggTypes
-          .map(c => {
-            return ({ label: c.type, value: {id: c.id, type: c.type,
-              category: c.category, minWeight: c.minWeight, maxWeight: c.maxWeight}});
-          });
-      })
-      .catch(error => this.errorHandler.handle(error));
-  }
-
-  loadPackings() {
-    return this.packingsService.listAll()
-      .then(packings => {
-        this.packings = packings
-          .map(c => {
-            return ({ label: c.name, value: {id: c.id, name: c.name, packingType: c.packingType,
-              quantityByPacking: c.quantityByPacking, packingByBox: c.packingByBox,
-               quantityByBox: c.quantityByBox }});
-          });
-      })
-      .catch(error => this.errorHandler.handle(error));
-  }
 
 }
-
-

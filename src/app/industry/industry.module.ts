@@ -15,6 +15,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import {TabViewModule} from 'primeng/tabview';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EggBasesEditComponent } from './egg-bases-edit/egg-bases-edit.component';
@@ -29,15 +30,15 @@ import { ProductsEditComponent } from './products-edit/products-edit.component';
 
 
 @NgModule({
-  declarations: [EggLotsListComponent, 
-    EggLotsEditComponent, 
-    EggBasesEditComponent, 
+  declarations: [EggLotsListComponent,
+    EggLotsEditComponent,
+    EggBasesEditComponent,
     EggBasesListComponent,
-     ClassificationsListComponent, 
-     ClassificationsEditComponent, 
-     PackingsListComponent, 
-     PackingsEditComponent, 
-     ProductsListComponent, 
+     ClassificationsListComponent,
+     ClassificationsEditComponent,
+     PackingsListComponent,
+     PackingsEditComponent,
+     ProductsListComponent,
      ProductsEditComponent],
   imports: [
     FormsModule,
@@ -49,6 +50,7 @@ import { ProductsEditComponent } from './products-edit/products-edit.component';
     TableModule,
     TooltipModule,
     SelectButtonModule,
+    TabViewModule,
     RouterModule,
     SharedModule,
     DropdownModule,
