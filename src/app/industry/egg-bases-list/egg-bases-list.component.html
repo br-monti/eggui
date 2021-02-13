@@ -62,8 +62,8 @@
         </ng-template>
         <ng-template pTemplate="body" let-eggBase>
             <tr>
-                <td class="col-data" >{{eggBase.name}}</td>
-                <td class="col-data" >{{eggBase.boxColor}}</td>
+                <td class="col-data" >{{eggBase.eggLot.name}}</td>
+                <td class="col-data" >{{eggBase.eggLot.boxColor}}</td>
                 <td class="col-data" >{{eggBase.quantity}}</td>
                 <td class="col-data">{{eggBase.productionDate | date:'dd/MM/yyyy'}}</td>
                 <td class="col-data">{{eggBase.validityDate | date:'dd/MM/yyyy'}}</td>
