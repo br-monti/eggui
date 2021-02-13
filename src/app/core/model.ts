@@ -96,10 +96,17 @@ export class EggType {
   maxWeight: number;
 }
 
+export class Product {
+  id: number;
+  quantity: number;
+  packing = new Packing();
+}
+
 export class Classification {
   id: number;
   quantity: number;
   eggType = new EggType();
+  products = new Array<Product>();
   // eggBase = new EggBase();
 }
 
@@ -112,9 +119,4 @@ export class Packing {
   quantityByBox: number;
 }
 
-export class Product {
-  id: number;
-  nick: string;
-  packing = new Packing();
-  eggType = new EggType();
-}
+
