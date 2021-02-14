@@ -23,6 +23,7 @@ export class ClassificationsEditComponent implements OnInit {
   eggTypes = [];
   products = [];
   quantitys = [];
+  remaining: number;
 
   constructor(
     private classificationsService: ClassificationsService,
@@ -40,6 +41,16 @@ export class ClassificationsEditComponent implements OnInit {
       this.loadEggBase(eggBaseId);
     }
   }
+
+  onChange($event, ri) {
+    console.log($event.target.value);
+    this.quantitys[ri] = $event.target.value;
+
+    this.quantitys.forEach(quantity => {
+      this.remaining = this.eggBase.quantity - quantity
+    });
+
+}
 
   get editing() {
     return Boolean(this.eggBase.id);

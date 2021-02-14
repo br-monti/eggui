@@ -44,6 +44,7 @@
           </div>
         </p-panel>
 
+        {{remaining}}
         <div class="ui-g-12">
           <p-table [value]="classifications" [responsive]="true">
             <ng-template pTemplate="header">
@@ -53,13 +54,13 @@
               </tr>
             </ng-template>
 
-            <ng-template pTemplate="body" let-classification >
+            <ng-template pTemplate="body" let-classification let-ri="rowIndex">
               <tr>
                 <td class="col-data" >{{classification.eggType.type}}</td>
                 <td pEditableColumn>
                   <p-cellEditor>
                       <ng-template pTemplate="input">
-                          <input pInputText type="text" [(ngModel)]="classification.quantity" name="quantity">
+                          <input pInputText type="text" [(ngModel)]="classification.quantity" name="quantity" (change)="onChange($event, ri)">
                       </ng-template>
                       <ng-template pTemplate="output">
                           {{classification.quantity}}
@@ -80,14 +81,33 @@
           </p-table>
         </div>
 
-      </div>
-
-        <!-- <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let product of products">
+        <!-- <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let classification of classifications">
+          <label>{{classification.eggType.type}}</label>
+          <input pInputText type="text" name="quantity"
+            [(ngModel)]="classification.quantity"
+            required>
+        </div> -->
+                <!-- <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let product of products">
           <label>{{product.nick}}</label>
           <input pInputText type="text" name="quantity"
             [(ngModel)]="quantity[product.id]"
             required>
         </div> -->
+
+        <!-- <div *ngFor="let classification of classifications; let i = index">
+          <input (change)="onChange($event, i)">
+       </div> -->
+
+        <div class="ui-g-3 ui-fluid">
+          <label>Categoria B</label>
+          <input pInputText type="text" name="name" [(ngModel)]="eggBase.categoryB">
+        </div>
+        <div class="ui-g-3 ui-fluid">
+          <label>Descarte</label>
+          <input pInputText type="text" name="packingType" [(ngModel)]="eggBase.discard">
+        </div>
+
+      </div>
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" [disabled]="f.invalid"
