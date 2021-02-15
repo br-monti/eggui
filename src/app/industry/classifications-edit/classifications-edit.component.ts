@@ -40,17 +40,20 @@ export class ClassificationsEditComponent implements OnInit {
       this.eggBase = new EggBase();
       this.loadEggBase(eggBaseId);
     }
+
+
   }
 
-  onChange($event, ri) {
-    console.log($event.target.value);
-    this.quantitys[ri] = $event.target.value;
+//   onChange($event, ri) {
+//     //console.log($event.target.value);
+//     this.quantitys[ri] = $event.target.value;
 
-    this.quantitys.forEach(quantity => {
-      this.remaining = this.eggBase.quantity - quantity
-    });
+//     this.quantitys.forEach(quantity => {
+//       this.remaining = this.eggBase.quantity - quantity;
+//       console.log(this.remaining);
+//     });
 
-}
+// }
 
   get editing() {
     return Boolean(this.eggBase.id);

@@ -21,11 +21,11 @@
                   </tr>
                 </ng-template>
 
-                <ng-template pTemplate="body" let-eggBase >
+                <ng-template pTemplate="body" let-eggBase>
                   <tr>
-                    <td class="col-data" >{{eggBase.eggLot.name}}</td>
-                    <td class="col-data" >{{eggBase.eggLot.boxColor}}</td>
-                    <td class="col-data" >{{eggBase.quantity}}</td>
+                    <td class="col-data">{{eggBase.eggLot.name}}</td>
+                    <td class="col-data">{{eggBase.eggLot.boxColor}}</td>
+                    <td class="col-data">{{eggBase.quantity}}</td>
                     <td class="col-data">{{eggBase.productionDate | date:'dd/MM/yyyy'}}</td>
                     <td class="col-data">{{eggBase.validityDate | date:'dd/MM/yyyy'}}</td>
 
@@ -44,7 +44,6 @@
           </div>
         </p-panel>
 
-        {{remaining}}
         <div class="ui-g-12">
           <p-table [value]="classifications" [responsive]="true">
             <ng-template pTemplate="header">
@@ -56,17 +55,18 @@
 
             <ng-template pTemplate="body" let-classification let-ri="rowIndex">
               <tr>
-                <td class="col-data" >{{classification.eggType.type}}</td>
+                <td class="col-data">{{classification.eggType.type}}</td>
                 <td pEditableColumn>
                   <p-cellEditor>
-                      <ng-template pTemplate="input">
-                          <input pInputText type="text" [(ngModel)]="classification.quantity" name="quantity" (change)="onChange($event, ri)">
-                      </ng-template>
-                      <ng-template pTemplate="output">
-                          {{classification.quantity}}
-                      </ng-template>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="classification.quantity" name="quantity"
+                        (change)="onChange($event, ri)">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{classification.quantity}}
+                    </ng-template>
                   </p-cellEditor>
-              </td>
+                </td>
 
               </tr>
             </ng-template>
@@ -81,13 +81,13 @@
           </p-table>
         </div>
 
-        <!-- <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let classification of classifications">
+        <!-- <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let classification of classifications; let i=index">
           <label>{{classification.eggType.type}}</label>
+          <label>{{classification.quantity}}</label>
           <input pInputText type="text" name="quantity"
-            [(ngModel)]="classification.quantity"
-            required>
+            [(ngModel)]="classification.quantity">
         </div> -->
-                <!-- <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let product of products">
+        <!-- <div class="ui-g-12 ui-md-3 ui-fluid" *ngFor="let product of products">
           <label>{{product.nick}}</label>
           <input pInputText type="text" name="quantity"
             [(ngModel)]="quantity[product.id]"
@@ -110,12 +110,12 @@
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"
-        class="espaco-icones" icon="pi pi-save"></button>
-        <button pButton type="button" label="Limpar"
-        class="ui-button-info" (click)="new(f)" class="espaco-icones" icon="pi pi-times"></button>
-        <button pButton type="button" label="Voltar"
-        class="ui-button-info" routerLink="/Classifications" class="espaco-icones" icon="pi pi-undo"></button>
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid" class="espaco-icones"
+          icon="pi pi-save"></button>
+        <button pButton type="button" label="Limpar" class="ui-button-info" (click)="new(f)" class="espaco-icones"
+          icon="pi pi-times"></button>
+        <button pButton type="button" label="Voltar" class="ui-button-info" routerLink="/Classifications"
+          class="espaco-icones" icon="pi pi-undo"></button>
       </div>
     </div>
 
@@ -123,5 +123,5 @@
 </div>
 
 <p-dialog header="Adicionar Matéria Prima" [(visible)]="showEggBaseForm" modal="modal" [style]="{width: '50vw'}">
-    <app-egg-bases-list [isSelect]="true" (eggBaseResponse)="receiverFeedback($event)"></app-egg-bases-list>
+  <app-egg-bases-list [isSelect]="true" (eggBaseResponse)="receiverFeedback($event)"></app-egg-bases-list>
 </p-dialog>
