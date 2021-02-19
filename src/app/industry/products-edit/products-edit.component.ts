@@ -55,12 +55,12 @@ export class ProductsEditComponent implements OnInit {
     this.eggBasesService.findById(id)
       .then(eggBase => {
         this.eggBase = eggBase;
+        this.classifications = this.eggBase.classifications;
+        // this.eggBase.classifications.forEach(classification => {
+        //   classification.products = this.products;
+        // });
 
-        this.eggBase.classifications.forEach(classification => {
-          classification.products = this.products;
-        });
-
-        console.log(this.eggBases);
+        //console.log(this.eggBases);
         this.eggBases.push(eggBase);
       })
       .catch(error => this.errorHandler.handle(error));

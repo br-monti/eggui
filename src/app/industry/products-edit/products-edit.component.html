@@ -47,7 +47,7 @@
 
       <div class="ui-g-12">
         <p-tabView>
-          <p-tabPanel [header]="classification.eggType.type" *ngFor="let classification of classifications">
+          <p-tabPanel [header]="classification.eggType.type" *ngFor="let classification of eggBase.classifications">
             {{classification.quantity}}
 
               <p-table [value]="classification.products" [responsive]="true">
