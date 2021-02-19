@@ -24,7 +24,7 @@ export class ProductsEditComponent implements OnInit {
   classifications: Classification[];
   eggBases = [];
   eggTypes = [];
-  products: Product[];;
+  products: Product[];
   quantitys = [];
 
   constructor(
@@ -34,15 +34,16 @@ export class ProductsEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private eggBasesService: EggBasesService,
-    private productsService: ProductsService){ }
+    private productsService: ProductsService) { }
 
   ngOnInit() {
     const eggBaseId = this.route.snapshot.params[`${'id'}`];
-
+    this.loadProducts();
     if (eggBaseId) {
       this.eggBase = new EggBase();
       this.loadEggBase(eggBaseId);
     }
+
   }
 
   get editing() {
@@ -54,7 +55,12 @@ export class ProductsEditComponent implements OnInit {
     this.eggBasesService.findById(id)
       .then(eggBase => {
         this.eggBase = eggBase;
-        this.classifications = this.eggBase.classifications;
+
+        this.eggBase.classifications.forEach(classification => {
+          classification.products = this.products;
+        });
+
+        console.log(this.eggBases);
         this.eggBases.push(eggBase);
       })
       .catch(error => this.errorHandler.handle(error));
@@ -64,9 +70,6 @@ export class ProductsEditComponent implements OnInit {
     return this.productsService.listAll()
       .then(products => {
         this.products = products
-          // .map(c => {
-          //   return ({ label: c.name, value: c.id });
-          // });
       })
       .catch(error => this.errorHandler.handle(error));
   }

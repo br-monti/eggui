@@ -59,8 +59,7 @@
                 <td pEditableColumn>
                   <p-cellEditor>
                     <ng-template pTemplate="input">
-                      <input pInputText type="text" [(ngModel)]="classification.quantity" name="quantity"
-                        (change)="onChange($event, ri)">
+                      <input pInputText type="text" [(ngModel)]="classification.quantity" name="quantity">
                     </ng-template>
                     <ng-template pTemplate="output">
                       {{classification.quantity}}
