@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
 import { ClassificationsService } from './../service/classifications.service';
-import { Classification, EggBase, EggType } from './../../core/model';
+import { Classif, Classification, EggBase, EggType } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -17,6 +17,8 @@ export class ClassificationsEditComponent implements OnInit {
 
   classification = new Classification();
   eggBase: EggBase;
+  classif = new Classif();
+  classifications = [];
   eggBases = [];
   eggTypes = [];
 
@@ -30,16 +32,13 @@ export class ClassificationsEditComponent implements OnInit {
     private eggTypesService: EggTypesService) { }
 
   ngOnInit() {
+    this.loadEggTypes();
     const eggBaseId = this.route.snapshot.params[`${'id'}`];
 
     if (eggBaseId) {
       this.eggBase = new EggBase();
       this.loadEggBase(eggBaseId);
     }
-
-    this.loadEggTypes();
-    console.log(this.eggTypes);
-
   }
 
   get editing() {
@@ -55,10 +54,32 @@ export class ClassificationsEditComponent implements OnInit {
       .catch(error => this.errorHandler.handle(error));
   }
 
+  // loadEggTypes() {
+  //   return this.eggTypesService.listAll()
+  //     .then(eggTypes => {
+  //       this.eggTypes = eggTypes
+  //       .map(c => {
+  //          return ({ label: c.type, value: c.id });
+  //        });
+  //       eggTypes.forEach(eggType => {
+  //         this.classif.eggType = eggType;
+  //         this.classif.quantity = 0;
+  //         this.classifications.push(this.classif);
+  //       });
+  //     })
+  //     .catch(error => this.errorHandler.handle(error));
+  // }
+
   loadEggTypes() {
     return this.eggTypesService.listAll()
-      .then(eggTypes => {
-        this.eggTypes = eggTypes;
+      .then(result => {
+        this.eggTypes = result.eggTypes;
+        this.eggTypes.forEach(eggType => {
+          this.classif = new Classif();
+          this.classif.eggType = eggType;
+          this.classif.quantity = 0;
+          this.classifications.push(this.classif);
+        });
       })
       .catch(error => this.errorHandler.handle(error));
   }

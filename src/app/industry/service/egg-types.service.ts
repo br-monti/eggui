@@ -93,14 +93,31 @@ export class EggTypesService {
       .then(response => {
         const eggType = response as EggType;
         return eggType;
-      } );
+      });
   }
 
-  listAll(): Promise<any> {
-    return this.http.get(this.eggTypesUrl)
-      .toPromise()
-      .then(response => response[`${'content'}`]);
 
+  // listAll(): Promise<any> {
+  //   return this.http.get(this.eggTypesUrl)
+  //     .toPromise()
+  //     .then(response => response[`${'content'}`]);
+
+  // }
+
+  listAll(): Promise<any> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.get(this.eggTypesUrl , {headers})
+      .toPromise()
+      .then(response => {
+        const eggTypes = response[`${'content'}`];
+        const result = {
+          eggTypes,
+          total: response[`${'totalElements'}`]
+        };
+        return result;
+      });
   }
 
 }

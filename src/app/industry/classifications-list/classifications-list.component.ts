@@ -49,6 +49,7 @@ export class ClassificationsListComponent implements OnInit {
     .then(result => {
       this.totalRegisters = result.total;
       this.eggBases = result.eggBases;
+      console.log(this.eggBases);
 
     })
     .catch(error => this.errorHandler.handle(error));

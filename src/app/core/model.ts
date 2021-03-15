@@ -110,6 +110,14 @@ export class Classification {
   // eggBase = new EggBase();
 }
 
+export class Classif {
+  id: number;
+  quantity: number;
+  eggType = new EggType();
+  //products = new Array<Product>();
+  // eggBase = new EggBase();
+}
+
 export class Packing {
   id: number;
   name: string;
