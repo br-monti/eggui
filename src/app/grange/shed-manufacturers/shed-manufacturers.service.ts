@@ -13,7 +13,7 @@ export class ShedManufacturerService {
   listAll(): Promise<any> {
     return this.http.get(this.shedManufacturersUrl)
       .toPromise()
-      .then(response => response);
+      .then(response => response[`${'content'}`]);
   }
 
 }
