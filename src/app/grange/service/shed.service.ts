@@ -1,5 +1,5 @@
-import { Shed } from '../../core/model';
-import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
+import { Shed, ShedInput } from '../../core/model';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
@@ -15,39 +15,38 @@ export class ShedsFilter {
 })
 export class ShedService {
 
-  shedsUrl  = 'http://localhost:8080/Sheds';
+  shedsUrl = 'http://localhost:8080/Sheds';
+  shedInput = new ShedInput();
 
   constructor(private http: HttpClient) { }
 
   findByFilter(filter: ShedsFilter): Promise<any> {
     let params = new HttpParams();
 
-
     params = params.set('page', filter.page.toString());
     params = params.set('size', filter.itensByPage.toString());
 
-
     if (filter.name) {
-      params =  params.set('name', filter.name);
+      params = params.set('name', filter.name);
     }
 
-    return this.http.get(`${this.shedsUrl}`, {params})
-    .toPromise()
-    .then(response => {
-      const sheds = response[`${'content'}`];
-      const result = {
-        sheds,
-        total: response[`${'totalElements'}`]
-      };
-      return result;
-    });
+    return this.http.get(`${this.shedsUrl}`, { params })
+      .toPromise()
+      .then(response => {
+        const sheds = response[`${'content'}`];
+        const result = {
+          sheds,
+          total: response[`${'totalElements'}`]
+        };
+        return result;
+      });
   }
 
   delete(id: number): Promise<void> {
 
     return this.http.delete(`${this.shedsUrl}/${id}`)
-    .toPromise()
-    .then(() => null);
+      .toPromise()
+      .then(() => null);
 
   }
 
@@ -55,40 +54,52 @@ export class ShedService {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
 
+    this.toInput(shed);
+
     return this.http.post<Shed>(
-      this.shedsUrl, shed, {headers})
+      this.shedsUrl, this.shedInput, { headers })
       .toPromise();
   }
 
-    update(shed: Shed): Promise<Shed> {
-      let headers = new HttpHeaders();
-      headers = headers.append('Content-Type', 'application/json');
+  update(shed: Shed): Promise<Shed> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
 
-      return this.http.put<Shed>(
-        `${this.shedsUrl}/${shed.id}`, shed, { headers })
-        .toPromise()
-        .then(response => {
-          const shedUpdated = response as Shed;
-          return shedUpdated;
-        });
-    }
+    this.toInput(shed);
 
-      findById(id: number): Promise<Shed> {
-        let headers = new HttpHeaders();
-        headers = headers.append('Content-Type', 'application/json');
+    return this.http.put<Shed>(
+      `${this.shedsUrl}/${shed.id}`, this.shedInput, { headers })
+      .toPromise()
+      .then(response => {
+        const shedUpdated = response as Shed;
+        return shedUpdated;
+      });
+  }
 
-        return this.http.get(`${this.shedsUrl}/${id}` , {headers})
-          .toPromise()
-          .then(response => {
-            const shed = response as Shed;
-            return shed;
-          } );
-      }
+  findById(id: number): Promise<Shed> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
 
-      listAll(): Promise<any> {
-        return this.http.get(this.shedsUrl)
-          .toPromise()
-          .then(response => response[`${'content'}`]);
-      }
+    return this.http.get(`${this.shedsUrl}/${id}`, { headers })
+      .toPromise()
+      .then(response => {
+        const shed = response as Shed;
+        return shed;
+      });
+  }
 
- }
+  listAll(): Promise<any> {
+    return this.http.get(this.shedsUrl)
+      .toPromise()
+      .then(response => response[`${'content'}`]);
+  }
+
+  toInput(shed: Shed) {
+    this.shedInput.name = shed.name;
+    this.shedInput.type = shed.type;
+    this.shedInput.capacity = shed.capacity;
+    this.shedInput.model = shed.model;
+    this.shedInput.shedManufacturer.id = shed.shedManufacturer.id;
+  }
+
+}

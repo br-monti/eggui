@@ -22,6 +22,14 @@ export class Shed {
   shedManufacturer = new ShedManufacturer();
 }
 
+export class ShedInput {
+  name: string;
+  type: string;
+  capacity: number;
+  model: string;
+  shedManufacturer = new ShedManufacturer();
+}
+
 export class ShedManufacturer {
   id: number;
   manufacturer: string;
