@@ -17,8 +17,7 @@ export class ChickenLineageFilter {
 export class ChickenLineagesService {
 
   chickenLineagesUrl  = 'http://localhost:8080/ChickenLineages';
-
-
+  chickenLineageInput = new ChickenLineageInput();
 
   constructor(private http: HttpClient) { }
 
@@ -56,13 +55,10 @@ export class ChickenLineagesService {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
 
-    let chickenLineageInput = new ChickenLineageInput();
-    chickenLineageInput.chickenColor = chickenLineage.chickenColor;
-    chickenLineageInput.lineage = chickenLineage.lineage;
-    chickenLineageInput.provider = chickenLineage.provider;
+    this.toInput(chickenLineage);
 
     return this.http.post<ChickenLineage>(
-      this.chickenLineagesUrl, chickenLineageInput, {headers})
+      this.chickenLineagesUrl, this.chickenLineageInput, {headers})
       .toPromise();
   }
 
@@ -70,13 +66,10 @@ export class ChickenLineagesService {
       let headers = new HttpHeaders();
       headers = headers.append('Content-Type', 'application/json');
       
-      let chickenLineageInput = new ChickenLineageInput();
-      chickenLineageInput.chickenColor = chickenLineage.chickenColor;
-      chickenLineageInput.lineage = chickenLineage.lineage;
-      chickenLineageInput.provider = chickenLineage.provider;
+      this.toInput(chickenLineage);
 
       return this.http.put<ChickenLineage>(
-        `${this.chickenLineagesUrl}/${chickenLineage.id}`, chickenLineageInput, { headers })
+        `${this.chickenLineagesUrl}/${chickenLineage.id}`, this.chickenLineageInput, { headers })
         .toPromise()
         .then(response => {
           const chickenLineageUpdated = response as ChickenLineage;
@@ -100,6 +93,12 @@ export class ChickenLineagesService {
         return this.http.get(this.chickenLineagesUrl)
           .toPromise()
           .then(response => response[`${'content'}`]);
+      }
+
+      toInput(chickenLineage: ChickenLineage) {
+        this.chickenLineageInput.chickenColor = chickenLineage.chickenColor;
+        this.chickenLineageInput.lineage = chickenLineage.lineage;
+        this.chickenLineageInput.provider = chickenLineage.provider;
       }
 
  }
