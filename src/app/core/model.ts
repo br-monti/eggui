@@ -7,6 +7,12 @@ export class ChickenLineage {
   chickenColor: string;
 }
 
+export class ChickenLineageInput {
+  lineage: string;
+  provider: string;
+  chickenColor: string;
+}
+
 export class Shed {
   id: number;
   name: string;

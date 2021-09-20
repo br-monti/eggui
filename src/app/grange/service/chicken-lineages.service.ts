@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
-import { ChickenLineage } from 'src/app/core/model';
+import { ChickenLineage, ChickenLineageInput } from 'src/app/core/model';
 
 export class ChickenLineageFilter {
   lineage: string;
@@ -25,10 +25,8 @@ export class ChickenLineagesService {
   findByFilter(filter: ChickenLineageFilter): Promise<any> {
     let params = new HttpParams();
 
-
     params = params.set('page', filter.page.toString());
     params = params.set('size', filter.itensByPage.toString());
-
 
     if (filter.lineage) {
       params =  params.set('lineage', filter.lineage);
@@ -58,44 +56,27 @@ export class ChickenLineagesService {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
 
+    let chickenLineageInput = new ChickenLineageInput();
+    chickenLineageInput.chickenColor = chickenLineage.chickenColor;
+    chickenLineageInput.lineage = chickenLineage.lineage;
+    chickenLineageInput.provider = chickenLineage.provider;
+
     return this.http.post<ChickenLineage>(
-      this.chickenLineagesUrl, chickenLineage, {headers})
+      this.chickenLineagesUrl, chickenLineageInput, {headers})
       .toPromise();
   }
 
- /* update(chickenLineage: ChickenLineage): Promise<ChickenLineage> {
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-
-    return this.http.put<ChickenLineage>(
-      `${this.chickenLineagesUrl}/${chickenLineage.id}`, {headers})
-      .toPromise()
-      .then(response => {
-        const chickenLineageSaved = response as ChickenLineage;
-        console.log(chickenLineageSaved);
-        return chickenLineageSaved;
-      });
-    }
-
     update(chickenLineage: ChickenLineage): Promise<ChickenLineage> {
       let headers = new HttpHeaders();
       headers = headers.append('Content-Type', 'application/json');
-
-      return this.http.put(`${this.chickenLineagesUrl}/${chickenLineage.id}`, {headers})
-        .toPromise()
-        .then(response => {
-          const chickenlineageUpdated = response as ChickenLineage;
-
-          return chickenlineageUpdated;
-        });
-    }*/
-
-    update(chickenLineage: ChickenLineage): Promise<ChickenLineage> {
-      let headers = new HttpHeaders();
-      headers = headers.append('Content-Type', 'application/json');
+      
+      let chickenLineageInput = new ChickenLineageInput();
+      chickenLineageInput.chickenColor = chickenLineage.chickenColor;
+      chickenLineageInput.lineage = chickenLineage.lineage;
+      chickenLineageInput.provider = chickenLineage.provider;
 
       return this.http.put<ChickenLineage>(
-        `${this.chickenLineagesUrl}/${chickenLineage.id}`, chickenLineage, { headers })
+        `${this.chickenLineagesUrl}/${chickenLineage.id}`, chickenLineageInput, { headers })
         .toPromise()
         .then(response => {
           const chickenLineageUpdated = response as ChickenLineage;
