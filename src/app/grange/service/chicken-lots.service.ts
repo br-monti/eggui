@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 
 import 'rxjs/add/operator/toPromise';
-import { ChickenLot } from 'src/app/core/model';
+import { ChickenLot, ChickenLotInput } from 'src/app/core/model';
 
 export class ChickenLotsFilter {
   id: number;
@@ -20,20 +20,19 @@ export class ChickenLotsFilter {
 })
 export class ChickenLotsService {
 
-  chickenLotsUrl  = 'http://localhost:8080/ChickenLots';
+  chickenLotsUrl = 'http://localhost:8080/ChickenLots';
+  chickenLotInput = new ChickenLotInput();
 
   constructor(private http: HttpClient) { }
 
   findByFilter(filter: ChickenLotsFilter): Promise<any> {
     let params = new HttpParams();
 
-
     params = params.set('page', filter.page.toString());
     params = params.set('size', filter.itensByPage.toString());
 
-
     if (filter.id) {
-      params =  params.set('id', filter.id.toString());
+      params = params.set('id', filter.id.toString());
     }
 
     if (filter.birthDateInitial) {
@@ -48,27 +47,27 @@ export class ChickenLotsService {
     }
 
     if (filter.shed) {
-      params =  params.set('shed', filter.shed.toString());
+      params = params.set('shed', filter.shed.toString());
     }
 
-    return this.http.get(`${this.chickenLotsUrl}`, {params})
+    return this.http.get(`${this.chickenLotsUrl}`, { params })
 
-    .toPromise()
-    .then(response => {
-      const chickenLots = response[`${'content'}`];
-      const result = {
-        chickenLots,
-        total: response[`${'totalElements'}`]
-      };
-      return result;
-    });
+      .toPromise()
+      .then(response => {
+        const chickenLots = response[`${'content'}`];
+        const result = {
+          chickenLots,
+          total: response[`${'totalElements'}`]
+        };
+        return result;
+      });
   }
 
   delete(id: number): Promise<void> {
 
     return this.http.delete(`${this.chickenLotsUrl}/${id}`)
-    .toPromise()
-    .then(() => null);
+      .toPromise()
+      .then(() => null);
 
   }
 
@@ -76,58 +75,72 @@ export class ChickenLotsService {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
 
+    this.toInput(chickenLot);
+    console.log(this.chickenLotInput);
     return this.http.post<ChickenLot>(
-      this.chickenLotsUrl, chickenLot, {headers})
+      this.chickenLotsUrl, this.chickenLotInput, { headers })
       .toPromise();
   }
 
-    update(chickenLot: ChickenLot): Promise<ChickenLot> {
-      let headers = new HttpHeaders();
-      headers = headers.append('Content-Type', 'application/json');
+  update(chickenLot: ChickenLot): Promise<ChickenLot> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    console.log(this.chickenLotInput);
+    this.toInput(chickenLot);
 
-      return this.http.put<ChickenLot>(
-        `${this.chickenLotsUrl}/${chickenLot.id}`, chickenLot, { headers })
-        .toPromise()
-        .then(response => {
-          const chickenLotUpdated = response as ChickenLot;
-          this.convertStringsToDate([chickenLotUpdated]);
-          return chickenLotUpdated;
-        });
+    return this.http.put<ChickenLot>(
+      `${this.chickenLotsUrl}/${chickenLot.id}`, this.chickenLotInput, { headers })
+      .toPromise()
+      .then(response => {
+        const chickenLotUpdated = response as ChickenLot;
+        this.convertStringsToDate([chickenLotUpdated]);
+        return chickenLotUpdated;
+      });
+  }
+
+  findById(id: number): Promise<ChickenLot> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.get(`${this.chickenLotsUrl}/${id}`, { headers })
+      .toPromise()
+      .then(response => {
+        const chickenLot = response as ChickenLot;
+        this.convertStringsToDate([chickenLot]);
+        return chickenLot;
+      });
+  }
+
+  listAll(): Promise<any> {
+    return this.http.get(this.chickenLotsUrl)
+      .toPromise()
+      .then(response => response[`${'content'}`]);
+  }
+
+  private convertStringsToDate(chickenLots: ChickenLot[]) {
+    for (const chickenLot of chickenLots) {
+
+      if (chickenLot.birthDate) {
+        chickenLot.birthDate = moment(chickenLot.birthDate,
+          'YYYY-MM-DD').toDate();
+      }
+
+      if (chickenLot.accommodationDate) {
+        chickenLot.accommodationDate = moment(chickenLot.accommodationDate,
+          'YYYY-MM-DD').toDate();
+      }
     }
 
-      findById(id: number): Promise<ChickenLot> {
-        let headers = new HttpHeaders();
-        headers = headers.append('Content-Type', 'application/json');
+  }
 
-        return this.http.get(`${this.chickenLotsUrl}/${id}` , {headers})
-          .toPromise()
-          .then(response => {
-            const chickenLot = response as ChickenLot;
-            this.convertStringsToDate([chickenLot]);
-            return chickenLot;
-          } );
-      }
-
-      listAll(): Promise<any> {
-        return this.http.get(this.chickenLotsUrl)
-          .toPromise()
-          .then(response => response[`${'content'}`]);
-      }
-
-      private convertStringsToDate(chickenLots: ChickenLot[]) {
-        for (const chickenLot of chickenLots) {
-
-         if (chickenLot.birthDate) {
-          chickenLot.birthDate = moment(chickenLot.birthDate,
-            'YYYY-MM-DD').toDate();
-         }
-
-         if (chickenLot.accommodationDate) {
-            chickenLot.accommodationDate = moment(chickenLot.accommodationDate,
-              'YYYY-MM-DD').toDate();
-          }
-        }
-
-      }
+  toInput(chickenLot: ChickenLot) {
+    this.chickenLotInput.birthDate = chickenLot.birthDate;
+    this.chickenLotInput.accommodationDate = chickenLot.accommodationDate;
+    this.chickenLotInput.initialQuantity = chickenLot.initialQuantity;
+    this.chickenLotInput.currentQuantity = chickenLot.currentQuantity;
+    this.chickenLotInput.debicking = chickenLot.debicking;
+    this.chickenLotInput.chickenLineage.id = chickenLot.chickenLineage.id;
+    this.chickenLotInput.shed.id = chickenLot.shed.id;
+  }
 
 }

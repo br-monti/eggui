@@ -49,7 +49,7 @@ export class ChickenLotsEditComponent implements OnInit {
 
     this.loadChickenLineages();
     this.loadSheds();
-    this.loadEggLots();
+    //this.loadEggLots();
   }
 
   get editing() {
@@ -112,15 +112,15 @@ export class ChickenLotsEditComponent implements OnInit {
       .catch(error => this.errorHandler.handle(error));
   }
 
-  loadEggLots() {
-    return this.eggLotsService.listAll()
-      .then(eggLots => {
-        this.eggLots = eggLots
-          .map(c => ({label: c.name, value: c.id  }));
-      })
-      .catch(error => this.errorHandler.handle(error));
+  // loadEggLots() {
+  //   return this.eggLotsService.listAll()
+  //     .then(eggLots => {
+  //       this.eggLots = eggLots
+  //         .map(c => ({label: c.name, value: c.id  }));
+  //     })
+  //     .catch(error => this.errorHandler.handle(error));
 
-  }
+  // }
 
   new(form: FormControl) {
     form.reset();

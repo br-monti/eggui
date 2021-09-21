@@ -44,8 +44,16 @@ export class ChickenLot {
   debicking: string;
   chickenLineage = new ChickenLineage();
   shed =  new Shed();
-  //eggLot =  new EggLot();
+}
 
+export class ChickenLotInput {
+  birthDate: Date;
+  accommodationDate: Date;
+  initialQuantity: number;
+  currentQuantity: number;
+  debicking: string;
+  chickenLineage = new ChickenLineage();
+  shed =  new Shed();
 }
 
 export class CreationMonitoring {
