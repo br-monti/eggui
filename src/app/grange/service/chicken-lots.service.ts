@@ -76,7 +76,6 @@ export class ChickenLotsService {
     headers = headers.append('Content-Type', 'application/json');
 
     this.toInput(chickenLot);
-    console.log(this.chickenLotInput);
     return this.http.post<ChickenLot>(
       this.chickenLotsUrl, this.chickenLotInput, { headers })
       .toPromise();
@@ -85,7 +84,6 @@ export class ChickenLotsService {
   update(chickenLot: ChickenLot): Promise<ChickenLot> {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
-    console.log(this.chickenLotInput);
     this.toInput(chickenLot);
 
     return this.http.put<ChickenLot>(
@@ -141,6 +139,7 @@ export class ChickenLotsService {
     this.chickenLotInput.debicking = chickenLot.debicking;
     this.chickenLotInput.chickenLineage.id = chickenLot.chickenLineage.id;
     this.chickenLotInput.shed.id = chickenLot.shed.id;
+   // this.chickenLotInput.shed.shedManufacturer.id = chickenLot.shed.shedManufacturer.id;
   }
 
 }
