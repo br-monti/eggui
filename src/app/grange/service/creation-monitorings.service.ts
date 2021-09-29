@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
-import { CreationMonitoring } from 'src/app/core/model';
+import { CreationMonitoring, CreationMonitoringInput } from 'src/app/core/model';
 
 export class CreationMonitoringsFilter {
   id: number;
@@ -20,7 +20,8 @@ export class CreationMonitoringsFilter {
 })
 export class CreationMonitoringsService {
 
-  creationMonitoringsUrl  = 'http://localhost:8080/CreationMonitorings';
+  creationMonitoringsUrl = 'http://localhost:8080/CreationMonitorings';
+  creationMonitoringInput = new CreationMonitoringInput();
 
   constructor(private http: HttpClient) { }
 
@@ -42,27 +43,27 @@ export class CreationMonitoringsService {
     }
 
     if (filter.chickenLot) {
-      params =  params.set('chickenLot', filter.chickenLot.toString());
+      params = params.set('chickenLot', filter.chickenLot.toString());
     }
 
-    return this.http.get(`${this.creationMonitoringsUrl}`, {params})
+    return this.http.get(`${this.creationMonitoringsUrl}`, { params })
 
-    .toPromise()
-    .then(response => {
-      const creationMonitorings = response[`${'content'}`];
-      const result = {
-        creationMonitorings,
-        total: response[`${'totalElements'}`]
-      };
-      return result;
-    });
+      .toPromise()
+      .then(response => {
+        const creationMonitorings = response[`${'content'}`];
+        const result = {
+          creationMonitorings,
+          total: response[`${'totalElements'}`]
+        };
+        return result;
+      });
   }
 
   delete(id: number): Promise<void> {
 
     return this.http.delete(`${this.creationMonitoringsUrl}/${id}`)
-    .toPromise()
-    .then(() => null);
+      .toPromise()
+      .then(() => null);
 
   }
 
@@ -70,54 +71,68 @@ export class CreationMonitoringsService {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
 
+    this.toInput(creationMonitoring);
     return this.http.post<CreationMonitoring>(
-      this.creationMonitoringsUrl, creationMonitoring, {headers})
+      this.creationMonitoringsUrl, this.creationMonitoringInput, { headers })
       .toPromise();
   }
 
-    update(creationMonitoring: CreationMonitoring): Promise<CreationMonitoring> {
-      let headers = new HttpHeaders();
-      headers = headers.append('Content-Type', 'application/json');
+  update(creationMonitoring: CreationMonitoring): Promise<CreationMonitoring> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
 
-      return this.http.put<CreationMonitoring>(
-        `${this.creationMonitoringsUrl}/${creationMonitoring.id}`, creationMonitoring, { headers })
-        .toPromise()
-        .then(response => {
-          const creationMonitoringUpdated = response as CreationMonitoring;
-          this.convertStringsToDate([creationMonitoringUpdated]);
-          return creationMonitoringUpdated;
-        });
+    this.toInput(creationMonitoring);
+    return this.http.put<CreationMonitoring>(
+      `${this.creationMonitoringsUrl}/${creationMonitoring.id}`, this.creationMonitoringInput, { headers })
+      .toPromise()
+      .then(response => {
+        const creationMonitoringUpdated = response as CreationMonitoring;
+        this.convertStringsToDate([creationMonitoringUpdated]);
+        return creationMonitoringUpdated;
+      });
+  }
+
+  findById(id: number): Promise<CreationMonitoring> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.get(`${this.creationMonitoringsUrl}/${id}`, { headers })
+      .toPromise()
+      .then(response => {
+        const creationMonitoring = response as CreationMonitoring;
+        this.convertStringsToDate([creationMonitoring]);
+        return creationMonitoring;
+      });
+  }
+
+  listAll(): Promise<any> {
+    return this.http.get(this.creationMonitoringsUrl)
+      .toPromise()
+      .then(response => response[`${'content'}`]);
+  }
+
+  private convertStringsToDate(creationMonitorings: CreationMonitoring[]) {
+    for (const creationMonitring of creationMonitorings) {
+
+      if (creationMonitring.dateWeek) {
+        creationMonitring.dateWeek = moment(creationMonitring.dateWeek,
+          'YYYY-MM-DD').toDate();
+      }
+
     }
 
-      findById(id: number): Promise<CreationMonitoring> {
-        let headers = new HttpHeaders();
-        headers = headers.append('Content-Type', 'application/json');
+  }
 
-        return this.http.get(`${this.creationMonitoringsUrl}/${id}` , {headers})
-          .toPromise()
-          .then(response => {
-            const creationMonitoring = response as CreationMonitoring;
-            this.convertStringsToDate([creationMonitoring]);
-            return creationMonitoring;
-          } );
-      }
-
-      listAll(): Promise<any> {
-        return this.http.get(this.creationMonitoringsUrl)
-          .toPromise()
-          .then(response => response[`${'content'}`]);
-      }
-
-      private convertStringsToDate(creationMonitorings: CreationMonitoring[]) {
-        for (const creationMonitring of creationMonitorings) {
-
-         if (creationMonitring.dateWeek) {
-          creationMonitring.dateWeek = moment(creationMonitring.dateWeek,
-            'YYYY-MM-DD').toDate();
-         }
-
-         }
-
-      }
+  toInput(creationMonitoring: CreationMonitoring) {
+    this.creationMonitoringInput.ageWeek = creationMonitoring.ageWeek;
+    this.creationMonitoringInput.ageDay = creationMonitoring.ageDay;
+    this.creationMonitoringInput.dateWeek = creationMonitoring.dateWeek;
+    this.creationMonitoringInput.bodyWeight = creationMonitoring.bodyWeight;
+    this.creationMonitoringInput.food = creationMonitoring.food;
+    this.creationMonitoringInput.water = creationMonitoring.water;
+    this.creationMonitoringInput.discard = creationMonitoring.discard;
+    this.creationMonitoringInput.mortality = creationMonitoring.mortality;
+    this.creationMonitoringInput.chickenLot.id = creationMonitoring.chickenLot.id;
+  }
 
 }

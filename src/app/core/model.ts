@@ -56,6 +56,10 @@ export class ChickenLotInput {
   shed =  new Shed();
 }
 
+export class ChickenLotIdInput {
+  id: number;
+}
+
 export class CreationMonitoring {
   id: number;
   ageWeek: number;
@@ -67,6 +71,19 @@ export class CreationMonitoring {
   discard: number;
   mortality: number;
   chickenLot = new ChickenLot();
+
+}
+
+export class CreationMonitoringInput {
+  ageWeek: number;
+  ageDay: number;
+  dateWeek: Date;
+  bodyWeight: number;
+  food: number;
+  water: number;
+  discard: number;
+  mortality: number;
+  chickenLot = new ChickenLotIdInput();
 
 }
 
