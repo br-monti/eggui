@@ -101,6 +101,22 @@ export class ProductionMonitoring {
   firstEggs: number;
   secondEggs: number;
   eggWeight: number;
+  chickenLot = new ChickenLotIdInput();
+}
+
+export class ProductionMonitoringInput {
+  ageWeek: number;
+  ageDay: number;
+  dateWeek: Date;
+  bodyWeight: number;
+  food: number;
+  water: number;
+  discard: number;
+  mortality: number;
+  totalProduction: number;
+  firstEggs: number;
+  secondEggs: number;
+  eggWeight: number;
   chickenLot = new ChickenLot();
 
 }
